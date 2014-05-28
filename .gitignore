@@ -1,0 +1,7 @@
+!.gitignore
+
+#Ryp custom
+*.kdev4*
+*#*.bak
+
+build
