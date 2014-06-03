@@ -2,6 +2,6 @@
 
 #Ryp custom
 *.kdev4*
-*#*.bak
+*.bak
 
 build

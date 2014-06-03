@@ -56,7 +56,7 @@ namespace mogl
         GLuint              getUniformLocation(const std::string& name) const;
 
     public:
-        void    printDebug(); // FIXME Debug only
+        void    printDebug();
 
     private:
         void    retrieveLocations();

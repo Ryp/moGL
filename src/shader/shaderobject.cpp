@@ -30,6 +30,8 @@
 #include <vector>
 #include <istream>
 
+#include <mogl.hpp>
+
 using namespace mogl;
 
 ShaderObject::ShaderObject(std::istream& code, ShaderType type)
