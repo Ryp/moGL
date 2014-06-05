@@ -13,8 +13,6 @@
 #include <vector>
 #include <istream>
 
-#include <mogl.hpp>
-
 namespace mogl
 {
     ShaderObject::ShaderObject(std::istream& file, ShaderType type)

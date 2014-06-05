@@ -28,7 +28,7 @@
 #include "glcontext.hpp" // First to be included
 #include <GL/gl.h>
 
-#include "shader/shaderprogram.hpp"
+#include <mogl/shader/shaderprogram.hpp>
 
 int main(int /*ac*/, char** /*av*/)
 {
