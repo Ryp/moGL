@@ -17,16 +17,12 @@ add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 option(MOGL_BUILD_TESTS "build-tests" ON)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
-find_package(CXX11 REQUIRED)
-find_package(OpenGL REQUIRED)
 
 list(APPEND CMAKE_CXX_FLAGS ${CXX11_FLAGS})
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${moGL_BINARY_DIR}/test)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${moGL_BINARY_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${moGL_BINARY_DIR}/lib)
-
-add_subdirectory(src)
 
 if(MOGL_BUILD_TESTS)
     add_subdirectory(test)

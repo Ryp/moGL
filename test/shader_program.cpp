@@ -25,11 +25,34 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#include "glcontext.hpp" // First to be included
+#include <GL/gl.h>
+
 #include "shader/shaderprogram.hpp"
 
 int main(int /*ac*/, char** /*av*/)
 {
-    mogl::ShaderProgram   shader;
+    GLContext ctx;
 
+    ctx.create(40, 30, false);
+
+    std::string         vsFile("#version 330\nin vec3 Position; void main(void) { gl_Position = vec4(Position, 1.0); }");
+    std::string         fsFile("#version 330\nout vec4 fragColor; void main(void) { fragColor = vec4(1.0, 0.0, 0.0, 1.0); }");
+    mogl::ShaderObject  vertex(vsFile, mogl::ShaderObject::ShaderType::VertexShader);
+    mogl::ShaderObject  fragment(fsFile, mogl::ShaderObject::ShaderType::VertexShader);
+    mogl::ShaderProgram shader;
+
+    if (!vertex.compile())
+        return (1);
+    if (!fragment.compile())
+        return (2);
+
+    shader.attach(vertex);
+    shader.attach(fragment);
+
+    if (shader.link())
+        return (3);
+
+    ctx.destroy();
     return (0);
 }
