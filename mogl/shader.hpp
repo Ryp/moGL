@@ -4,13 +4,14 @@
 /// Copyright (c) 2014 Thibault Schueller
 /// This file is distributed under the MIT License
 ///
-/// @file mogl.hpp
+/// @file shader.hpp
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef MOGL_INCLUDED
-#define MOGL_INCLUDED
+#ifndef MOGL_SHADER_INCLUDED
+#define MOGL_SHADER_INCLUDED
 
-#include "shader.hpp"
+#include "shader/shaderobject.hpp"
+#include "shader/shaderprogram.hpp"
 
-#endif // MOGL_INCLUDED
+#endif // MOGL_SHADER_INCLUDED

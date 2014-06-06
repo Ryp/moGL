@@ -28,8 +28,8 @@ namespace mogl
         };
 
     public:
-        ShaderObject(std::istream& file, ShaderType type);
-        ShaderObject(std::string& code, ShaderType type);
+        ShaderObject(std::istream& sourceFile, ShaderType type);
+        ShaderObject(std::string& sourceCode, ShaderType type);
         ~ShaderObject() = default;
 
         ShaderObject(const ShaderObject& other) = delete;
@@ -43,7 +43,7 @@ namespace mogl
         GLuint              getHandle() const;
         const std::string&  getCode() const;
         ShaderType          getType() const;
-        const std::string&  getErrorLog() const;
+        const std::string&  getLog() const;
         bool                isCompiled() const;
 
     private:

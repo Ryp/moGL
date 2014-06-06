@@ -11,7 +11,7 @@
 #ifndef MOGL_SHADEREXCEPTION_INCLUDED
 #define MOGL_SHADEREXCEPTION_INCLUDED
 
-#include "exception/moglexception.hpp"
+#include "moglexception.hpp"
 
 namespace mogl
 {

@@ -15,15 +15,15 @@
 
 namespace mogl
 {
-    ShaderObject::ShaderObject(std::istream& file, ShaderType type)
-    :   _code(std::istreambuf_iterator<char>(static_cast<std::istream&>(file)), std::istreambuf_iterator<char>()),
+    ShaderObject::ShaderObject(std::istream& sourceFile, ShaderType type)
+    :   _code(std::istreambuf_iterator<char>(static_cast<std::istream&>(sourceFile)), std::istreambuf_iterator<char>()),
     _handle(0),
     _type(type),
     _isCompiled(false)
     {}
 
-    ShaderObject::ShaderObject(std::string& code, ShaderType type)
-    :   _code(code),
+    ShaderObject::ShaderObject(std::string& sourceCode, ShaderType type)
+    :   _code(sourceCode),
     _handle(0),
     _type(type),
     _isCompiled(false)
@@ -80,7 +80,7 @@ namespace mogl
         return (_type);
     }
 
-    const std::string& ShaderObject::getErrorLog() const
+    const std::string& ShaderObject::getLog() const
     {
         return (_log);
     }
