@@ -1,17 +1,17 @@
+#===============================================================================
+# Modern OpenGL Wrapper
+#
+# Author: Thibault Schueller <ryp.sqrt@gmail.com>
+#
+# The contents of this file are placed in the public domain. Feel
+# free to make use of it in any way you like.
+#===============================================================================
+
 # FindMoGL            - attempts to locate the mogl library.
 #
 # This module defines the following variables (on success):
 #   MOGL_INCLUDE_DIRS - where to find mogl/mogl.hpp
 #   MOGL_FOUND        - if the library was successfully located
-#
-#=============================================================================
-# Modern OpenGL Wrapper
-#
-# Copyright (c) 2014 Thibault Schueller
-# This file is distributed under the MIT License
-#
-# Author: Thibault Schueller <ryp.sqrt@gmail.com>
-#=============================================================================
 
 include(FindPackageHandleStandardArgs)
 

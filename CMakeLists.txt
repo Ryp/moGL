@@ -5,9 +5,10 @@ enable_testing()
 
 option(MOGL_BUILD_TESTS "build-tests" ON)
 
-file(GLOB_RECURSE MOGL_CMAKE mogl/cmake/*.cmake)
-file(GLOB_RECURSE MOGL_INLINE mogl/*.inl)
-file(GLOB_RECURSE MOGL_HEADER mogl/*.hpp)
+# FIXME Does not preserve subdirectories
+file(GLOB_RECURSE MOGL_CMAKE    "${CMAKE_CURRENT_SOURCE_DIR}/mogl/cmake/*.cmake")
+file(GLOB_RECURSE MOGL_INLINE   "${CMAKE_CURRENT_SOURCE_DIR}/mogl/*.inl")
+file(GLOB_RECURSE MOGL_HEADER   "${CMAKE_CURRENT_SOURCE_DIR}/mogl/*.hpp")
 
 install(FILES ${MOGL_CMAKE} DESTINATION share)
 install(FILES ${MOGL_INLINE} DESTINATION include)
