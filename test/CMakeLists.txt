@@ -33,3 +33,4 @@ function(moglCreateTest NAME)
 endfunction()
 
 moglCreateTest(shader_program)
+moglCreateTest(framebuffer)

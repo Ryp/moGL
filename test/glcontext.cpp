@@ -17,7 +17,7 @@ void GLContext::create(int width, int height, bool fullscreen)
     GLFWmonitor* monitor;
     if (!(monitor = glfwGetPrimaryMonitor()))
         throw (std::runtime_error("Failed to retrieve primary monitor"));
-    if (!(_window = glfwCreateWindow(width, height, "ReaperGL", fullscreen ? monitor : nullptr, nullptr)))
+    if (!(_window = glfwCreateWindow(width, height, "GLContext", ((fullscreen) ? (monitor) : (nullptr)), nullptr)))
     {
         destroy();
         throw (std::runtime_error("Failed to open GLFW window"));

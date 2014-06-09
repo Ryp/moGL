@@ -4,14 +4,13 @@
 /// Copyright (c) 2014 Thibault Schueller
 /// This file is distributed under the MIT License
 ///
-/// @file mogl.hpp
+/// @file frambuffer.hpp
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef MOGL_INCLUDED
-#define MOGL_INCLUDED
+#ifndef MOGL_FRAMEBUFFER_INCLUDED
+#define MOGL_FRAMEBUFFER_INCLUDED
 
-#include "shader.hpp"
-#include "framebuffer.hpp"
+#include "framebuffer/framebufferobject.hpp"
 
-#endif // MOGL_INCLUDED
+#endif // MOGL_FRAMEBUFFER_INCLUDED

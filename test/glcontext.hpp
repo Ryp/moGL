@@ -13,16 +13,12 @@ typedef struct {
 
 class GLContext
 {
-    static const int DefaultWindowWidth = 1280;
-    static const int DefaultWindowHeight = 768;
-    static const bool DefaultFullscreen = false;
-
 public:
     GLContext();
     ~GLContext();
 
 public:
-    void            create(int width = DefaultWindowWidth, int height = DefaultWindowHeight, bool fullscreen = DefaultFullscreen);
+    void            create(int width, int height, bool fullscreen = false);
     void            destroy();
     bool            isOpen();
     void            swapBuffers();
