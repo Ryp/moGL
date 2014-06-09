@@ -16,9 +16,9 @@
 include(FindPackageHandleStandardArgs)
 
 set(MOGL_HEADER_SEARCH_DIRS
+    ".." # For tests only
     "/usr/include"
-    "/usr/local/include"
-    "..")
+    "/usr/local/include")
 
 find_path(MOGL_INCLUDE_DIR "mogl/mogl.hpp"
     PATHS ${MOGL_HEADER_SEARCH_DIRS})
