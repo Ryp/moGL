@@ -42,9 +42,6 @@ bool GLContext::isOpen()
 void GLContext::swapBuffers()
 {
     glfwSwapBuffers(_window);
-
-    if (glfwGetKey(_window, GLFW_KEY_SPACE) == GLFW_PRESS)
-        std::cout << "Key pressed !" << std::endl;
     glfwPollEvents();
 }
 

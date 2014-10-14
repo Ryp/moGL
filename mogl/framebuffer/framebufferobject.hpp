@@ -33,6 +33,9 @@ namespace mogl
         void    bind(Target target);
         void    destroy();
 
+    public:
+        GLuint  getHandle() const;
+
     private:
         GLuint  _handle;
     };

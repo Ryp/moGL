@@ -27,4 +27,10 @@ namespace mogl
     {
         glDeleteFramebuffers(1, &_handle);
     }
+
+    GLuint FrameBufferObject::getHandle() const
+    {
+        return (_handle);
+    }
+
 }
