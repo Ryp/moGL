@@ -18,7 +18,7 @@ namespace mogl
         glGenFramebuffers(1, &_handle);
     }
 
-    void FrameBufferObject::bind(Target target)
+    void FrameBufferObject::bind(FrameBuffer::Target target)
     {
         glBindFramebuffer(static_cast<GLenum>(target), _handle);
     }
@@ -28,9 +28,17 @@ namespace mogl
         glDeleteFramebuffers(1, &_handle);
     }
 
+    void FrameBufferObject::setRenderBuffer(FrameBuffer::Attachment attachment, const RenderBufferObject& renderbuffer)
+    {
+        glNamedFramebufferRenderbuffer(_handle,
+                                       static_cast<GLenum>(attachment),
+                                       static_cast<GLenum>(RenderBufferObject::Target::RenderBuffer),
+                                       renderbuffer.getHandle()
+        );
+    }
+
     GLuint FrameBufferObject::getHandle() const
     {
         return (_handle);
     }
-
 }

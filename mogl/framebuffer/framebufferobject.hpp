@@ -11,17 +11,13 @@
 #ifndef MOGL_FRAMEBUFFEROBJECT_INCLUDED
 #define MOGL_FRAMEBUFFEROBJECT_INCLUDED
 
+#include <mogl/renderbuffer/renderbufferobject.hpp>
+#include <mogl/framebuffer/framebufferfunctions.hpp>
+
 namespace mogl
 {
     class FrameBufferObject
     {
-    public:
-        enum class Target {
-            DrawFrameBuffer = GL_DRAW_FRAMEBUFFER,
-            ReadFrameBuffer = GL_READ_FRAMEBUFFER,
-            FrameBuffer = GL_FRAMEBUFFER
-        };
-
     public:
         FrameBufferObject();
         ~FrameBufferObject() = default;
@@ -30,8 +26,9 @@ namespace mogl
         FrameBufferObject& operator=(const FrameBufferObject& other) = delete;
 
     public:
-        void    bind(Target target);
+        void    bind(FrameBuffer::Target target);
         void    destroy();
+        void    setRenderBuffer(FrameBuffer::Attachment attachment, const RenderBufferObject& renderbuffer); // NOTE OpenGL 4.5
 
     public:
         GLuint  getHandle() const;
