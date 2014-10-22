@@ -12,8 +12,9 @@
 
 namespace mogl
 {
-    TextureObject::TextureObject()
-    :   _handle(0)
+    TextureObject::TextureObject(GLenum target)
+    :   _handle(0),
+        _target(target)
     {
         glGenTextures(1, &_handle);
     }
@@ -23,13 +24,31 @@ namespace mogl
         glDeleteTextures(1, &_handle);
     }
 
-    void TextureObject::bind(GLenum target)
+    void TextureObject::bind()
     {
-        glBindTexture(target, _handle);
+        glBindTexture(_target, _handle);
     }
 
     GLuint TextureObject::getHandle() const
     {
         return _handle;
+    }
+
+    template <>
+    void TextureObject::setParameter<GLint>(GLenum property, GLint value)
+    {
+        glTexParameteri(_target, property, value);
+    }
+
+    template <>
+    void TextureObject::setParameter<GLenum>(GLenum property, GLenum value)
+    {
+        glTexParameteri(_target, property, static_cast<GLint>(value));
+    }
+
+    template <>
+    void TextureObject::setParameter<GLfloat>(GLenum property, GLfloat value)
+    {
+        glTexParameterf(_target, property, value);
     }
 }

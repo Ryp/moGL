@@ -16,18 +16,21 @@ namespace mogl
     class TextureObject
     {
     public:
-        TextureObject();
+        TextureObject(GLenum target);
         ~TextureObject();
 
         TextureObject(const TextureObject& other) = delete;
         TextureObject& operator=(const TextureObject& other) = delete;
 
     public:
-        void    bind(GLenum target);
+        void    bind();
         GLuint  getHandle() const;
+        template <class T>
+        void    setParameter(GLenum property, T value);
 
     private:
         GLuint  _handle;
+        GLenum  _target;
     };
 }
 
