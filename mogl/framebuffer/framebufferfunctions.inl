@@ -10,14 +10,14 @@
 
 #include "framebufferfunctions.hpp"
 
-namespace mogl { namespace FrameBuffer
+namespace mogl
 {
-    bool isComplete(Target target)
+    bool FrameBuffer::isComplete(Target target)
     {
         return (glCheckFramebufferStatus(static_cast<GLenum>(target)) == GL_FRAMEBUFFER_COMPLETE);
     }
 
-    void setRenderBuffer(Target target, Attachment attachment, const RenderBufferObject& renderbuffer)
+    void FrameBuffer::setRenderBuffer(Target target, Attachment attachment, const RenderBufferObject& renderbuffer)
     {
         glFramebufferRenderbuffer(static_cast<GLenum>(target),
                                   static_cast<GLenum>(attachment),
@@ -26,7 +26,7 @@ namespace mogl { namespace FrameBuffer
                                  );
     }
 
-    void setTexture2D(Target target, Attachment attachment, GLenum textarget, GLuint texture, GLint level)
+    void FrameBuffer::setTexture2D(Target target, Attachment attachment, GLenum textarget, GLuint texture, GLint level)
     {
         glFramebufferTexture2D(static_cast<GLenum>(target),
                                static_cast<GLenum>(attachment),
@@ -35,4 +35,4 @@ namespace mogl { namespace FrameBuffer
                                level
                               );
     }
-}}
+}

@@ -30,16 +30,13 @@ namespace mogl
     public:
         ShaderObject(std::istream& sourceFile, ShaderType type);
         ShaderObject(std::string& sourceCode, ShaderType type);
-        ~ShaderObject() = default;
+        ~ShaderObject();
 
         ShaderObject(const ShaderObject& other) = delete;
         ShaderObject& operator=(const ShaderObject& other) = delete;
 
     public:
         bool                compile();
-        void                destroy();
-
-    public:
         GLuint              getHandle() const;
         const std::string&  getCode() const;
         ShaderType          getType() const;

@@ -22,14 +22,13 @@ namespace mogl
 
     public:
         RenderBufferObject();
-        ~RenderBufferObject() = default;
+        ~RenderBufferObject();
 
         RenderBufferObject(const RenderBufferObject& other) = delete;
         RenderBufferObject& operator=(const RenderBufferObject& other) = delete;
 
     public:
         void    bind();
-        void    destroy();
         void    setStorage(GLenum internalformat, GLsizei width, GLsizei height);
 
     public:

@@ -15,8 +15,9 @@
 
 namespace mogl
 {
-    namespace FrameBuffer
+    class FrameBuffer
     {
+    public:
         enum class Target {
             DrawFrameBuffer = GL_DRAW_FRAMEBUFFER,
             ReadFrameBuffer = GL_READ_FRAMEBUFFER,

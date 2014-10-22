@@ -20,14 +20,13 @@ namespace mogl
     {
     public:
         FrameBufferObject();
-        ~FrameBufferObject() = default;
+        ~FrameBufferObject();
 
         FrameBufferObject(const FrameBufferObject& other) = delete;
         FrameBufferObject& operator=(const FrameBufferObject& other) = delete;
 
     public:
         void    bind(FrameBuffer::Target target);
-        void    destroy();
         void    setRenderBuffer(FrameBuffer::Attachment attachment, const RenderBufferObject& renderbuffer); // NOTE OpenGL 4.5
 
     public:

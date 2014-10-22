@@ -21,6 +21,11 @@ namespace mogl
             std::cerr << "Could not create shader program" << std::endl;
     }
 
+    ShaderProgram::~ShaderProgram()
+    {
+        glDeleteProgram(_handle);
+    }
+
     void ShaderProgram::attach(const ShaderObject& object)
     {
         glAttachShader(_handle, object.getHandle());
@@ -48,7 +53,7 @@ namespace mogl
                 infoLog[logLength - 1] = '\0'; // Overwrite endline
                 _log = &infoLog[0];
             }
-            destroy();
+            glDeleteProgram(_handle);
             return (false);
         }
         retrieveLocations();
@@ -62,11 +67,6 @@ namespace mogl
             //     throw (ShaderProgramException("Invalid shader program"));
             return ;
         glUseProgram(_handle);
-    }
-
-    void ShaderProgram::destroy()
-    {
-        glDeleteProgram(_handle);
     }
 
     GLuint ShaderProgram::getHandle() const

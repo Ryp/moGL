@@ -21,14 +21,13 @@ namespace mogl
     {
     public:
         ShaderProgram();
-        ~ShaderProgram() = default;
+        ~ShaderProgram();
 
     public:
         void                attach(const ShaderObject& object);
         void                detach(const ShaderObject& object);
         bool                link();
         void                bind();
-        void                destroy();
         GLuint              getHandle() const;
         const std::string&  getLog() const;
         GLuint              getAttribLocation(const std::string& name) const;

@@ -11,7 +11,7 @@
 #include "glcontext.hpp" // First to be included
 #include <GL/gl.h>
 
-#include <mogl/framebuffer/framebufferobject.hpp>
+#include <mogl/framebuffer.hpp>
 
 using mogl::FrameBufferObject;
 
@@ -20,12 +20,11 @@ int main(int /*ac*/, char** /*av*/)
     GLContext ctx;
 
     ctx.create(40, 30, false);
+    {
+        FrameBufferObject   fbo;
 
-    FrameBufferObject   fbo;
-
-    fbo.bind(FrameBufferObject::Target::DrawFrameBuffer);
-    fbo.destroy();
-
+        fbo.bind(mogl::FrameBuffer::Target::DrawFrameBuffer);
+    }
     ctx.destroy();
     return (0);
 }

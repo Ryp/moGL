@@ -29,6 +29,11 @@ namespace mogl
     _isCompiled(false)
     {}
 
+    ShaderObject::~ShaderObject()
+    {
+        glDeleteShader(_handle);
+    }
+
     bool ShaderObject::compile()
     {
         GLint       success;
@@ -58,11 +63,6 @@ namespace mogl
         _handle = handle;
         _log = std::string();
         return (_isCompiled);
-    }
-
-    void ShaderObject::destroy()
-    {
-        glDeleteShader(_handle);
     }
 
     GLuint ShaderObject::getHandle() const

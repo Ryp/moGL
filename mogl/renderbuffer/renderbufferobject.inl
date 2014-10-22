@@ -18,15 +18,15 @@ namespace mogl
         glGenRenderbuffers(1, &_handle);
     }
 
+    RenderBufferObject::~RenderBufferObject()
+    {
+        glDeleteRenderbuffers(1, &_handle);
+    }
+
     void RenderBufferObject::bind()
     {
         //Only Target::RenderBuffer is allowed
         glBindRenderbuffer(static_cast<GLenum>(Target::RenderBuffer), _handle);
-    }
-
-    void RenderBufferObject::destroy()
-    {
-        glDeleteRenderbuffers(1, &_handle);
     }
 
     void RenderBufferObject::setStorage(GLenum internalformat, GLsizei width, GLsizei height)

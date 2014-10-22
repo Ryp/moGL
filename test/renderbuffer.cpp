@@ -20,12 +20,11 @@ int main(int /*ac*/, char** /*av*/)
     GLContext ctx;
 
     ctx.create(40, 30, false);
-
-    RenderBufferObject   dbo;
-    dbo.bind();
-    dbo.getHandle();
-    dbo.destroy();
-
+    {
+        RenderBufferObject   dbo;
+        dbo.bind();
+        dbo.getHandle();
+    }
     ctx.destroy();
     return (0);
 }

@@ -18,14 +18,14 @@ namespace mogl
         glGenFramebuffers(1, &_handle);
     }
 
+    FrameBufferObject::~FrameBufferObject()
+    {
+        glDeleteFramebuffers(1, &_handle);
+    }
+
     void FrameBufferObject::bind(FrameBuffer::Target target)
     {
         glBindFramebuffer(static_cast<GLenum>(target), _handle);
-    }
-
-    void FrameBufferObject::destroy()
-    {
-        glDeleteFramebuffers(1, &_handle);
     }
 
     void FrameBufferObject::setRenderBuffer(FrameBuffer::Attachment attachment, const RenderBufferObject& renderbuffer)
