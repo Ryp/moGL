@@ -12,5 +12,6 @@
 #define MOGL_FRAMEBUFFER_INCLUDED
 
 #include "framebuffer/framebufferobject.hpp"
+#include "framebuffer/framebufferfunctions.hpp"
 
 #endif // MOGL_FRAMEBUFFER_INCLUDED

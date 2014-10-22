@@ -31,7 +31,7 @@ namespace mogl
 
     bool ShaderObject::compile()
     {
-        GLint       success = GL_FALSE;
+        GLint       success;
         GLint       logLength = 0;
         GLuint      handle;
         char const* srcPtr = _code.c_str();
@@ -41,7 +41,7 @@ namespace mogl
         glShaderSource(handle, 1, &srcPtr, 0);
         glCompileShader(handle);
         glGetShaderiv(handle, GL_COMPILE_STATUS, &success);
-        if (success == GL_FALSE)
+        if (success == static_cast<GLint>(GL_FALSE))
         {
             glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &logLength);
             if (logLength > 1)

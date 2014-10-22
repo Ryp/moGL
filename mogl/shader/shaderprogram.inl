@@ -33,12 +33,12 @@ namespace mogl
 
     bool ShaderProgram::link()
     {
-        GLint     success = GL_FALSE;
-        GLint     logLength = 0;
+        GLint       success;
+        GLint       logLength = 0;
 
         glLinkProgram(_handle);
         glGetProgramiv(_handle, GL_LINK_STATUS, &success);
-        if (success == GL_FALSE)
+        if (success == static_cast<GLint>(GL_FALSE))
         {
             glGetProgramiv(_handle, GL_INFO_LOG_LENGTH, &logLength);
             if (logLength > 1)
@@ -102,11 +102,11 @@ namespace mogl
     void ShaderProgram::printDebug()
     {
         std::cout << "Attributes:" << std::endl;
-        for (std::map<std::string, GLuint>::iterator it = _attribs.begin(); it != _attribs.end(); ++it)
-            std::cout << "Name: " << (*it).first << std::endl;
+        for (auto attrib : _attribs)
+            std::cout << "Name: " << attrib.first << std::endl;
         std::cout << "Uniforms:" << std::endl;
-        for (std::map<std::string, GLuint>::iterator it = _uniforms.begin(); it != _uniforms.end(); ++it)
-            std::cout << "Name: " << (*it).first << std::endl;
+        for (auto uniform : _uniforms)
+            std::cout << "Name: " << uniform.first << std::endl;
     }
 
     void ShaderProgram::retrieveLocations()
@@ -137,5 +137,178 @@ namespace mogl
             _uniforms[name] = location;
         }
         delete[] name;
+    }
+
+    void ShaderProgram::setVertexAttribPointer(const std::string& name, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointerOffset)
+    {
+        glVertexAttribPointer(getAttribLocation(name), size, type, normalized, stride, pointerOffset);
+    }
+
+    /*
+     * GLfloat uniform specialization
+     */
+
+    template <>
+    void    ShaderProgram::setUniform<GLfloat>(const std::string& name, GLfloat v1)
+    {
+        glUniform1f(getUniformLocation(name), v1);
+    }
+
+    template <>
+    void    ShaderProgram::setUniform<GLfloat>(const std::string& name, GLfloat v1, GLfloat v2)
+    {
+        glUniform2f(getUniformLocation(name), v1, v2);
+    }
+
+    template <>
+    void    ShaderProgram::setUniform<GLfloat>(const std::string& name, GLfloat v1, GLfloat v2, GLfloat v3)
+    {
+        glUniform3f(getUniformLocation(name), v1, v2, v3);
+    }
+
+    template <>
+    void    ShaderProgram::setUniform<GLfloat>(const std::string& name, GLfloat v1, GLfloat v2, GLfloat v3, GLfloat v4)
+    {
+        glUniform4f(getUniformLocation(name), v1, v2, v3, v4);
+    }
+
+    /*
+     * GLint uniform specialization
+     */
+
+    template <>
+    void    ShaderProgram::setUniform<GLint>(const std::string& name, GLint v1)
+    {
+        glUniform1i(getUniformLocation(name), v1);
+    }
+
+    template <>
+    void    ShaderProgram::setUniform<GLint>(const std::string& name, GLint v1, GLint v2)
+    {
+        glUniform2i(getUniformLocation(name), v1, v2);
+    }
+
+    template <>
+    void    ShaderProgram::setUniform<GLint>(const std::string& name, GLint v1, GLint v2, GLint v3)
+    {
+        glUniform3i(getUniformLocation(name), v1, v2, v3);
+    }
+
+    template <>
+    void    ShaderProgram::setUniform<GLint>(const std::string& name, GLint v1, GLint v2, GLint v3, GLint v4)
+    {
+        glUniform4i(getUniformLocation(name), v1, v2, v3, v4);
+    }
+
+    /*
+     * GLuint uniform specialization
+     */
+
+    template <>
+    void    ShaderProgram::setUniform<GLuint>(const std::string& name, GLuint v1)
+    {
+        glUniform1ui(getUniformLocation(name), v1);
+    }
+
+    template <>
+    void    ShaderProgram::setUniform<GLuint>(const std::string& name, GLuint v1, GLuint v2)
+    {
+        glUniform2ui(getUniformLocation(name), v1, v2);
+    }
+
+    template <>
+    void    ShaderProgram::setUniform<GLuint>(const std::string& name, GLuint v1, GLuint v2, GLuint v3)
+    {
+        glUniform3ui(getUniformLocation(name), v1, v2, v3);
+    }
+
+    template <>
+    void    ShaderProgram::setUniform<GLuint>(const std::string& name, GLuint v1, GLuint v2, GLuint v3, GLuint v4)
+    {
+        glUniform4ui(getUniformLocation(name), v1, v2, v3, v4);
+    }
+
+    /*
+     * GLfloat uniform array specialization
+     */
+
+    template <>
+    void    ShaderProgram::setUniformPtr<1, GLfloat>(const std::string& name, const GLfloat* ptr, GLsizei count)
+    {
+        glUniform1fv(getUniformLocation(name), count, ptr);
+    }
+
+    template <>
+    void    ShaderProgram::setUniformPtr<2, GLfloat>(const std::string& name, const GLfloat* ptr, GLsizei count)
+    {
+        glUniform2fv(getUniformLocation(name), count, ptr);
+    }
+
+    template <>
+    void    ShaderProgram::setUniformPtr<3, GLfloat>(const std::string& name, const GLfloat* ptr, GLsizei count)
+    {
+        glUniform3fv(getUniformLocation(name), count, ptr);
+    }
+
+    template <>
+    void    ShaderProgram::setUniformPtr<4, GLfloat>(const std::string& name, const GLfloat* ptr, GLsizei count)
+    {
+        glUniform4fv(getUniformLocation(name), count, ptr);
+    }
+
+    /*
+     * GLint uniform array specialization
+     */
+
+    template <>
+    void    ShaderProgram::setUniformPtr<1, GLint>(const std::string& name, const GLint* ptr, GLsizei count)
+    {
+        glUniform1iv(getUniformLocation(name), count, ptr);
+    }
+
+    template <>
+    void    ShaderProgram::setUniformPtr<2, GLint>(const std::string& name, const GLint* ptr, GLsizei count)
+    {
+        glUniform2iv(getUniformLocation(name), count, ptr);
+    }
+
+    template <>
+    void    ShaderProgram::setUniformPtr<3, GLint>(const std::string& name, const GLint* ptr, GLsizei count)
+    {
+        glUniform3iv(getUniformLocation(name), count, ptr);
+    }
+
+    template <>
+    void    ShaderProgram::setUniformPtr<4, GLint>(const std::string& name, const GLint* ptr, GLsizei count)
+    {
+        glUniform4iv(getUniformLocation(name), count, ptr);
+    }
+
+    /*
+     * GLuint uniform array specialization
+     */
+
+    template <>
+    void    ShaderProgram::setUniformPtr<1, GLuint>(const std::string& name, const GLuint* ptr, GLsizei count)
+    {
+        glUniform1uiv(getUniformLocation(name), count, ptr);
+    }
+
+    template <>
+    void    ShaderProgram::setUniformPtr<2, GLuint>(const std::string& name, const GLuint* ptr, GLsizei count)
+    {
+        glUniform2uiv(getUniformLocation(name), count, ptr);
+    }
+
+    template <>
+    void    ShaderProgram::setUniformPtr<3, GLuint>(const std::string& name, const GLuint* ptr, GLsizei count)
+    {
+        glUniform3uiv(getUniformLocation(name), count, ptr);
+    }
+
+    template <>
+    void    ShaderProgram::setUniformPtr<4, GLuint>(const std::string& name, const GLuint* ptr, GLsizei count)
+    {
+        glUniform4uiv(getUniformLocation(name), count, ptr);
     }
 }

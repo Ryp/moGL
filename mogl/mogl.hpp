@@ -11,7 +11,8 @@
 #ifndef MOGL_INCLUDED
 #define MOGL_INCLUDED
 
-#include "shader.hpp"
 #include "framebuffer.hpp"
+#include "renderbuffer.hpp"
+#include "shader.hpp"
 
 #endif // MOGL_INCLUDED

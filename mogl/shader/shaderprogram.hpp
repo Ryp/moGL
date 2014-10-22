@@ -23,8 +23,6 @@ namespace mogl
         ShaderProgram();
         ~ShaderProgram() = default;
 
-        ShaderProgram(const ShaderProgram& other) = delete;
-        ShaderProgram& operator=(const ShaderProgram& other) = delete;
     public:
         void                attach(const ShaderObject& object);
         void                detach(const ShaderObject& object);
@@ -35,6 +33,26 @@ namespace mogl
         const std::string&  getLog() const;
         GLuint              getAttribLocation(const std::string& name) const;
         GLuint              getUniformLocation(const std::string& name) const;
+
+    public:
+        void    setVertexAttribPointer(const std::string& name,
+                                       GLint size,
+                                       GLenum type,
+                                       GLboolean normalized = GL_FALSE,
+                                       GLsizei stride = 0,
+                                       const void* pointerOffset = nullptr);
+
+    public:
+        template <class T>
+        void    setUniform(const std::string& name, T v1);
+        template <class T>
+        void    setUniform(const std::string& name, T v1, T v2);
+        template <class T>
+        void    setUniform(const std::string& name, T v1, T v2, T v3);
+        template <class T>
+        void    setUniform(const std::string& name, T v1, T v2, T v3, T v4);
+        template <std::size_t Size, class T>
+        void    setUniformPtr(const std::string& name, const T* ptr, GLsizei count = 1);
 
     public:
         void    printDebug();
