@@ -26,12 +26,12 @@ namespace mogl
                                  );
     }
 
-    void FrameBuffer::setTexture2D(Target target, Attachment attachment, GLenum textarget, GLuint texture, GLint level)
+    void FrameBuffer::setTexture2D(Target target, Attachment attachment, mogl::TextureObject& texture, GLint level)
     {
         glFramebufferTexture2D(static_cast<GLenum>(target),
                                static_cast<GLenum>(attachment),
-                               textarget,
-                               texture,
+                               texture.getTarget(),
+                               texture.getHandle(),
                                level
                               );
     }

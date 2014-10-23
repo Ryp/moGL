@@ -52,6 +52,10 @@ namespace mogl
         void    setUniform(const std::string& name, T v1, T v2, T v3, T v4);
         template <std::size_t Size, class T>
         void    setUniformPtr(const std::string& name, const T* ptr, GLsizei count = 1);
+        template <std::size_t Columns, std::size_t Rows, class T>
+        void    setUniformMatrixPtr(const std::string& name, const T* ptr, GLboolean transpose = GL_FALSE, GLsizei count = 1);
+        template <std::size_t Size, class T>
+        void    setUniformMatrixPtr(const std::string& name, const T* ptr, GLboolean transpose = GL_FALSE, GLsizei count = 1);
 
     public:
         void    printDebug();

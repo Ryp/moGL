@@ -311,4 +311,84 @@ namespace mogl
     {
         glUniform4uiv(getUniformLocation(name), count, ptr);
     }
+
+    /*
+     * GLfloat matrix uniform array specialization
+     */
+
+    template <>
+    void ShaderProgram::setUniformMatrixPtr<2, 2, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
+    {
+        glUniformMatrix2fv(getUniformLocation(name), count, transpose, ptr);
+    }
+
+    template <>
+    void ShaderProgram::setUniformMatrixPtr<3, 3, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
+    {
+        glUniformMatrix3fv(getUniformLocation(name), count, transpose, ptr);
+    }
+
+    template <>
+    void ShaderProgram::setUniformMatrixPtr<4, 4, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
+    {
+        glUniformMatrix4fv(getUniformLocation(name), count, transpose, ptr);
+    }
+
+    template <>
+    void ShaderProgram::setUniformMatrixPtr<2, 3, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
+    {
+        glUniformMatrix2x3fv(getUniformLocation(name), count, transpose, ptr);
+    }
+
+    template <>
+    void ShaderProgram::setUniformMatrixPtr<3, 2, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
+    {
+        glUniformMatrix3x2fv(getUniformLocation(name), count, transpose, ptr);
+    }
+
+    template <>
+    void ShaderProgram::setUniformMatrixPtr<2, 4, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
+    {
+        glUniformMatrix2x4fv(getUniformLocation(name), count, transpose, ptr);
+    }
+
+    template <>
+    void ShaderProgram::setUniformMatrixPtr<4, 2, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
+    {
+        glUniformMatrix4x2fv(getUniformLocation(name), count, transpose, ptr);
+    }
+
+    template <>
+    void ShaderProgram::setUniformMatrixPtr<3, 4, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
+    {
+        glUniformMatrix3x4fv(getUniformLocation(name), count, transpose, ptr);
+    }
+
+    template <>
+    void ShaderProgram::setUniformMatrixPtr<4, 3, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
+    {
+        glUniformMatrix4x3fv(getUniformLocation(name), count, transpose, ptr);
+    }
+
+    /*
+     * GLfloat square matrix uniform array specialization
+     */
+
+    template <>
+    void ShaderProgram::setUniformMatrixPtr<2, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
+    {
+        glUniformMatrix2fv(getUniformLocation(name), count, transpose, ptr);
+    }
+
+    template <>
+    void ShaderProgram::setUniformMatrixPtr<3, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
+    {
+        glUniformMatrix3fv(getUniformLocation(name), count, transpose, ptr);
+    }
+
+    template <>
+    void ShaderProgram::setUniformMatrixPtr<4, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
+    {
+        glUniformMatrix4fv(getUniformLocation(name), count, transpose, ptr);
+    }
 }

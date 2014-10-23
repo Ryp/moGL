@@ -16,21 +16,20 @@ namespace mogl
     class BufferObject
     {
     public:
-        BufferObject();
+        BufferObject(GLenum target);
         ~BufferObject();
 
         BufferObject(const BufferObject& other) = delete;
         BufferObject& operator=(const BufferObject& other) = delete;
 
     public:
-        void    bind(GLenum target);
+        void    bind();
+        void    setData(GLsizeiptr size, const void* data, GLenum usage);
         GLuint  getHandle() const;
-
-    public:
-        static void setData(GLenum target, GLsizeiptr size, const void* data, GLenum usage);
 
     private:
         GLuint  _handle;
+        GLenum  _target;
     };
 }
 

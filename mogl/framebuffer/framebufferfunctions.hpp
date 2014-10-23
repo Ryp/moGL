@@ -12,6 +12,7 @@
 #define MOGL_FRAMEBUFFERFUNCTIONS_INCLUDED
 
 #include <mogl/renderbuffer/renderbufferobject.hpp>
+#include <mogl/texture/textureobject.hpp>
 
 namespace mogl
 {
@@ -31,7 +32,7 @@ namespace mogl
 
         static bool isComplete(Target target);
         static void setRenderBuffer(Target target, Attachment attachment, const RenderBufferObject& renderbuffer);
-        static void setTexture2D(Target target, Attachment attachment, GLenum textarget, GLuint texture, GLint level);
+        static void setTexture2D(Target target, Attachment attachment, mogl::TextureObject& texture, GLint level = 0);
     };
 }
 

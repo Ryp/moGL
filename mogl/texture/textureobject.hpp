@@ -25,6 +25,7 @@ namespace mogl
     public:
         void    bind();
         GLuint  getHandle() const;
+        GLenum  getTarget() const;
         template <class T>
         void    setParameter(GLenum property, T value);
 

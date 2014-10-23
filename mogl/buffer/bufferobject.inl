@@ -12,8 +12,9 @@
 
 namespace mogl
 {
-    BufferObject::BufferObject()
-    :   _handle(0)
+    BufferObject::BufferObject(GLenum target)
+    :   _handle(0),
+        _target(target)
     {
         glGenBuffers(1, &_handle);
     }
@@ -23,18 +24,18 @@ namespace mogl
         glDeleteBuffers(1, &_handle);
     }
 
-    void BufferObject::bind(GLenum target)
+    void BufferObject::bind()
     {
-        glBindBuffer(target, _handle);
+        glBindBuffer(_target, _handle);
+    }
+
+    void BufferObject::setData(GLsizeiptr size, const void* data, GLenum usage)
+    {
+        glBufferData(_target, size, data, usage);
     }
 
     GLuint BufferObject::getHandle() const
     {
         return _handle;
-    }
-
-    void BufferObject::setData(GLenum target, GLsizeiptr size, const void* data, GLenum usage)
-    {
-        glBufferData(target, size, data, usage);
     }
 }

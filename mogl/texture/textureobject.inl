@@ -34,6 +34,11 @@ namespace mogl
         return _handle;
     }
 
+    GLenum TextureObject::getTarget() const
+    {
+        return _target;
+    }
+
     template <>
     void TextureObject::setParameter<GLint>(GLenum property, GLint value)
     {
