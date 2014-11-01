@@ -29,6 +29,11 @@ namespace mogl
         glBindTexture(_target, _handle);
     }
 
+    void TextureObject::generateMipmap()
+    {
+        glGenerateMipmap(_target);
+    }
+
     GLuint TextureObject::getHandle() const
     {
         return _handle;

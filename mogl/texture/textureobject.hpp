@@ -24,6 +24,7 @@ namespace mogl
 
     public:
         void    bind();
+        void    generateMipmap();
         GLuint  getHandle() const;
         GLenum  getTarget() const;
         template <class T>
