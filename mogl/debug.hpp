@@ -22,7 +22,7 @@ namespace mogl
         Debug() = delete;
 
     public:
-        static void assert(const char* file, const char* func, int line)
+        static void assertGLState(const char* file, const char* func, int line)
         {
             std::ostringstream  stream;
             std::string         errorDescription;
@@ -47,6 +47,6 @@ namespace mogl
     };
 }
 
-#define MOGL_ASSERT() mogl::Debug::assert(__FILE__, __FUNCTION__, __LINE__)
+#define MOGL_ASSERT() mogl::Debug::assertGLState(__FILE__, __FUNCTION__, __LINE__)
 
 #endif // MOGL_DEBUG_INCLUDED
