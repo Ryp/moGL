@@ -29,6 +29,11 @@ namespace mogl
         glBindTexture(_target, _handle);
     }
 
+    void TextureObject::setImage2D(GLint level, GLint internalFormat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid* data)
+    {
+        glTexImage2D(_target, level, internalFormat, width, height, border, format, type, data);
+    }
+
     void TextureObject::generateMipmap()
     {
         glGenerateMipmap(_target);
