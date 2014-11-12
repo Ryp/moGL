@@ -1,4 +1,4 @@
-#MoGL
+#MoGL [![Build Status](https://travis-ci.org/Ryp/moGL.svg?branch=develop)](https://travis-ci.org/Ryp/moGL)
 
 Modern OpenGL C++11 Wrapper
 

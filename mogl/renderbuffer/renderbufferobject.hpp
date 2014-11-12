@@ -17,7 +17,7 @@ namespace mogl
     {
     public:
         enum class Target {
-            RenderBuffer = GL_RENDERBUFFER,
+            RenderBuffer = static_cast<GLenum>(GL_RENDERBUFFER),
         };
 
     public:

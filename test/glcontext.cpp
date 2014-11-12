@@ -40,10 +40,6 @@ void GLContext::create(unsigned int width, unsigned int height, bool fullscreen)
     glfwMakeContextCurrent(_window);
 
     Binding::initialize();
-    std::cout << std::endl
-    << "OpenGL Version:  " << ContextInfo::version() << std::endl
-    << "OpenGL Vendor:   " << ContextInfo::vendor() << std::endl
-    << "OpenGL Renderer: " << ContextInfo::renderer() << std::endl;
 
     glfwSwapInterval(1); // NOTE Drivers may ignore this
     glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
