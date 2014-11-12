@@ -13,7 +13,7 @@ before_install:
     - sudo apt-get update -qq
 install:
     - sudo apt-get install -qq g++ clang cmake
-    - sudo apt-get install -qq libglew-dev libglfw-dev
+    - sudo apt-get install -qq libglew-dev libglfw3-dev
     - sudo apt-get install -qq valgrind
 before_script:
     - mkdir build && pushd build
