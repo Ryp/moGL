@@ -13,7 +13,6 @@ before_install:
     - sudo apt-get update -qq
 install:
     - sudo apt-get install -qq g++ clang cmake
-    - sudo apt-get install -qq libglew-dev
     - sudo apt-get install -qq valgrind
     - sudo apt-get install -qq libXxf86vm-dev
     - git clone https://github.com/glfw/glfw.git
@@ -21,7 +20,7 @@ install:
     - git checkout 3.0.4
     - cmake -DBUILD_SHARED_LIBS=ON . && make && sudo make install
     - popd
-    - git clone https://github.com/hpicgs/glbinding.github
+    - git clone https://github.com/hpicgs/glbinding.git
     - pushd glbinding
     - git checkout v1.0.3
     - cmake -DBUILD_SHARED_LIBS=ON . && make && sudo make install
