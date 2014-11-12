@@ -15,6 +15,7 @@ install:
     - sudo apt-get install -qq g++ clang cmake
     - sudo apt-get install -qq libglew-dev
     - sudo apt-get install -qq valgrind
+    - sudo apt-get install -qq libXxf86vm-dev
     - git clone https://github.com/glfw/glfw.git
     - cd glfw
     - git checkout 3.0.4
