@@ -1,6 +1,17 @@
 #include <iostream>
 #include <stdexcept>
 
+#include <glbinding/gl/gl.h>
+#include <glbinding/ContextInfo.h>
+#include <glbinding/Version.h>
+#include <glbinding/Binding.h>
+
+#define GLFW_INCLUDE_NONE
+#include <GLFW/glfw3.h>
+
+using namespace gl;
+using namespace glbinding;
+
 #include "glcontext.hpp"
 
 GLContext::GLContext()
@@ -8,12 +19,15 @@ GLContext::GLContext()
     _windowSize({0, 0})
 {}
 
-GLContext::~GLContext() {}
-
-void GLContext::create(int width, int height, bool fullscreen)
+void GLContext::create(unsigned int width, unsigned int height, bool fullscreen)
 {
     if (!glfwInit())
         throw (std::runtime_error("Failed to initialize GLFW"));
+//     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+//     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
+//     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+//     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, 1);
+//     glfwWindowHint(GLFW_RESIZABLE, 0);
     GLFWmonitor* monitor;
     if (!(monitor = glfwGetPrimaryMonitor()))
         throw (std::runtime_error("Failed to retrieve primary monitor"));
@@ -22,14 +36,15 @@ void GLContext::create(int width, int height, bool fullscreen)
         destroy();
         throw (std::runtime_error("Failed to open GLFW window"));
     }
-    _windowSize = {800, 600};
+    _windowSize = {width, height};
     glfwMakeContextCurrent(_window);
 
-    // FIXME Needed for core profile (may generate GLenum error)
-    glewExperimental = true;
+    Binding::initialize();
+    std::cout << std::endl
+    << "OpenGL Version:  " << ContextInfo::version() << std::endl
+    << "OpenGL Vendor:   " << ContextInfo::vendor() << std::endl
+    << "OpenGL Renderer: " << ContextInfo::renderer() << std::endl;
 
-    if (glewInit() != GLEW_OK)
-        throw (std::runtime_error("Failed to initialize GLEW"));
     glfwSwapInterval(1); // NOTE Drivers may ignore this
     glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 }
@@ -94,8 +109,8 @@ void GLContext::setTitle(const std::string& title)
 
 void GLContext::printLog(bool full)
 {
-    GLint major, minor;
-    GLint nExtensions;
+    GLint   major, minor;
+    GLint   nExtensions;
 
     glGetIntegerv(GL_MAJOR_VERSION, &major);
     glGetIntegerv(GL_MINOR_VERSION, &minor);
@@ -108,8 +123,8 @@ void GLContext::printLog(bool full)
     if (full)
     {
         std::clog << "OpenGL extensions supported:" << std::endl;
-        for (int i = 0; i < nExtensions; ++i)
-            std::clog << glGetStringi(GL_EXTENSIONS, i) << std::endl;
+        for (GLint i = 0; i < nExtensions; ++i)
+            std::clog << glGetStringi(GL_EXTENSIONS, static_cast<GLuint>(i)) << std::endl;
     }
     std::clog << "################################" << std::endl;
 }

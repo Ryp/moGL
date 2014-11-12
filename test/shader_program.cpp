@@ -9,7 +9,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "glcontext.hpp" // First to be included
-#include <GL/gl.h>
 
 #include <mogl/shader/shaderprogram.hpp>
 

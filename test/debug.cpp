@@ -9,7 +9,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "glcontext.hpp" // First to be included
-#include <GL/gl.h>
 
 #include <iostream>
 #include <mogl/debug.hpp>

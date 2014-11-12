@@ -1,10 +1,12 @@
 #ifndef GLCONTEXT_INCLUDED
 #define GLCONTEXT_INCLUDED
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-
 #include <string>
+
+#include <glbinding/gl/gl.h>
+using namespace gl;
+
+class GLFWwindow;
 
 typedef struct {
     unsigned int x;
@@ -15,11 +17,10 @@ class GLContext
 {
 public:
     GLContext();
-    ~GLContext();
 
 public:
-    void            create(int width, int height, bool fullscreen = false);
-    void            destroy();
+    void            create(unsigned int width, unsigned int height, bool fullscreen = false);
+    void            destroy(); // Call this only when closing manually
     bool            isOpen();
     void            swapBuffers();
 

@@ -17,10 +17,15 @@ install:
     - sudo apt-get install -qq valgrind
     - sudo apt-get install -qq libXxf86vm-dev
     - git clone https://github.com/glfw/glfw.git
-    - cd glfw
+    - pushd glfw
     - git checkout 3.0.4
     - cmake -DBUILD_SHARED_LIBS=ON . && make && sudo make install
-    - cd ..
+    - popd
+    - git clone https://github.com/hpicgs/glbinding.github
+    - pushd glbinding
+    - git checkout v1.0.3
+    - cmake -DBUILD_SHARED_LIBS=ON . && make && sudo make install
+    - popd
 before_script:
     - mkdir build && pushd build
 script:
@@ -29,4 +34,3 @@ script:
 after_success:
     - ctest --verbose
     - sudo make install
-    - valgrind --leak-check=full --show-reachable=yes
