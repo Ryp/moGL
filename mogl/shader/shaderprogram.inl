@@ -57,6 +57,9 @@ namespace mogl
             return (false);
         }
         retrieveLocations();
+        //FIXME
+        retrieveSubroutines(ShaderObject::ShaderType::FragmentShader);
+        retrieveSubroutines(ShaderObject::ShaderType::VertexShader);
         _log = std::string();
         return (true);
     }
@@ -64,8 +67,7 @@ namespace mogl
     void ShaderProgram::bind()
     {
         if (!_handle)
-            //     throw (ShaderProgramException("Invalid shader program"));
-            return ;
+            throw (std::runtime_error("Invalid shader program"));
         glUseProgram(_handle);
     }
 
@@ -107,6 +109,16 @@ namespace mogl
         std::cout << "Uniforms:" << std::endl;
         for (auto uniform : _uniforms)
             std::cout << "Name: " << uniform.first << std::endl;
+        for (auto subroutineMap : _subroutines)
+        {
+            std::cout << "Subroutines for shader idx: " << static_cast<int>(subroutineMap.first) << std::endl;
+            for (auto subroutineUniform : subroutineMap.second)
+            {
+                std::cout << "Subroutine uniform id=" << subroutineUniform.second.uniform << ": " << subroutineUniform.first << std::endl;
+                for (auto subroutine : subroutineUniform.second.subroutines)
+                    std::cout << "Subroutine id=" << subroutine.second << ": " << subroutine.first << std::endl;
+            }
+        }
     }
 
     void ShaderProgram::retrieveLocations()
@@ -137,6 +149,33 @@ namespace mogl
             _uniforms[name] = location;
         }
         delete[] name;
+    }
+
+    void ShaderProgram::retrieveSubroutines(ShaderObject::ShaderType type)
+    {
+        GLenum  shaderType = static_cast<GLenum>(type);
+        int     countActiveSU;
+        char    sname[256];
+        int     len;
+        int     numCompS;
+
+        glGetProgramStageiv(_handle, shaderType, GL_ACTIVE_SUBROUTINE_UNIFORMS, &countActiveSU);
+        for (int i = 0; i < countActiveSU; ++i)
+        {
+            glGetActiveSubroutineUniformName(_handle, shaderType, i, 256, &len, sname);
+            glGetActiveSubroutineUniformiv(_handle, shaderType, i, GL_NUM_COMPATIBLE_SUBROUTINES, &numCompS);
+            SubroutineUniform& subUniform = _subroutines[type][sname];
+
+            subUniform.uniform = i;
+            GLint* s = new GLint[numCompS];
+            glGetActiveSubroutineUniformiv(_handle, shaderType, i, GL_COMPATIBLE_SUBROUTINES, s);
+            for (int j = 0; j < numCompS; ++j)
+            {
+                glGetActiveSubroutineName(_handle, shaderType, s[j], 256, &len, sname);
+                subUniform.subroutines[sname] = s[j];
+            }
+            delete s;
+        }
     }
 
     void ShaderProgram::setVertexAttribPointer(const std::string& name, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointerOffset)
@@ -390,5 +429,27 @@ namespace mogl
     void ShaderProgram::setUniformMatrixPtr<4, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
     {
         glUniformMatrix4fv(getUniformLocation(name), count, transpose, ptr);
+    }
+
+    void ShaderProgram::setUniformSubroutine(ShaderObject::ShaderType type, const std::string& uniform, const std::string& subroutine)
+    {
+        if (!_subroutines.count(type))
+            throw(std::runtime_error("no subroutine for this shader stage"));
+        SubroutineMap& routineMap = _subroutines.at(type);
+
+        if (!routineMap.count(uniform))
+            throw(std::runtime_error("invalid uniform name"));
+        SubroutineUniform& subUniform = routineMap.at(uniform);
+
+        if (!subUniform.subroutines.count(subroutine))
+            throw(std::runtime_error("invalid subroutine"));
+
+        GLuint  uniformIdx = subUniform.uniform;
+        GLuint  subroutineIdx = subUniform.subroutines.at(subroutine);
+        GLsizei size = routineMap.size();
+        GLuint  indices[size];
+
+        indices[uniformIdx] = subroutineIdx;
+        glUniformSubroutinesuiv(static_cast<GLenum>(type), size, indices);
     }
 }

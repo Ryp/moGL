@@ -58,16 +58,28 @@ namespace mogl
         void    setUniformMatrixPtr(const std::string& name, const T* ptr, GLboolean transpose = GL_FALSE, GLsizei count = 1);
 
     public:
+        void    setUniformSubroutine(ShaderObject::ShaderType type, const std::string& uniform, const std::string& subroutine);
+
+    public:
         void    printDebug();
 
     private:
         void    retrieveLocations();
+        void    retrieveSubroutines(ShaderObject::ShaderType type);
 
     private:
-        std::string                     _log;
-        std::map<std::string, GLuint>   _attribs;
-        std::map<std::string, GLuint>   _uniforms;
-        GLuint                          _handle;
+        using HandleMap = std::map<std::string, GLuint>;
+        struct SubroutineUniform {
+            GLuint      uniform;
+            HandleMap   subroutines;
+        };
+        using SubroutineMap = std::map<std::string, SubroutineUniform>;
+
+        GLuint                                              _handle;
+        std::string                                         _log;
+        HandleMap                                           _attribs;
+        HandleMap                                           _uniforms;
+        std::map<ShaderObject::ShaderType, SubroutineMap>   _subroutines;
     };
 }
 

@@ -1,7 +1,7 @@
 language: cpp
 compiler:
     - gcc
-    - clang
+    #- clang
 branches:
   except:
     - master
@@ -31,5 +31,5 @@ script:
     - cmake .. -DCMAKE_BUILD_TYPE=Debug -DMOGL_BUILD_TESTS=ON -DCMAKE_INSTALL_PREFIX=/usr
     - make
 after_success:
-    - ctest --verbose
+    - ctest --output-on-failure
     - sudo make install
