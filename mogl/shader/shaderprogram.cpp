@@ -179,7 +179,7 @@ namespace mogl
                 glGetActiveSubroutineName(_handle, shaderType, s[j], 256, &len, sname);
                 subUniform.subroutines[sname] = s[j];
             }
-            delete s;
+            delete[] s;
         }
     }
 

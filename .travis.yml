@@ -33,4 +33,4 @@ script:
 after_success:
     - ctest --output-on-failure
     - sudo make install
-    - cppcheck ../mogl -q --force --enable=all
+    - cppcheck ../mogl -q --force --enable=warning --enable=style

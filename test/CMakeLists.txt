@@ -20,14 +20,16 @@ elseif(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     set(MOGL_COMPILE_FLAGS "${MOGL_COMPILE_FLAGS} -Wall -Wextra -Wshadow -Wundef")
 endif()
 
+add_library(context SHARED glcontext.cpp)
+
 function(moglCreateTest NAME)
     if(MOGL_BUILD_TESTS)
         set(TEST_NAME test-${NAME})
-        add_executable(${TEST_NAME} ${NAME}.cpp glcontext.cpp)
+        add_executable(${TEST_NAME} ${NAME}.cpp)
         set_target_properties(${TEST_NAME} PROPERTIES
             COMPILE_FLAGS "${MOGL_COMPILE_FLAGS}"
             INCLUDE_DIRECTORIES "${MOGL_TEST_INCLUDE_DIRS}")
-        target_link_libraries(${TEST_NAME} ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GLFW_LIBRARY} mogl)
+        target_link_libraries(${TEST_NAME} ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GLFW_LIBRARY} mogl context)
         add_test(NAME ${TEST_NAME}
             COMMAND $<TARGET_FILE:${TEST_NAME}>)
     endif()
