@@ -42,14 +42,10 @@ namespace mogl
                                        const void* pointerOffset = nullptr);
 
     public:
-        template <class T>
-        void    setUniform(const std::string& name, T v1);
-        template <class T>
-        void    setUniform(const std::string& name, T v1, T v2);
-        template <class T>
-        void    setUniform(const std::string& name, T v1, T v2, T v3);
-        template <class T>
-        void    setUniform(const std::string& name, T v1, T v2, T v3, T v4);
+        template <class T> void setUniform(const std::string& name, T v1);
+        template <class T> void setUniform(const std::string& name, T v1, T v2);
+        template <class T> void setUniform(const std::string& name, T v1, T v2, T v3);
+        template <class T> void setUniform(const std::string& name, T v1, T v2, T v3, T v4);
         template <std::size_t Size, class T>
         void    setUniformPtr(const std::string& name, const T* ptr, GLsizei count = 1);
         template <std::size_t Columns, std::size_t Rows, class T>
@@ -82,7 +78,5 @@ namespace mogl
         std::map<ShaderObject::ShaderType, SubroutineMap>   _subroutines;
     };
 }
-
-#include "shaderprogram.inl"
 
 #endif // MOGL_SHADERPROGRAM_INCLUDED

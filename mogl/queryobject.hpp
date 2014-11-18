@@ -34,6 +34,4 @@ namespace mogl
     };
 }
 
-#include "queryobject.inl"
-
 #endif // MOGL_QUERYOBJECT_INCLUDED

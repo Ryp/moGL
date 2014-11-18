@@ -8,6 +8,7 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
+#include "mogl/moglbuild.h"
 #include "renderbufferobject.hpp"
 
 namespace mogl

@@ -8,6 +8,7 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
+#include "mogl/moglbuild.h"
 #include "shaderprogram.hpp"
 
 #include <iostream>
@@ -58,8 +59,12 @@ namespace mogl
         }
         retrieveLocations();
         //FIXME
-        retrieveSubroutines(ShaderObject::ShaderType::FragmentShader);
         retrieveSubroutines(ShaderObject::ShaderType::VertexShader);
+        retrieveSubroutines(ShaderObject::ShaderType::GeometryShader);
+        retrieveSubroutines(ShaderObject::ShaderType::TesselationControlShader);
+        retrieveSubroutines(ShaderObject::ShaderType::TesselationEvaluationShader);
+        retrieveSubroutines(ShaderObject::ShaderType::ComputeShader);
+        retrieveSubroutines(ShaderObject::ShaderType::FragmentShader);
         _log = std::string();
         return (true);
     }
@@ -155,7 +160,7 @@ namespace mogl
     {
         GLenum  shaderType = static_cast<GLenum>(type);
         int     countActiveSU;
-        char    sname[256];
+        char    sname[256]; // FIXME
         int     len;
         int     numCompS;
 

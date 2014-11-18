@@ -8,6 +8,7 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
+#include "moglbuild.h"
 #include "queryobject.hpp"
 
 namespace mogl

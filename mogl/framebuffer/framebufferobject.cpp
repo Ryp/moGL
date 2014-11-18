@@ -8,6 +8,7 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
+#include "mogl/moglbuild.h"
 #include "framebufferobject.hpp"
 
 namespace mogl

@@ -53,6 +53,4 @@ namespace mogl
 
 }
 
-#include "shaderobject.inl"
-
 #endif // MOGL_SHADEROBJECT_INCLUDED

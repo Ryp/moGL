@@ -37,6 +37,4 @@ namespace mogl
     };
 }
 
-#include "framebufferobject.inl"
-
 #endif // MOGL_FRAMEBUFFEROBJECT_INCLUDED
