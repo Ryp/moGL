@@ -21,6 +21,7 @@ elseif(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
 endif()
 
 add_library(context SHARED glcontext.cpp)
+target_link_libraries(context ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GLFW_LIBRARY})
 
 function(moglCreateTest NAME)
     if(MOGL_BUILD_TESTS)
@@ -29,7 +30,7 @@ function(moglCreateTest NAME)
         set_target_properties(${TEST_NAME} PROPERTIES
             COMPILE_FLAGS "${MOGL_COMPILE_FLAGS}"
             INCLUDE_DIRECTORIES "${MOGL_TEST_INCLUDE_DIRS}")
-        target_link_libraries(${TEST_NAME} ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GLFW_LIBRARY} mogl context)
+        target_link_libraries(${TEST_NAME} ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} mogl context)
         add_test(NAME ${TEST_NAME}
             COMMAND $<TARGET_FILE:${TEST_NAME}>)
     endif()
