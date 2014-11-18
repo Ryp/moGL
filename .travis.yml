@@ -13,7 +13,7 @@ before_install:
     - sudo apt-get update -qq
 install:
     - sudo apt-get install -qq g++ clang cmake
-    - sudo apt-get install -qq valgrind
+    - sudo apt-get install -qq valgrind cppcheck
     - sudo apt-get install -qq libXxf86vm-dev
     - git clone https://github.com/glfw/glfw.git
     - pushd glfw
