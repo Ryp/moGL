@@ -30,7 +30,7 @@ function(moglCreateTest NAME)
         set_target_properties(${TEST_NAME} PROPERTIES
             COMPILE_FLAGS "${MOGL_COMPILE_FLAGS}"
             INCLUDE_DIRECTORIES "${MOGL_TEST_INCLUDE_DIRS}")
-        target_link_libraries(${TEST_NAME} ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} mogl context)
+        target_link_libraries(${TEST_NAME} ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} context)
         add_test(NAME ${TEST_NAME}
             COMMAND $<TARGET_FILE:${TEST_NAME}>)
     endif()
