@@ -8,7 +8,6 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "mogl/moglbuild.h"
 #include "shaderobject.hpp"
 
 #include <vector>
@@ -16,26 +15,26 @@
 
 namespace mogl
 {
-    ShaderObject::ShaderObject(std::istream& sourceFile, ShaderType type)
+    inline ShaderObject::ShaderObject(std::istream& sourceFile, ShaderType type)
     :   _code(std::istreambuf_iterator<char>(static_cast<std::istream&>(sourceFile)), std::istreambuf_iterator<char>()),
     _handle(0),
     _type(type),
     _isCompiled(false)
     {}
 
-    ShaderObject::ShaderObject(std::string& sourceCode, ShaderType type)
+    inline ShaderObject::ShaderObject(std::string& sourceCode, ShaderType type)
     :   _code(sourceCode),
     _handle(0),
     _type(type),
     _isCompiled(false)
     {}
 
-    ShaderObject::~ShaderObject()
+    inline ShaderObject::~ShaderObject()
     {
         glDeleteShader(_handle);
     }
 
-    bool ShaderObject::compile()
+    inline bool ShaderObject::compile()
     {
         GLint       success;
         GLint       logLength = 0;
@@ -66,27 +65,27 @@ namespace mogl
         return (_isCompiled);
     }
 
-    GLuint ShaderObject::getHandle() const
+    inline GLuint ShaderObject::getHandle() const
     {
         return (_handle);
     }
 
-    const std::string& ShaderObject::getCode() const
+    inline const std::string& ShaderObject::getCode() const
     {
         return (_code);
     }
 
-    ShaderObject::ShaderType ShaderObject::getType() const
+    inline ShaderObject::ShaderType ShaderObject::getType() const
     {
         return (_type);
     }
 
-    const std::string& ShaderObject::getLog() const
+    inline const std::string& ShaderObject::getLog() const
     {
         return (_log);
     }
 
-    bool ShaderObject::isCompiled() const
+    inline bool ShaderObject::isCompiled() const
     {
         return (_isCompiled);
     }

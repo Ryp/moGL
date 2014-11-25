@@ -50,7 +50,8 @@ namespace mogl
         std::string     _log;
         bool            _isCompiled;
     };
-
 }
+
+#include "shaderobject.inl"
 
 #endif // MOGL_SHADEROBJECT_INCLUDED

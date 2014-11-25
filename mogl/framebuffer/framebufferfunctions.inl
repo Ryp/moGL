@@ -8,17 +8,16 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "mogl/moglbuild.h"
 #include "framebufferfunctions.hpp"
 
 namespace mogl
 {
-    bool FrameBuffer::isComplete(Target target)
+    inline bool FrameBuffer::isComplete(Target target)
     {
         return (glCheckFramebufferStatus(static_cast<GLenum>(target)) == GL_FRAMEBUFFER_COMPLETE);
     }
 
-    void FrameBuffer::setRenderBuffer(Target target, Attachment attachment, const RenderBufferObject& renderbuffer)
+    inline void FrameBuffer::setRenderBuffer(Target target, Attachment attachment, const RenderBufferObject& renderbuffer)
     {
         glFramebufferRenderbuffer(static_cast<GLenum>(target),
                                   static_cast<GLenum>(attachment),
@@ -27,7 +26,7 @@ namespace mogl
                                  );
     }
 
-    void FrameBuffer::setTexture2D(Target target, Attachment attachment, mogl::TextureObject& texture, GLint level)
+    inline void FrameBuffer::setTexture2D(Target target, Attachment attachment, mogl::TextureObject& texture, GLint level)
     {
         glFramebufferTexture2D(static_cast<GLenum>(target),
                                static_cast<GLenum>(attachment),

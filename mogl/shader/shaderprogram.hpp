@@ -79,4 +79,6 @@ namespace mogl
     };
 }
 
+#include "shaderprogram.inl"
+
 #endif // MOGL_SHADERPROGRAM_INCLUDED

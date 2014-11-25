@@ -8,28 +8,27 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "mogl/moglbuild.h"
 #include "framebufferobject.hpp"
 
 namespace mogl
 {
-    FrameBufferObject::FrameBufferObject()
+    inline FrameBufferObject::FrameBufferObject()
     :   _handle(0)
     {
         glGenFramebuffers(1, &_handle);
     }
 
-    FrameBufferObject::~FrameBufferObject()
+    inline FrameBufferObject::~FrameBufferObject()
     {
         glDeleteFramebuffers(1, &_handle);
     }
 
-    void FrameBufferObject::bind(FrameBuffer::Target target)
+    inline void FrameBufferObject::bind(FrameBuffer::Target target)
     {
         glBindFramebuffer(static_cast<GLenum>(target), _handle);
     }
 
-    void FrameBufferObject::setRenderBuffer(FrameBuffer::Attachment attachment, const RenderBufferObject& renderbuffer)
+    inline void FrameBufferObject::setRenderBuffer(FrameBuffer::Attachment attachment, const RenderBufferObject& renderbuffer)
     {
         glNamedFramebufferRenderbuffer(_handle,
                                        static_cast<GLenum>(attachment),
@@ -38,7 +37,7 @@ namespace mogl
         );
     }
 
-    GLuint FrameBufferObject::getHandle() const
+    inline GLuint FrameBufferObject::getHandle() const
     {
         return (_handle);
     }

@@ -8,35 +8,34 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "mogl/moglbuild.h"
 #include "renderbufferobject.hpp"
 
 namespace mogl
 {
-    RenderBufferObject::RenderBufferObject()
+    inline RenderBufferObject::RenderBufferObject()
     :   _handle(0)
     {
         glGenRenderbuffers(1, &_handle);
     }
 
-    RenderBufferObject::~RenderBufferObject()
+    inline RenderBufferObject::~RenderBufferObject()
     {
         glDeleteRenderbuffers(1, &_handle);
     }
 
-    void RenderBufferObject::bind()
+    inline void RenderBufferObject::bind()
     {
         //Only Target::RenderBuffer is allowed
         glBindRenderbuffer(static_cast<GLenum>(Target::RenderBuffer), _handle);
     }
 
-    void RenderBufferObject::setStorage(GLenum internalformat, GLsizei width, GLsizei height)
+    inline void RenderBufferObject::setStorage(GLenum internalformat, GLsizei width, GLsizei height)
     {
         //Only Target::RenderBuffer is allowed
         glRenderbufferStorage(static_cast<GLenum>(Target::RenderBuffer), internalformat, width, height);
     }
 
-    GLuint RenderBufferObject::getHandle() const
+    inline GLuint RenderBufferObject::getHandle() const
     {
         return (_handle);
     }

@@ -33,4 +33,6 @@ namespace mogl
     };
 }
 
+#include "bufferobject.inl"
+
 #endif // MOGL_BUFFEROBJECT_INCLUDED

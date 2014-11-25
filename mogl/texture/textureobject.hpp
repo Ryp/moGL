@@ -39,4 +39,6 @@ namespace mogl
     };
 }
 
+#include "textureobject.inl"
+
 #endif // MOGL_TEXTUREOBJECT_INCLUDED

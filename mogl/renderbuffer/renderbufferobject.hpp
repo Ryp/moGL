@@ -39,4 +39,6 @@ namespace mogl
     };
 }
 
+#include "renderbufferobject.inl"
+
 #endif // MOGL_RENDERBUFFEROBJECT_INCLUDED
