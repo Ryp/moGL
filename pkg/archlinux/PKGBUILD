@@ -2,7 +2,7 @@
 
 _gitname=moGL
 pkgname=mogl-git
-pkgver=0.1.0.r2.ge88fc0a
+pkgver=0.1.1.r1.gd008ded
 pkgrel=1
 pkgdesc="Modern OpenGL wrapper, thin C++11 header-only layer on top of the OpenGL 4+ API"
 arch=('i686' 'x86_64')
