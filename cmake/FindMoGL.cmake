@@ -7,7 +7,7 @@
 # free to make use of it in any way you like.
 #===============================================================================
 
-# FindMoGL.cmake      - attempts to locate the mogl library.
+# FindMoGL.cmake      - attempts to locate the MoGL library.
 #
 # This module defines the following variables (on success):
 #   MOGL_FOUND        - if the library was successfully located
@@ -16,7 +16,6 @@
 find_package(PkgConfig)
 
 set(MOGL_HEADER_SEARCH_DIRS
-    ".." # For tests only
     "/usr/include"
     "/usr/local/include")
 

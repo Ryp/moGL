@@ -8,9 +8,7 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "glcontext.hpp" // First to be included
-
-#include <mogl/queryobject.hpp>
+#include "stdafx.h" // For IDE completion only
 
 using mogl::QueryObject;
 

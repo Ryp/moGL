@@ -1,6 +1,6 @@
 #MoGL [![Build Status](https://travis-ci.org/Ryp/moGL.svg?branch=develop)](https://travis-ci.org/Ryp/moGL)
 
-Modern OpenGL C++11 Wrapper
+Modern OpenGL wrapper, thin C++11 header-only layer on top of the OpenGL 4+ API
 
 ##MIT LICENSE
 

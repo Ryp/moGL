@@ -8,9 +8,7 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "glcontext.hpp" // First to be included
-
-#include <mogl/shader/shaderprogram.hpp>
+#include "stdafx.h" // For IDE completion only
 
 using mogl::ShaderObject;
 using mogl::ShaderProgram;

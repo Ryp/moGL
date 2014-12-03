@@ -8,10 +8,7 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "glcontext.hpp" // First to be included
-
-#include <iostream>
-#include <mogl/debug.hpp>
+#include "stdafx.h" // For IDE completion only
 
 int main(int /*ac*/, char** /*av*/)
 {
