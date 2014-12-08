@@ -3,6 +3,7 @@ find_package(CXX11 REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(glfw REQUIRED)
 find_package(glbinding REQUIRED)
+find_package(GTest REQUIRED)
 
 # Add flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CXX11_FLAGS}")
@@ -16,7 +17,8 @@ include_directories(
     ${CMAKE_SOURCE_DIR}
     ${OPENGL_INCLUDE_DIR}
     ${GLBINDING_INCLUDES}
-    ${GLFW_INCLUDE_DIR})
+    ${GLFW_INCLUDE_DIR}
+    ${GTEST_INCLUDE_DIRS})
 
 # Setup Precompiled headers
 set(PRECOMPILED_HEADER_FLAGS ${MOGL_TEST_COMPILE_FLAGS})
@@ -41,7 +43,7 @@ function(moglCreateTest NAME)
         set(TEST_NAME test-${NAME})
         add_executable(${TEST_NAME} ${NAME}.cpp ${PRECOMPILED_HEADER_OUTPUT})
         set_target_properties(${TEST_NAME} PROPERTIES COMPILE_FLAGS "${MOGL_TEST_COMPILE_FLAGS} -include ${PRECOMPILED_HEADER_SOURCE} -Winvalid-pch")
-        target_link_libraries(${TEST_NAME} ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} context)
+        target_link_libraries(${TEST_NAME} ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GTEST_BOTH_LIBRARIES} context)
         add_test(NAME ${TEST_NAME}
             COMMAND $<TARGET_FILE:${TEST_NAME}>)
         add_dependencies(${TEST_NAME} ${PRECOMPILED_HEADER_TARGET})
@@ -54,3 +56,5 @@ moglCreateTest(renderbuffer)
 moglCreateTest(query)
 moglCreateTest(texture)
 moglCreateTest(debug)
+
+file(COPY data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

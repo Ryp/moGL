@@ -1,4 +1,5 @@
 !.gitignore
+!.travis.yml
 
 #Ryp custom
 *.kdev4*

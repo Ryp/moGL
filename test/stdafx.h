@@ -8,4 +8,6 @@ using namespace gl;
 
 #include "glcontext.hpp"
 
+#include "gtest/gtest.h"
+
 #endif // STDAFX_INCLUDED
