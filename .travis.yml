@@ -17,9 +17,7 @@ install:
     - sudo apt-get install -qq libXxf86vm-dev
     #  NOTE gtest install workaround
     - pushd /usr/src/gtest
-    - sudo cmake .
-    - sudo make
-    - sudo mv libgtest* /usr/lib/
+    - sudo cmake . && sudo make && ls && sudo mv libgtest* /usr/lib/
     - popd
     # -- workaround end
     - git clone https://github.com/glfw/glfw.git
