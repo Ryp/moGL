@@ -10,18 +10,22 @@
 
 #include "stdafx.h" // For IDE completion only
 
+class RenderBufferTest : public ::testing::Test
+{
+public:
+    void SetUp() override final { _ctx.create(40, 30, false); };
+    void TearDown() override final { _ctx.destroy(); };
+
+protected:
+    GLContext   _ctx;
+};
+
 using mogl::RenderBufferObject;
 
-int main(int /*ac*/, char** /*av*/)
+TEST_F(RenderBufferTest, binding)
 {
-    GLContext ctx;
+    RenderBufferObject  rbo;
 
-    ctx.create(40, 30, false);
-    {
-        RenderBufferObject   dbo;
-        dbo.bind();
-        dbo.getHandle();
-    }
-    ctx.destroy();
-    return (0);
+    rbo.bind();
+    rbo.getHandle();
 }

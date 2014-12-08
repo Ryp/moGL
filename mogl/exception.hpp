@@ -4,21 +4,14 @@
 /// Copyright (c) 2014 Thibault Schueller
 /// This file is distributed under the MIT License
 ///
-/// @file mogl.hpp
+/// @file exception.hpp
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef MOGL_INCLUDED
-#define MOGL_INCLUDED
+#ifndef MOGL_EXCEPTION_INCLUDED
+#define MOGL_EXCEPTION_INCLUDED
 
-#include "buffer.hpp"
-#include "exception.hpp"
-#include "debug.hpp"
-#include "framebuffer.hpp"
-#include "queryobject.hpp"
-#include "renderbuffer.hpp"
-#include "shader.hpp"
-#include "texture.hpp"
-#include "version.hpp"
+#include "exception/moglexception.hpp"
+#include "exception/shaderexception.hpp"
 
-#endif // MOGL_INCLUDED
+#endif // MOGL_EXCEPTION_INCLUDED

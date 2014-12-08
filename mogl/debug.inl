@@ -9,6 +9,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "debug.hpp"
+#include "mogl/exception/shaderexception.hpp"
 
 namespace mogl
 {
@@ -36,7 +37,7 @@ namespace mogl
         {
             errorDescription = getErrorString(errorNo);
             stream << file << ':' << line << ": in '" << func << "': (" << errorNo << ") " << errorDescription;
-            throw (std::runtime_error(stream.str()));
+            throw (mogl::MoGLException(stream.str()));
         }
     }
 }

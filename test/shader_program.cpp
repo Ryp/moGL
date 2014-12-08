@@ -12,20 +12,20 @@
 
 #include <fstream>
 
-using mogl::ShaderObject;
-using mogl::ShaderProgram;
-
 class ShaderProgramTest : public ::testing::Test
 {
 public:
-    void SetUp() override final { _ctx.create(400, 300, false); };
+    void SetUp() override final { _ctx.create(40, 30, false); };
     void TearDown() override final { _ctx.destroy(); };
 
-private:
+protected:
     GLContext   _ctx;
 };
 
-TEST_F(ShaderProgramTest, SimpleLinking)
+using mogl::ShaderObject;
+using mogl::ShaderProgram;
+
+TEST_F(ShaderProgramTest, linking)
 {
     std::ifstream   vsFile("data/shader001-valid.vert");
     std::ifstream   fsFile("data/shader001-valid.frag");

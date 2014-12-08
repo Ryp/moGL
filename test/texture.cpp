@@ -10,36 +10,43 @@
 
 #include "stdafx.h" // For IDE completion only
 
+class TextureTest : public ::testing::Test
+{
+public:
+    void SetUp() override final { _ctx.create(40, 30, false); };
+    void TearDown() override final { _ctx.destroy(); };
+
+protected:
+    GLContext   _ctx;
+};
+
 using mogl::TextureObject;
 
-int main(int /*ac*/, char** /*av*/)
+TEST_F(TextureTest, frame_texture)
 {
-    GLContext ctx;
+    TextureObject   frameTexture(GL_TEXTURE_2D);
 
-    ctx.create(40, 30, false);
-    {
-        TextureObject   frameTexture(GL_TEXTURE_2D);
+    glActiveTexture(GL_TEXTURE0);
+    frameTexture.bind();
+    frameTexture.setImage2D(0, static_cast<GLint>(GL_RGB), _ctx.getWindowSize().x, _ctx.getWindowSize().y, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
+    frameTexture.setParameter(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    frameTexture.setParameter(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    frameTexture.setParameter(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    frameTexture.setParameter(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-        glActiveTexture(GL_TEXTURE0);
-        frameTexture.bind();
-        frameTexture.setImage2D(0, static_cast<GLint>(GL_RGB), ctx.getWindowSize().x, ctx.getWindowSize().y, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
-        frameTexture.setParameter(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        frameTexture.setParameter(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        frameTexture.setParameter(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        frameTexture.setParameter(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+}
 
-        TextureObject   depthTexture(GL_TEXTURE_2D);
+TEST_F(TextureTest, depth_texture)
+{
+    TextureObject   depthTexture(GL_TEXTURE_2D);
 
-        glActiveTexture(GL_TEXTURE1);
-        depthTexture.bind();
-        depthTexture.setImage2D(0, static_cast<GLint>(GL_DEPTH_COMPONENT16), 1024, 1024, 0, GL_DEPTH_COMPONENT, GL_FLOAT, 0);
-        depthTexture.setParameter(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        depthTexture.setParameter(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        depthTexture.setParameter(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        depthTexture.setParameter(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        depthTexture.setParameter(GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
-        depthTexture.setParameter(GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
-    }
-    ctx.destroy();
-    return (0);
+    glActiveTexture(GL_TEXTURE1);
+    depthTexture.bind();
+    depthTexture.setImage2D(0, static_cast<GLint>(GL_DEPTH_COMPONENT16), 1024, 1024, 0, GL_DEPTH_COMPONENT, GL_FLOAT, 0);
+    depthTexture.setParameter(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    depthTexture.setParameter(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    depthTexture.setParameter(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    depthTexture.setParameter(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    depthTexture.setParameter(GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
+    depthTexture.setParameter(GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
 }

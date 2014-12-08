@@ -10,30 +10,18 @@
 
 #include "stdafx.h" // For IDE completion only
 
-int main(int /*ac*/, char** /*av*/)
+class DebugTest : public ::testing::Test
 {
-    GLContext ctx;
+public:
+    void SetUp() override final { _ctx.create(40, 30, false); };
+    void TearDown() override final { _ctx.destroy(); };
 
-    ctx.create(40, 30, false);
-    {
-        // Valid enum test
-        try {
-            glActiveTexture(GL_TEXTURE0); MOGL_ASSERT();
-        }
-        catch (const std::runtime_error& e) {
-            std::cout << e.what() << std::endl;
-            return (1); // Assert should not throw
-        }
+protected:
+    GLContext   _ctx;
+};
 
-        // Invalid enum test
-        try {
-            glActiveTexture(GL_COLOR); MOGL_ASSERT();
-            return (2); // Assert did not throw
-        }
-        catch (const std::runtime_error& e) {
-            std::cout << e.what() << std::endl;
-        }
-    }
-    ctx.destroy();
-    return (0);
+TEST_F(DebugTest, enum_assert)
+{
+    glActiveTexture(GL_TEXTURE0); EXPECT_NO_THROW(MOGL_ASSERT());
+    glActiveTexture(GL_COLOR); EXPECT_THROW(MOGL_ASSERT(), mogl::MoGLException);
 }

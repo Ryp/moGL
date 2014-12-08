@@ -10,28 +10,31 @@
 
 #include "stdafx.h" // For IDE completion only
 
+class QueryObjectTest : public ::testing::Test
+{
+public:
+    void SetUp() override final { _ctx.create(40, 30, false); };
+    void TearDown() override final { _ctx.destroy(); };
+
+protected:
+    GLContext   _ctx;
+};
+
 using mogl::QueryObject;
 
-int main(int /*ac*/, char** /*av*/)
+TEST_F(QueryObjectTest, timer)
 {
-    GLContext ctx;
+    QueryObject qo(GL_TIME_ELAPSED);
 
-    ctx.create(400, 300, false);
-    {
-        QueryObject qo(GL_TIME_ELAPSED);
+    qo.begin();
+    qo.end();
+    GLint rslt1 = qo.getResult<GLint>(GL_QUERY_RESULT);
+    GLuint rslt2 = qo.getResult<GLuint>(GL_QUERY_RESULT);
+    GLint64 rslt3 = qo.getResult<GLint64>(GL_QUERY_RESULT);
+    GLuint64 rslt4 = qo.getResult<GLuint64>(GL_QUERY_RESULT);
 
-        qo.begin();
-        qo.end();
-        GLint rslt1 = qo.getResult<GLint>(GL_QUERY_RESULT);
-        GLuint rslt2 = qo.getResult<GLuint>(GL_QUERY_RESULT);
-        GLint64 rslt3 = qo.getResult<GLint64>(GL_QUERY_RESULT);
-        GLuint64 rslt4 = qo.getResult<GLuint64>(GL_QUERY_RESULT);
-
-        static_cast<void>(rslt1);
-        static_cast<void>(rslt2);
-        static_cast<void>(rslt3);
-        static_cast<void>(rslt4);
-    }
-    ctx.destroy();
-    return 0;
+    static_cast<void>(rslt1);
+    static_cast<void>(rslt2);
+    static_cast<void>(rslt3);
+    static_cast<void>(rslt4);
 }

@@ -9,6 +9,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "shaderprogram.hpp"
+#include "mogl/exception/shaderexception.hpp"
 
 #include <iostream>
 
@@ -71,7 +72,7 @@ namespace mogl
     inline void ShaderProgram::bind()
     {
         if (!_handle)
-            throw (std::runtime_error("Invalid shader program"));
+            throw (mogl::ShaderException("Invalid shader program"));
         glUseProgram(_handle);
     }
 
@@ -438,15 +439,15 @@ namespace mogl
     inline void ShaderProgram::setUniformSubroutine(ShaderObject::ShaderType type, const std::string& uniform, const std::string& subroutine)
     {
         if (!_subroutines.count(type))
-            throw(std::runtime_error("no subroutine for this shader stage"));
+            throw(mogl::ShaderException("no subroutine for this shader stage"));
         SubroutineMap& routineMap = _subroutines.at(type);
 
         if (!routineMap.count(uniform))
-            throw(std::runtime_error("invalid uniform name"));
+            throw(mogl::ShaderException("invalid uniform name"));
         SubroutineUniform& subUniform = routineMap.at(uniform);
 
         if (!subUniform.subroutines.count(subroutine))
-            throw(std::runtime_error("invalid subroutine"));
+            throw(mogl::ShaderException("invalid subroutine"));
 
         GLuint  uniformIdx = subUniform.uniform;
         GLuint  subroutineIdx = subUniform.subroutines.at(subroutine);

@@ -10,18 +10,21 @@
 
 #include "stdafx.h" // For IDE completion only
 
+class FrameBufferObjectTest : public ::testing::Test
+{
+public:
+    void SetUp() override final { _ctx.create(40, 30, false); };
+    void TearDown() override final { _ctx.destroy(); };
+
+protected:
+    GLContext   _ctx;
+};
+
 using mogl::FrameBufferObject;
 
-int main(int /*ac*/, char** /*av*/)
+TEST_F(FrameBufferObjectTest, instantiation)
 {
-    GLContext ctx;
+    FrameBufferObject   fbo;
 
-    ctx.create(40, 30, false);
-    {
-        FrameBufferObject   fbo;
-
-        fbo.bind(mogl::FrameBuffer::Target::DrawFrameBuffer);
-    }
-    ctx.destroy();
-    return (0);
+    fbo.bind(mogl::FrameBuffer::Target::DrawFrameBuffer);
 }
