@@ -36,15 +36,15 @@ TEST_F(ShaderProgramTest, linking)
     EXPECT_TRUE(vertex.compile()) << vertex.getLog();
     EXPECT_TRUE(fragment.compile()) << fragment.getLog();
 
-    shader.attach(vertex);
-    shader.attach(fragment);
+    EXPECT_NO_THROW(shader.attach(vertex));
+    EXPECT_NO_THROW(shader.attach(fragment));
 
-    EXPECT_TRUE(shader.link()) << shader.getLog();
+    ASSERT_TRUE(shader.link()) << shader.getLog();
 
     GLfloat color[4];
     color[0] = 1.0f;
 
-    shader.setUniformPtr<4>("color", color);
-    shader.setUniformSubroutine(ShaderObject::ShaderType::FragmentShader, "colorSelector", "customColor");
-    shader.setUniformSubroutine(ShaderObject::ShaderType::FragmentShader, "colorSelector", "redColor");
+    EXPECT_NO_THROW(shader.setUniformPtr<4>("color", color));
+    EXPECT_NO_THROW(shader.setUniformSubroutine(ShaderObject::ShaderType::FragmentShader, "colorSelector", "customColor"));
+    EXPECT_NO_THROW(shader.setUniformSubroutine(ShaderObject::ShaderType::FragmentShader, "colorSelector", "redColor"));
 }

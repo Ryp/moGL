@@ -34,7 +34,7 @@ add_custom_target(${PRECOMPILED_HEADER_TARGET}
     DEPENDS ${PRECOMPILED_HEADER_OUTPUT})
 
 # Setup context library
-add_library(context SHARED glcontext.cpp)
+add_library(context SHARED common/glcontext.cpp)
 target_link_libraries(context ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GLFW_LIBRARY})
 set_target_properties(context PROPERTIES COMPILE_FLAGS "${MOGL_TEST_COMPILE_FLAGS}")
 
