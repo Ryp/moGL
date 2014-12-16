@@ -11,6 +11,8 @@
 #include "shaderprogram.hpp"
 #include "mogl/debug.hpp"
 
+#include <iostream>
+
 namespace mogl
 {
     inline ShaderProgram::ShaderProgram()
@@ -181,7 +183,7 @@ namespace mogl
         }
     }
 
-    inline void ShaderProgram::setVertexAttribPointer(const std::string& name, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointerOffset)
+    inline void ShaderProgram::setVertexAttribPointer(const std::string& name, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid* pointerOffset)
     {
         glVertexAttribPointer(getAttribLocation(name), size, type, normalized, stride, pointerOffset); MOGL_GL_CALL();
     }

@@ -30,7 +30,7 @@ namespace mogl
         glBindBuffer(_target, _handle); MOGL_GL_CALL();
     }
 
-    inline void BufferObject::setData(GLsizeiptr size, const void* data, GLenum usage)
+    inline void BufferObject::setData(GLsizeiptr size, const GLvoid* data, GLenum usage)
     {
         glBufferData(_target, size, data, usage); MOGL_GL_CALL();
     }

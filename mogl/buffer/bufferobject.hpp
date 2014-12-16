@@ -24,7 +24,7 @@ namespace mogl
 
     public:
         void    bind();
-        void    setData(GLsizeiptr size, const void* data, GLenum usage);
+        void    setData(GLsizeiptr size, const GLvoid* data, GLenum usage);
         GLuint  getHandle() const;
 
     private:

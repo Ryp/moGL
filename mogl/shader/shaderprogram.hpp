@@ -39,7 +39,7 @@ namespace mogl
                                        GLenum type,
                                        GLboolean normalized = GL_FALSE,
                                        GLsizei stride = 0,
-                                       const void* pointerOffset = nullptr);
+                                       const GLvoid* pointerOffset = nullptr);
 
     public:
         template <class T> void setUniform(const std::string& name, T v1);
