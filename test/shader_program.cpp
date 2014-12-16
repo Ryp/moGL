@@ -40,11 +40,15 @@ TEST_F(ShaderProgramTest, linking)
     EXPECT_NO_THROW(shader.attach(fragment));
 
     ASSERT_TRUE(shader.link()) << shader.getLog();
+    ASSERT_NO_THROW(shader.use());
 
     GLfloat color[4];
     color[0] = 1.0f;
 
-    EXPECT_NO_THROW(shader.setUniformPtr<4>("color", color));
-    EXPECT_NO_THROW(shader.setUniformSubroutine(ShaderObject::ShaderType::FragmentShader, "colorSelector", "customColor"));
-    EXPECT_NO_THROW(shader.setUniformSubroutine(ShaderObject::ShaderType::FragmentShader, "colorSelector", "redColor"));
+    ASSERT_NO_THROW(shader.setUniformPtr<4>("color", color));
+    ASSERT_NO_THROW(shader.setUniformSubroutine(ShaderObject::ShaderType::FragmentShader, "colorSelector", "customColor"));
+    ASSERT_NO_THROW(shader.setUniformSubroutine(ShaderObject::ShaderType::FragmentShader, "colorSelector", "redColor"));
+
+    EXPECT_NO_THROW(shader.detach(vertex));
+    EXPECT_NO_THROW(shader.detach(fragment));
 }

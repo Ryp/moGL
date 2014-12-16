@@ -13,6 +13,8 @@ elseif(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wshadow -Wundef")
 endif()
 
+add_definitions(-DMOGL_DEBUG)
+
 include_directories(
     ${CMAKE_SOURCE_DIR}
     ${OPENGL_INCLUDE_DIR}

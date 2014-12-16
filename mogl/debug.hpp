@@ -27,7 +27,13 @@ namespace mogl
     };
 }
 
-#define MOGL_ASSERT() mogl::Debug::assertGLState(__FILE__, __FUNCTION__, __LINE__)
+#define MOGL_ASSERT_GLSTATE() mogl::Debug::assertGLState(__FILE__, __FUNCTION__, __LINE__)
+
+#ifdef MOGL_DEBUG
+#   define MOGL_GL_CALL() MOGL_ASSERT_GLSTATE()
+#else
+#   define MOGL_GL_CALL()
+#endif
 
 #include "debug.inl"
 

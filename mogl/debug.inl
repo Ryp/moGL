@@ -9,6 +9,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "debug.hpp"
+
 #include "mogl/exception/shaderexception.hpp"
 
 namespace mogl
@@ -31,9 +32,9 @@ namespace mogl
     {
         std::ostringstream  stream;
         std::string         errorDescription;
-        GLenum              errorNo;
+        GLenum              errorNo = glGetError();
 
-        if ((errorNo = glGetError()) != GL_NO_ERROR)
+        if (errorNo != GL_NO_ERROR)
         {
             errorDescription = getErrorString(errorNo);
             stream << file << ':' << line << ": in '" << func << "': (" << errorNo << ") " << errorDescription;

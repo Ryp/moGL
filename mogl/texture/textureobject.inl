@@ -9,6 +9,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "textureobject.hpp"
+#include "mogl/debug.hpp"
 
 namespace mogl
 {
@@ -16,27 +17,27 @@ namespace mogl
     :   _handle(0),
         _target(target)
     {
-        glGenTextures(1, &_handle);
+        glGenTextures(1, &_handle); MOGL_GL_CALL();
     }
 
     inline TextureObject::~TextureObject()
     {
-        glDeleteTextures(1, &_handle);
+        glDeleteTextures(1, &_handle); MOGL_GL_CALL();
     }
 
     inline void TextureObject::bind()
     {
-        glBindTexture(_target, _handle);
+        glBindTexture(_target, _handle); MOGL_GL_CALL();
     }
 
     inline void TextureObject::setImage2D(GLint level, GLint internalFormat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid* data)
     {
-        glTexImage2D(_target, level, internalFormat, width, height, border, format, type, data);
+        glTexImage2D(_target, level, internalFormat, width, height, border, format, type, data); MOGL_GL_CALL();
     }
 
     inline void TextureObject::generateMipmap()
     {
-        glGenerateMipmap(_target);
+        glGenerateMipmap(_target); MOGL_GL_CALL();
     }
 
     inline GLuint TextureObject::getHandle() const
@@ -52,18 +53,18 @@ namespace mogl
     template <>
     inline void TextureObject::setParameter<GLint>(GLenum property, GLint value)
     {
-        glTexParameteri(_target, property, value);
+        glTexParameteri(_target, property, value); MOGL_GL_CALL();
     }
 
     template <>
     inline void TextureObject::setParameter<GLenum>(GLenum property, GLenum value)
     {
-        glTexParameteri(_target, property, static_cast<GLint>(value));
+        glTexParameteri(_target, property, static_cast<GLint>(value)); MOGL_GL_CALL();
     }
 
     template <>
     inline void TextureObject::setParameter<GLfloat>(GLenum property, GLfloat value)
     {
-        glTexParameterf(_target, property, value);
+        glTexParameterf(_target, property, value); MOGL_GL_CALL();
     }
 }

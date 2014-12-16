@@ -9,30 +9,31 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "renderbufferobject.hpp"
+#include "mogl/debug.hpp"
 
 namespace mogl
 {
     inline RenderBufferObject::RenderBufferObject()
     :   _handle(0)
     {
-        glGenRenderbuffers(1, &_handle);
+        glGenRenderbuffers(1, &_handle); MOGL_GL_CALL();
     }
 
     inline RenderBufferObject::~RenderBufferObject()
     {
-        glDeleteRenderbuffers(1, &_handle);
+        glDeleteRenderbuffers(1, &_handle); MOGL_GL_CALL();
     }
 
     inline void RenderBufferObject::bind()
     {
         //Only Target::RenderBuffer is allowed
-        glBindRenderbuffer(static_cast<GLenum>(Target::RenderBuffer), _handle);
+        glBindRenderbuffer(static_cast<GLenum>(Target::RenderBuffer), _handle); MOGL_GL_CALL();
     }
 
     inline void RenderBufferObject::setStorage(GLenum internalformat, GLsizei width, GLsizei height)
     {
         //Only Target::RenderBuffer is allowed
-        glRenderbufferStorage(static_cast<GLenum>(Target::RenderBuffer), internalformat, width, height);
+        glRenderbufferStorage(static_cast<GLenum>(Target::RenderBuffer), internalformat, width, height); MOGL_GL_CALL();
     }
 
     inline GLuint RenderBufferObject::getHandle() const

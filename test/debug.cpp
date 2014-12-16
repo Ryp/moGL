@@ -22,6 +22,6 @@ protected:
 
 TEST_F(DebugTest, enum_assert)
 {
-    glActiveTexture(GL_TEXTURE0); EXPECT_NO_THROW(MOGL_ASSERT());
-    glActiveTexture(GL_COLOR); EXPECT_THROW(MOGL_ASSERT(), mogl::MoGLException);
+    glActiveTexture(GL_TEXTURE0); EXPECT_NO_THROW(MOGL_ASSERT_GLSTATE());
+    glActiveTexture(GL_COLOR); EXPECT_THROW(MOGL_ASSERT_GLSTATE(), mogl::MoGLException);
 }
