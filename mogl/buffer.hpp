@@ -12,5 +12,6 @@
 #define MOGL_BUFFER_INCLUDED
 
 #include "mogl/buffer/bufferobject.hpp"
+#include "mogl/buffer/vertexarrayobject.hpp"
 
 #endif // MOGL_BUFFER_INCLUDED

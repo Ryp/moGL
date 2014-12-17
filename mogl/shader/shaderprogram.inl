@@ -12,6 +12,7 @@
 #include "mogl/debug.hpp"
 
 #include <iostream>
+#include <iomanip>
 
 namespace mogl
 {
@@ -110,10 +111,10 @@ namespace mogl
     {
         std::cout << "Attributes:" << std::endl;
         for (auto attrib : _attribs)
-            std::cout << "Name: " << attrib.first << std::endl;
+            std::cout << std::setw(6) << attrib.second << ": " << attrib.first << std::endl;
         std::cout << "Uniforms:" << std::endl;
         for (auto uniform : _uniforms)
-            std::cout << "Name: " << uniform.first << std::endl;
+            std::cout << std::setw(6)  << uniform.second << ": " << uniform.first << std::endl;
         for (auto subroutineMap : _subroutines)
         {
             std::cout << "Subroutines for shader idx: " << static_cast<int>(subroutineMap.first) << std::endl;
