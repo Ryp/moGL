@@ -30,7 +30,7 @@ install:
     - git clone https://github.com/hpicgs/glbinding.git
     - pushd glbinding
     - git checkout v1.0.3
-    - cmake -DBUILD_SHARED_LIBS=ON . && make && sudo make install
+    - cmake -DOPTION_BUILD_STATIC=OFF . && make && sudo make install
     - popd
 before_script:
     - mkdir build && pushd build
