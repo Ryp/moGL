@@ -29,7 +29,7 @@ install:
     - popd
     - git clone https://github.com/hpicgs/glbinding.git
     - pushd glbinding
-    - git checkout v1.0.3
+    - git checkout v1.0.4
     - cmake -DOPTION_BUILD_STATIC=OFF . && make && sudo make install
     - popd
 before_script:
