@@ -32,7 +32,10 @@ namespace mogl
 
         static bool isComplete(Target target);
         static void setRenderBuffer(Target target, Attachment attachment, const RenderBufferObject& renderbuffer);
+        static void setTexture(Target target, Attachment attachment, mogl::TextureObject& texture, GLint level = 0);
+        static void setTexture1D(Target target, Attachment attachment, mogl::TextureObject& texture, GLint level = 0);
         static void setTexture2D(Target target, Attachment attachment, mogl::TextureObject& texture, GLint level = 0);
+        static void setTexture3D(Target target, Attachment attachment, mogl::TextureObject& texture, GLint level = 0, GLint layer = 0);
     };
 }
 

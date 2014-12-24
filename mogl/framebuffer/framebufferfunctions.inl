@@ -28,6 +28,25 @@ namespace mogl
         ); MOGL_GL_CALL();
     }
 
+    inline void FrameBuffer::setTexture(Target target, Attachment attachment, mogl::TextureObject& texture, GLint level)
+    {
+        glFramebufferTexture(static_cast<GLenum>(target),
+                               static_cast<GLenum>(attachment),
+                               texture.getHandle(),
+                               level
+        ); MOGL_GL_CALL();
+    }
+
+    inline void FrameBuffer::setTexture1D(Target target, Attachment attachment, mogl::TextureObject& texture, GLint level)
+    {
+        glFramebufferTexture1D(static_cast<GLenum>(target),
+                               static_cast<GLenum>(attachment),
+                               texture.getTarget(),
+                               texture.getHandle(),
+                               level
+        ); MOGL_GL_CALL();
+    }
+
     inline void FrameBuffer::setTexture2D(Target target, Attachment attachment, mogl::TextureObject& texture, GLint level)
     {
         glFramebufferTexture2D(static_cast<GLenum>(target),
@@ -35,6 +54,17 @@ namespace mogl
                                texture.getTarget(),
                                texture.getHandle(),
                                level
+        ); MOGL_GL_CALL();
+    }
+
+    inline void FrameBuffer::setTexture3D(Target target, Attachment attachment, mogl::TextureObject& texture, GLint level, GLint layer)
+    {
+        glFramebufferTexture3D(static_cast<GLenum>(target),
+                               static_cast<GLenum>(attachment),
+                               texture.getTarget(),
+                               texture.getHandle(),
+                               level,
+                               layer
         ); MOGL_GL_CALL();
     }
 }

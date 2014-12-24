@@ -18,6 +18,7 @@
 #include "queryobject.hpp"
 #include "renderbuffer.hpp"
 #include "shader.hpp"
+#include "states/states.hpp"
 #include "texture.hpp"
 #include "version.hpp"
 
