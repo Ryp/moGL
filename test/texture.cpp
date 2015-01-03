@@ -25,6 +25,7 @@ using mogl::TextureObject;
 TEST_F(TextureTest, frame_texture)
 {
     TextureObject   frameTexture(GL_TEXTURE_2D);
+    GLfloat         border[] = {1.0f, 0.0f, 0.0f, 0.0f};
 
     glActiveTexture(GL_TEXTURE0);
     frameTexture.bind();
@@ -33,7 +34,7 @@ TEST_F(TextureTest, frame_texture)
     frameTexture.setParameter(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     frameTexture.setParameter(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     frameTexture.setParameter(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
+    frameTexture.setParameterPtr(GL_TEXTURE_BORDER_COLOR, border);
 }
 
 TEST_F(TextureTest, depth_texture)
@@ -48,5 +49,5 @@ TEST_F(TextureTest, depth_texture)
     depthTexture.setParameter(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     depthTexture.setParameter(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     depthTexture.setParameter(GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
-    depthTexture.setParameter(GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
+    depthTexture.setParameter(GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
 }

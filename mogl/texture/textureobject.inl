@@ -67,4 +67,16 @@ namespace mogl
     {
         glTexParameterf(_target, property, value); MOGL_GL_CALL();
     }
+
+    template <>
+    inline void TextureObject::setParameterPtr<GLint>(GLenum property, const GLint* value)
+    {
+        glTexParameteriv(_target, property, value); MOGL_GL_CALL();
+    }
+
+    template <>
+    inline void TextureObject::setParameterPtr<GLfloat>(GLenum property, const GLfloat* value)
+    {
+        glTexParameterfv(_target, property, value); MOGL_GL_CALL();
+    }
 }

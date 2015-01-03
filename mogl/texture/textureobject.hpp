@@ -32,6 +32,8 @@ namespace mogl
         GLenum  getTarget() const;
         template <class T>
         void    setParameter(GLenum property, T value);
+        template <class T>
+        void    setParameterPtr(GLenum property, const T* value);
 
     private:
         GLuint  _handle;
