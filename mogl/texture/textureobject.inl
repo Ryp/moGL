@@ -30,6 +30,11 @@ namespace mogl
         glBindTexture(_target, _handle); MOGL_GL_CALL();
     }
 
+    inline void TextureObject::setStorage2D(GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height)
+    {
+        glTexStorage2D(_target, levels, internalformat, width, height);
+    }
+
     inline void TextureObject::setImage2D(GLint level, GLint internalFormat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid* data)
     {
         glTexImage2D(_target, level, internalFormat, width, height, border, format, type, data); MOGL_GL_CALL();

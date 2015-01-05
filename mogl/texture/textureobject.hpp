@@ -24,6 +24,8 @@ namespace mogl
 
     public:
         void    bind();
+        void    setStorage2D(GLsizei levels, GLenum internalformat,
+                             GLsizei width, GLsizei height);
         void    setImage2D(GLint level, GLint internalFormat, GLsizei width,
                            GLsizei height, GLint border, GLenum format,
                            GLenum type, const GLvoid* data);
