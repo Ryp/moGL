@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// Modern OpenGL Wrapper
 ///
-/// Copyright (c) 2014 Thibault Schueller
+/// Copyright (c) 2015 Thibault Schueller
 /// This file is distributed under the MIT License
 ///
 /// @file shaderobject.inl
