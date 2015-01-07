@@ -26,6 +26,9 @@ namespace mogl
         };
         enum class Attachment {
             Color0 = GL_COLOR_ATTACHMENT0,
+            Color1 = GL_COLOR_ATTACHMENT1,
+            Color2 = GL_COLOR_ATTACHMENT2,
+            Color3 = GL_COLOR_ATTACHMENT3,
             Depth = GL_DEPTH_ATTACHMENT,
             Stencil = GL_STENCIL_ATTACHMENT
         };

@@ -129,11 +129,13 @@ namespace mogl
 
     inline void ShaderProgram::retrieveLocations()
     {
-        GLint     n, maxLen;
-        GLint     size, location;
-        GLsizei   written;
-        GLenum    type;
-        GLchar*   name;
+        GLint       n, maxLen;
+        GLint       size, location;
+        GLsizei     written;
+        GLenum      type;
+        GLchar*     name;
+        std::string uniformName;
+        std::string arraySuffix("[0]");
 
         glGetProgramiv(_handle, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxLen); MOGL_GL_CALL();
         glGetProgramiv(_handle, GL_ACTIVE_ATTRIBUTES, &n); MOGL_GL_CALL();
@@ -152,7 +154,11 @@ namespace mogl
         {
             glGetActiveUniform(_handle, i, maxLen, &written, &size, &type, name); MOGL_GL_CALL();
             location = glGetUniformLocation(_handle, name); MOGL_GL_CALL();
-            _uniforms[name] = location;
+            uniformName = name;
+            _uniforms[uniformName] = location;
+            // If the uniform is an array, add the name stripped of its '[0]' suffix
+            if (std::mismatch(arraySuffix.rbegin(),arraySuffix.rend(), uniformName.rbegin()).first == arraySuffix.rend())
+                _uniforms[uniformName.substr(0, uniformName.length() - arraySuffix.length())] = location;
         }
         delete[] name;
     }
