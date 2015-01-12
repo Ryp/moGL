@@ -190,6 +190,11 @@ namespace mogl
         }
     }
 
+    inline void ShaderProgram::setVertexAttribPointer(GLuint location, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid* pointerOffset)
+    {
+        glVertexAttribPointer(location, size, type, normalized, stride, pointerOffset); MOGL_GL_CALL();
+    }
+
     inline void ShaderProgram::setVertexAttribPointer(const std::string& name, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid* pointerOffset)
     {
         glVertexAttribPointer(getAttribLocation(name), size, type, normalized, stride, pointerOffset); MOGL_GL_CALL();

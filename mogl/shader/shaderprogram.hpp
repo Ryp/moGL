@@ -34,6 +34,12 @@ namespace mogl
         GLuint              getUniformLocation(const std::string& name) const;
 
     public:
+        void    setVertexAttribPointer(GLuint location,
+                                       GLint size,
+                                       GLenum type,
+                                       GLboolean normalized = GL_FALSE,
+                                       GLsizei stride = 0,
+                                       const GLvoid* pointerOffset = nullptr);
         void    setVertexAttribPointer(const std::string& name,
                                        GLint size,
                                        GLenum type,
