@@ -13,7 +13,7 @@
 class FrameBufferObjectTest : public ::testing::Test
 {
 public:
-    void SetUp() override final { _ctx.create(40, 30, false); };
+    void SetUp() override final { _ctx.create(40, 30, 4, 5); };
     void TearDown() override final { _ctx.destroy(); };
 
 protected:

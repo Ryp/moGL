@@ -9,32 +9,31 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "states.hpp"
-#include "mogl/debug.hpp"
 
 namespace mogl
 {
     inline void enable(GLenum flag)
     {
-        glEnable(flag); MOGL_GL_CALL();
+        glEnable(flag);
     }
 
     inline void disable(GLenum flag)
     {
-        glDisable(flag); MOGL_GL_CALL();
+        glDisable(flag);
     }
 
     inline void setActiveTexture(GLenum unit)
     {
-        glActiveTexture(unit); MOGL_GL_CALL();
+        glActiveTexture(unit);
     }
 
     inline void setViewport(GLint x, GLint y, GLsizei width, GLsizei height)
     {
-        glViewport(x, y, width, height); MOGL_GL_CALL();
+        glViewport(x, y, width, height);
     }
 
     inline void setCullFace(GLenum mode)
     {
-        glCullFace(mode); MOGL_GL_CALL();
+        glCullFace(mode);
     }
 }

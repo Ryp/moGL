@@ -19,14 +19,18 @@ GLContext::GLContext()
     _windowSize({0, 0})
 {}
 
-void GLContext::create(unsigned int width, unsigned int height, bool fullscreen)
+void GLContext::create(unsigned int width, unsigned int height, unsigned int major, unsigned int minor, bool fullscreen, bool debug)
 {
     if (!glfwInit())
         throw (std::runtime_error("Failed to initialize GLFW"));
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, major);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, minor);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    if (debug)
+        glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, 1);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, 1);
+    glfwWindowHint(GLFW_RESIZABLE, 0);
+    glfwSetErrorCallback([] (int e, const char* str) { std::cout << "GLFW Context error (" << e << "): " << str << std::endl; });
     GLFWmonitor* monitor;
     if (!(monitor = glfwGetPrimaryMonitor()))
         throw (std::runtime_error("Failed to retrieve primary monitor"));
@@ -36,9 +40,9 @@ void GLContext::create(unsigned int width, unsigned int height, bool fullscreen)
         throw (std::runtime_error("Failed to open GLFW window"));
     }
     _windowSize = {width, height};
-    glfwMakeContextCurrent(_window);
+    makeCurrent();
 
-    Binding::initialize();
+    Binding::initialize(true);
 
     glfwSwapInterval(1); // NOTE Drivers may ignore this
     glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
@@ -53,6 +57,11 @@ void GLContext::swapBuffers()
 {
     glfwSwapBuffers(_window);
     glfwPollEvents();
+}
+
+void GLContext::makeCurrent()
+{
+    glfwMakeContextCurrent(_window);
 }
 
 void GLContext::destroy()
@@ -74,13 +83,10 @@ double GLContext::getTime() const
 
 Vect2u GLContext::getCursorPosition() const
 {
-    double v[2];
-    Vect2u    ret;
-    glfwGetCursorPos(_window, &(v[0]), &(v[1]));
+    double  v[2];
 
-    ret.x = static_cast<unsigned int>(v[0]);
-    ret.y = static_cast<unsigned int>(v[1]);
-    return (ret);
+    glfwGetCursorPos(_window, &(v[0]), &(v[1]));
+    return (Vect2u{static_cast<unsigned int>(v[0]), static_cast<unsigned int>(v[1])});
 }
 
 void GLContext::setCursorPosition(const Vect2u& position)
@@ -100,26 +106,4 @@ void GLContext::centerCursor()
 void GLContext::setTitle(const std::string& title)
 {
     glfwSetWindowTitle(_window, title.c_str());
-}
-
-void GLContext::printLog(bool full)
-{
-    GLint   major, minor;
-    GLint   nExtensions;
-
-    glGetIntegerv(GL_MAJOR_VERSION, &major);
-    glGetIntegerv(GL_MINOR_VERSION, &minor);
-    glGetIntegerv(GL_NUM_EXTENSIONS, &nExtensions);
-    std::clog << "########## ContextLog ##########" << std::endl;
-    std::clog << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
-    std::clog << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
-    std::clog << "Version string: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
-    std::clog << "Version number: " << major << "." << minor << std::endl;
-    if (full)
-    {
-        std::clog << "OpenGL extensions supported:" << std::endl;
-        for (GLint i = 0; i < nExtensions; ++i)
-            std::clog << glGetStringi(GL_EXTENSIONS, static_cast<GLuint>(i)) << std::endl;
-    }
-    std::clog << "################################" << std::endl;
 }

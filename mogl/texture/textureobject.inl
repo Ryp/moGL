@@ -9,7 +9,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "textureobject.hpp"
-#include "mogl/debug.hpp"
 
 namespace mogl
 {
@@ -17,32 +16,32 @@ namespace mogl
     :   _handle(0),
         _target(target)
     {
-        glGenTextures(1, &_handle); MOGL_GL_CALL();
+        glCreateTextures(_target, 1, &_handle);
     }
 
     inline TextureObject::~TextureObject()
     {
-        glDeleteTextures(1, &_handle); MOGL_GL_CALL();
+        glDeleteTextures(1, &_handle);
     }
 
     inline void TextureObject::bind()
     {
-        glBindTexture(_target, _handle); MOGL_GL_CALL();
+        glBindTextures(0, 1, &_handle);
     }
 
     inline void TextureObject::setStorage2D(GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height)
     {
-        glTexStorage2D(_target, levels, internalformat, width, height);
+        glTextureStorage2D(_handle, levels, internalformat, width, height);
     }
 
     inline void TextureObject::setImage2D(GLint level, GLint internalFormat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid* data)
     {
-        glTexImage2D(_target, level, internalFormat, width, height, border, format, type, data); MOGL_GL_CALL();
+        glTextureImage2DEXT(_handle, _target, level, internalFormat, width, height, border, format, type, data);
     }
 
     inline void TextureObject::generateMipmap()
     {
-        glGenerateMipmap(_target); MOGL_GL_CALL();
+        glGenerateTextureMipmap(_handle);
     }
 
     inline GLuint TextureObject::getHandle() const
@@ -58,30 +57,30 @@ namespace mogl
     template <>
     inline void TextureObject::setParameter<GLint>(GLenum property, GLint value)
     {
-        glTexParameteri(_target, property, value); MOGL_GL_CALL();
+        glTextureParameteri(_handle, property, value);
     }
 
     template <>
     inline void TextureObject::setParameter<GLenum>(GLenum property, GLenum value)
     {
-        glTexParameteri(_target, property, static_cast<GLint>(value)); MOGL_GL_CALL();
+        glTextureParameteri(_handle, property, static_cast<GLint>(value));
     }
 
     template <>
     inline void TextureObject::setParameter<GLfloat>(GLenum property, GLfloat value)
     {
-        glTexParameterf(_target, property, value); MOGL_GL_CALL();
+        glTextureParameterf(_handle, property, value);
     }
 
     template <>
     inline void TextureObject::setParameterPtr<GLint>(GLenum property, const GLint* value)
     {
-        glTexParameteriv(_target, property, value); MOGL_GL_CALL();
+        glTextureParameteriv(_handle, property, value);
     }
 
     template <>
     inline void TextureObject::setParameterPtr<GLfloat>(GLenum property, const GLfloat* value)
     {
-        glTexParameterfv(_target, property, value); MOGL_GL_CALL();
+        glTextureParameterfv(_handle, property, value);
     }
 }

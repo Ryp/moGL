@@ -9,7 +9,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "shaderobject.hpp"
-#include "mogl/debug.hpp"
 
 #include <vector>
 #include <istream>
@@ -32,7 +31,7 @@ namespace mogl
 
     inline ShaderObject::~ShaderObject()
     {
-        glDeleteShader(_handle); MOGL_GL_CALL();
+        glDeleteShader(_handle);
     }
 
     inline bool ShaderObject::compile()
@@ -42,23 +41,23 @@ namespace mogl
         GLuint      handle;
         char const* srcPtr = _code.c_str();
 
-        handle = glCreateShader(static_cast<GLenum>(_type)); MOGL_GL_CALL();
+        handle = glCreateShader(static_cast<GLenum>(_type));
         if (!handle)
             return (false);
-        glShaderSource(handle, 1, &srcPtr, 0); MOGL_GL_CALL();
-        glCompileShader(handle); MOGL_GL_CALL();
-        glGetShaderiv(handle, GL_COMPILE_STATUS, &success); MOGL_GL_CALL();
+        glShaderSource(handle, 1, &srcPtr, 0);
+        glCompileShader(handle);
+        glGetShaderiv(handle, GL_COMPILE_STATUS, &success);
         if (success == static_cast<GLint>(GL_FALSE))
         {
-            glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &logLength); MOGL_GL_CALL();
+            glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &logLength);
             if (logLength > 1)
             {
                 std::vector<GLchar> infoLog(logLength);
-                glGetShaderInfoLog(handle, logLength, &logLength, &infoLog[0]); MOGL_GL_CALL();
+                glGetShaderInfoLog(handle, logLength, &logLength, &infoLog[0]);
                 infoLog[logLength - 1] = '\0'; // Overwrite endline
                 _log = &infoLog[0];
             }
-            glDeleteShader(handle); MOGL_GL_CALL();
+            glDeleteShader(handle);
             return (false);
         }
         _isCompiled = true;

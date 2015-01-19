@@ -9,7 +9,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "bufferobject.hpp"
-#include "mogl/debug.hpp"
 
 namespace mogl
 {
@@ -17,22 +16,22 @@ namespace mogl
     :   _handle(0),
         _target(target)
     {
-        glGenBuffers(1, &_handle); MOGL_GL_CALL();
+        glGenBuffers(1, &_handle);
     }
 
     inline BufferObject::~BufferObject()
     {
-        glDeleteBuffers(1, &_handle); MOGL_GL_CALL();
+        glDeleteBuffers(1, &_handle);
     }
 
     inline void BufferObject::bind()
     {
-        glBindBuffer(_target, _handle); MOGL_GL_CALL();
+        glBindBuffer(_target, _handle);
     }
 
     inline void BufferObject::setData(GLsizeiptr size, const GLvoid* data, GLenum usage)
     {
-        glBufferData(_target, size, data, usage); MOGL_GL_CALL();
+        glBufferData(_target, size, data, usage);
     }
 
     inline GLuint BufferObject::getHandle() const

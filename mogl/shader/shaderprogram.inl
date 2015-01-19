@@ -9,7 +9,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "shaderprogram.hpp"
-#include "mogl/debug.hpp"
 
 #include <iostream>
 #include <iomanip>
@@ -18,24 +17,24 @@ namespace mogl
 {
     inline ShaderProgram::ShaderProgram()
     {
-        _handle = glCreateProgram(); MOGL_GL_CALL();
+        _handle = glCreateProgram();
         if (!_handle)
             throw(mogl::MoGLException("Could not create shader program"));
     }
 
     inline ShaderProgram::~ShaderProgram()
     {
-        glDeleteProgram(_handle); MOGL_GL_CALL();
+        glDeleteProgram(_handle);
     }
 
     inline void ShaderProgram::attach(const ShaderObject& object)
     {
-        glAttachShader(_handle, object.getHandle()); MOGL_GL_CALL();
+        glAttachShader(_handle, object.getHandle());
     }
 
     inline void ShaderProgram::detach(const ShaderObject& object)
     {
-        glDetachShader(_handle, object.getHandle()); MOGL_GL_CALL();
+        glDetachShader(_handle, object.getHandle());
     }
 
     inline bool ShaderProgram::link()
@@ -43,19 +42,19 @@ namespace mogl
         GLint       success;
         GLint       logLength = 0;
 
-        glLinkProgram(_handle); MOGL_GL_CALL();
-        glGetProgramiv(_handle, GL_LINK_STATUS, &success); MOGL_GL_CALL();
+        glLinkProgram(_handle);
+        glGetProgramiv(_handle, GL_LINK_STATUS, &success);
         if (success == static_cast<GLint>(GL_FALSE))
         {
-            glGetProgramiv(_handle, GL_INFO_LOG_LENGTH, &logLength); MOGL_GL_CALL();
+            glGetProgramiv(_handle, GL_INFO_LOG_LENGTH, &logLength);
             if (logLength > 1)
             {
                 std::vector<GLchar> infoLog(logLength);
-                glGetProgramInfoLog(_handle, logLength, &logLength, &infoLog[0]); MOGL_GL_CALL();
+                glGetProgramInfoLog(_handle, logLength, &logLength, &infoLog[0]);
                 infoLog[logLength - 1] = '\0'; // Overwrite endline
                 _log = &infoLog[0];
             }
-            glDeleteProgram(_handle); MOGL_GL_CALL();
+            glDeleteProgram(_handle);
             return (false);
         }
         retrieveLocations();
@@ -74,7 +73,7 @@ namespace mogl
     {
         if (!_handle)
             throw (mogl::ShaderException("Invalid shader program"));
-        glUseProgram(_handle); MOGL_GL_CALL();
+        glUseProgram(_handle);
     }
 
     inline GLuint ShaderProgram::getHandle() const
@@ -137,23 +136,23 @@ namespace mogl
         std::string uniformName;
         std::string arraySuffix("[0]");
 
-        glGetProgramiv(_handle, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxLen); MOGL_GL_CALL();
-        glGetProgramiv(_handle, GL_ACTIVE_ATTRIBUTES, &n); MOGL_GL_CALL();
+        glGetProgramiv(_handle, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxLen);
+        glGetProgramiv(_handle, GL_ACTIVE_ATTRIBUTES, &n);
         name = new GLchar[maxLen];
         for (int i = 0; i < n; ++i)
         {
-            glGetActiveAttrib(_handle, i, maxLen, &written, &size, &type, name); MOGL_GL_CALL();
-            location = glGetAttribLocation(_handle, name); MOGL_GL_CALL();
+            glGetActiveAttrib(_handle, i, maxLen, &written, &size, &type, name);
+            location = glGetAttribLocation(_handle, name);
             _attribs[name] = location;
         }
         delete[] name;
-        glGetProgramiv(_handle, GL_ACTIVE_UNIFORM_MAX_LENGTH, &maxLen); MOGL_GL_CALL();
-        glGetProgramiv(_handle, GL_ACTIVE_UNIFORMS, &n); MOGL_GL_CALL();
+        glGetProgramiv(_handle, GL_ACTIVE_UNIFORM_MAX_LENGTH, &maxLen);
+        glGetProgramiv(_handle, GL_ACTIVE_UNIFORMS, &n);
         name = new GLchar[maxLen];
         for (int i = 0; i < n; ++i)
         {
-            glGetActiveUniform(_handle, i, maxLen, &written, &size, &type, name); MOGL_GL_CALL();
-            location = glGetUniformLocation(_handle, name); MOGL_GL_CALL();
+            glGetActiveUniform(_handle, i, maxLen, &written, &size, &type, name);
+            location = glGetUniformLocation(_handle, name);
             uniformName = name;
             _uniforms[uniformName] = location;
             // If the uniform is an array, add the name stripped of its '[0]' suffix
@@ -171,19 +170,19 @@ namespace mogl
         int     len;
         int     numCompS;
 
-        glGetProgramStageiv(_handle, shaderType, GL_ACTIVE_SUBROUTINE_UNIFORMS, &countActiveSU); MOGL_GL_CALL();
+        glGetProgramStageiv(_handle, shaderType, GL_ACTIVE_SUBROUTINE_UNIFORMS, &countActiveSU);
         for (int i = 0; i < countActiveSU; ++i)
         {
-            glGetActiveSubroutineUniformName(_handle, shaderType, i, 256, &len, sname); MOGL_GL_CALL();
-            glGetActiveSubroutineUniformiv(_handle, shaderType, i, GL_NUM_COMPATIBLE_SUBROUTINES, &numCompS); MOGL_GL_CALL();
+            glGetActiveSubroutineUniformName(_handle, shaderType, i, 256, &len, sname);
+            glGetActiveSubroutineUniformiv(_handle, shaderType, i, GL_NUM_COMPATIBLE_SUBROUTINES, &numCompS);
             SubroutineUniform& subUniform = _subroutines[type][sname];
 
             subUniform.uniform = i;
             GLint* s = new GLint[numCompS];
-            glGetActiveSubroutineUniformiv(_handle, shaderType, i, GL_COMPATIBLE_SUBROUTINES, s); MOGL_GL_CALL();
+            glGetActiveSubroutineUniformiv(_handle, shaderType, i, GL_COMPATIBLE_SUBROUTINES, s);
             for (int j = 0; j < numCompS; ++j)
             {
-                glGetActiveSubroutineName(_handle, shaderType, s[j], 256, &len, sname); MOGL_GL_CALL();
+                glGetActiveSubroutineName(_handle, shaderType, s[j], 256, &len, sname);
                 subUniform.subroutines[sname] = s[j];
             }
             delete[] s;
@@ -192,12 +191,12 @@ namespace mogl
 
     inline void ShaderProgram::setVertexAttribPointer(GLuint location, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid* pointerOffset)
     {
-        glVertexAttribPointer(location, size, type, normalized, stride, pointerOffset); MOGL_GL_CALL();
+        glVertexAttribPointer(location, size, type, normalized, stride, pointerOffset);
     }
 
     inline void ShaderProgram::setVertexAttribPointer(const std::string& name, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid* pointerOffset)
     {
-        glVertexAttribPointer(getAttribLocation(name), size, type, normalized, stride, pointerOffset); MOGL_GL_CALL();
+        glVertexAttribPointer(getAttribLocation(name), size, type, normalized, stride, pointerOffset);
     }
 
     /*
@@ -207,25 +206,25 @@ namespace mogl
     template <>
     inline void ShaderProgram::setUniform<GLfloat>(const std::string& name, GLfloat v1)
     {
-        glUniform1f(getUniformLocation(name), v1); MOGL_GL_CALL();
+        glUniform1f(getUniformLocation(name), v1);
     }
 
     template <>
     inline void ShaderProgram::setUniform<GLfloat>(const std::string& name, GLfloat v1, GLfloat v2)
     {
-        glUniform2f(getUniformLocation(name), v1, v2); MOGL_GL_CALL();
+        glUniform2f(getUniformLocation(name), v1, v2);
     }
 
     template <>
     inline void ShaderProgram::setUniform<GLfloat>(const std::string& name, GLfloat v1, GLfloat v2, GLfloat v3)
     {
-        glUniform3f(getUniformLocation(name), v1, v2, v3); MOGL_GL_CALL();
+        glUniform3f(getUniformLocation(name), v1, v2, v3);
     }
 
     template <>
     inline void ShaderProgram::setUniform<GLfloat>(const std::string& name, GLfloat v1, GLfloat v2, GLfloat v3, GLfloat v4)
     {
-        glUniform4f(getUniformLocation(name), v1, v2, v3, v4); MOGL_GL_CALL();
+        glUniform4f(getUniformLocation(name), v1, v2, v3, v4);
     }
 
     /*
@@ -235,25 +234,25 @@ namespace mogl
     template <>
     inline void ShaderProgram::setUniform<GLint>(const std::string& name, GLint v1)
     {
-        glUniform1i(getUniformLocation(name), v1); MOGL_GL_CALL();
+        glUniform1i(getUniformLocation(name), v1);
     }
 
     template <>
     inline void ShaderProgram::setUniform<GLint>(const std::string& name, GLint v1, GLint v2)
     {
-        glUniform2i(getUniformLocation(name), v1, v2); MOGL_GL_CALL();
+        glUniform2i(getUniformLocation(name), v1, v2);
     }
 
     template <>
     inline void ShaderProgram::setUniform<GLint>(const std::string& name, GLint v1, GLint v2, GLint v3)
     {
-        glUniform3i(getUniformLocation(name), v1, v2, v3); MOGL_GL_CALL();
+        glUniform3i(getUniformLocation(name), v1, v2, v3);
     }
 
     template <>
     inline void ShaderProgram::setUniform<GLint>(const std::string& name, GLint v1, GLint v2, GLint v3, GLint v4)
     {
-        glUniform4i(getUniformLocation(name), v1, v2, v3, v4); MOGL_GL_CALL();
+        glUniform4i(getUniformLocation(name), v1, v2, v3, v4);
     }
 
     /*
@@ -263,25 +262,25 @@ namespace mogl
     template <>
     inline void ShaderProgram::setUniform<GLuint>(const std::string& name, GLuint v1)
     {
-        glUniform1ui(getUniformLocation(name), v1); MOGL_GL_CALL();
+        glUniform1ui(getUniformLocation(name), v1);
     }
 
     template <>
     inline void ShaderProgram::setUniform<GLuint>(const std::string& name, GLuint v1, GLuint v2)
     {
-        glUniform2ui(getUniformLocation(name), v1, v2); MOGL_GL_CALL();
+        glUniform2ui(getUniformLocation(name), v1, v2);
     }
 
     template <>
     inline void ShaderProgram::setUniform<GLuint>(const std::string& name, GLuint v1, GLuint v2, GLuint v3)
     {
-        glUniform3ui(getUniformLocation(name), v1, v2, v3); MOGL_GL_CALL();
+        glUniform3ui(getUniformLocation(name), v1, v2, v3);
     }
 
     template <>
     inline void ShaderProgram::setUniform<GLuint>(const std::string& name, GLuint v1, GLuint v2, GLuint v3, GLuint v4)
     {
-        glUniform4ui(getUniformLocation(name), v1, v2, v3, v4); MOGL_GL_CALL();
+        glUniform4ui(getUniformLocation(name), v1, v2, v3, v4);
     }
 
     /*
@@ -291,25 +290,25 @@ namespace mogl
     template <>
     inline void ShaderProgram::setUniformPtr<1, GLfloat>(const std::string& name, const GLfloat* ptr, GLsizei count)
     {
-        glUniform1fv(getUniformLocation(name), count, ptr); MOGL_GL_CALL();
+        glUniform1fv(getUniformLocation(name), count, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformPtr<2, GLfloat>(const std::string& name, const GLfloat* ptr, GLsizei count)
     {
-        glUniform2fv(getUniformLocation(name), count, ptr); MOGL_GL_CALL();
+        glUniform2fv(getUniformLocation(name), count, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformPtr<3, GLfloat>(const std::string& name, const GLfloat* ptr, GLsizei count)
     {
-        glUniform3fv(getUniformLocation(name), count, ptr); MOGL_GL_CALL();
+        glUniform3fv(getUniformLocation(name), count, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformPtr<4, GLfloat>(const std::string& name, const GLfloat* ptr, GLsizei count)
     {
-        glUniform4fv(getUniformLocation(name), count, ptr); MOGL_GL_CALL();
+        glUniform4fv(getUniformLocation(name), count, ptr);
     }
 
     /*
@@ -319,25 +318,25 @@ namespace mogl
     template <>
     inline void ShaderProgram::setUniformPtr<1, GLint>(const std::string& name, const GLint* ptr, GLsizei count)
     {
-        glUniform1iv(getUniformLocation(name), count, ptr); MOGL_GL_CALL();
+        glUniform1iv(getUniformLocation(name), count, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformPtr<2, GLint>(const std::string& name, const GLint* ptr, GLsizei count)
     {
-        glUniform2iv(getUniformLocation(name), count, ptr); MOGL_GL_CALL();
+        glUniform2iv(getUniformLocation(name), count, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformPtr<3, GLint>(const std::string& name, const GLint* ptr, GLsizei count)
     {
-        glUniform3iv(getUniformLocation(name), count, ptr); MOGL_GL_CALL();
+        glUniform3iv(getUniformLocation(name), count, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformPtr<4, GLint>(const std::string& name, const GLint* ptr, GLsizei count)
     {
-        glUniform4iv(getUniformLocation(name), count, ptr); MOGL_GL_CALL();
+        glUniform4iv(getUniformLocation(name), count, ptr);
     }
 
     /*
@@ -347,25 +346,25 @@ namespace mogl
     template <>
     inline void ShaderProgram::setUniformPtr<1, GLuint>(const std::string& name, const GLuint* ptr, GLsizei count)
     {
-        glUniform1uiv(getUniformLocation(name), count, ptr); MOGL_GL_CALL();
+        glUniform1uiv(getUniformLocation(name), count, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformPtr<2, GLuint>(const std::string& name, const GLuint* ptr, GLsizei count)
     {
-        glUniform2uiv(getUniformLocation(name), count, ptr); MOGL_GL_CALL();
+        glUniform2uiv(getUniformLocation(name), count, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformPtr<3, GLuint>(const std::string& name, const GLuint* ptr, GLsizei count)
     {
-        glUniform3uiv(getUniformLocation(name), count, ptr); MOGL_GL_CALL();
+        glUniform3uiv(getUniformLocation(name), count, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformPtr<4, GLuint>(const std::string& name, const GLuint* ptr, GLsizei count)
     {
-        glUniform4uiv(getUniformLocation(name), count, ptr); MOGL_GL_CALL();
+        glUniform4uiv(getUniformLocation(name), count, ptr);
     }
 
     /*
@@ -375,55 +374,55 @@ namespace mogl
     template <>
     inline void ShaderProgram::setUniformMatrixPtr<2, 2, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
     {
-        glUniformMatrix2fv(getUniformLocation(name), count, transpose, ptr); MOGL_GL_CALL();
+        glUniformMatrix2fv(getUniformLocation(name), count, transpose, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformMatrixPtr<3, 3, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
     {
-        glUniformMatrix3fv(getUniformLocation(name), count, transpose, ptr); MOGL_GL_CALL();
+        glUniformMatrix3fv(getUniformLocation(name), count, transpose, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformMatrixPtr<4, 4, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
     {
-        glUniformMatrix4fv(getUniformLocation(name), count, transpose, ptr); MOGL_GL_CALL();
+        glUniformMatrix4fv(getUniformLocation(name), count, transpose, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformMatrixPtr<2, 3, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
     {
-        glUniformMatrix2x3fv(getUniformLocation(name), count, transpose, ptr); MOGL_GL_CALL();
+        glUniformMatrix2x3fv(getUniformLocation(name), count, transpose, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformMatrixPtr<3, 2, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
     {
-        glUniformMatrix3x2fv(getUniformLocation(name), count, transpose, ptr); MOGL_GL_CALL();
+        glUniformMatrix3x2fv(getUniformLocation(name), count, transpose, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformMatrixPtr<2, 4, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
     {
-        glUniformMatrix2x4fv(getUniformLocation(name), count, transpose, ptr); MOGL_GL_CALL();
+        glUniformMatrix2x4fv(getUniformLocation(name), count, transpose, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformMatrixPtr<4, 2, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
     {
-        glUniformMatrix4x2fv(getUniformLocation(name), count, transpose, ptr); MOGL_GL_CALL();
+        glUniformMatrix4x2fv(getUniformLocation(name), count, transpose, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformMatrixPtr<3, 4, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
     {
-        glUniformMatrix3x4fv(getUniformLocation(name), count, transpose, ptr); MOGL_GL_CALL();
+        glUniformMatrix3x4fv(getUniformLocation(name), count, transpose, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformMatrixPtr<4, 3, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
     {
-        glUniformMatrix4x3fv(getUniformLocation(name), count, transpose, ptr); MOGL_GL_CALL();
+        glUniformMatrix4x3fv(getUniformLocation(name), count, transpose, ptr);
     }
 
     /*
@@ -433,19 +432,19 @@ namespace mogl
     template <>
     inline void ShaderProgram::setUniformMatrixPtr<2, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
     {
-        glUniformMatrix2fv(getUniformLocation(name), count, transpose, ptr); MOGL_GL_CALL();
+        glUniformMatrix2fv(getUniformLocation(name), count, transpose, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformMatrixPtr<3, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
     {
-        glUniformMatrix3fv(getUniformLocation(name), count, transpose, ptr); MOGL_GL_CALL();
+        glUniformMatrix3fv(getUniformLocation(name), count, transpose, ptr);
     }
 
     template <>
     inline void ShaderProgram::setUniformMatrixPtr<4, GLfloat>(const std::string& name, const GLfloat* ptr, GLboolean transpose, GLsizei count)
     {
-        glUniformMatrix4fv(getUniformLocation(name), count, transpose, ptr); MOGL_GL_CALL();
+        glUniformMatrix4fv(getUniformLocation(name), count, transpose, ptr);
     }
 
     inline void ShaderProgram::setUniformSubroutine(ShaderObject::ShaderType type, const std::string& uniform, const std::string& subroutine)
@@ -467,6 +466,6 @@ namespace mogl
         GLuint  indices[size];
 
         indices[uniformIdx] = subroutineIdx;
-        glUniformSubroutinesuiv(static_cast<GLenum>(type), size, indices); MOGL_GL_CALL();
+        glUniformSubroutinesuiv(static_cast<GLenum>(type), size, indices);
     }
 }

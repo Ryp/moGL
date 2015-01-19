@@ -9,13 +9,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "framebufferfunctions.hpp"
-#include "mogl/debug.hpp"
 
 namespace mogl
 {
     inline bool FrameBuffer::isComplete(Target target)
     {
-        GLenum rslt = glCheckFramebufferStatus(static_cast<GLenum>(target)); MOGL_GL_CALL();
+        GLenum rslt = glCheckFramebufferStatus(static_cast<GLenum>(target));
         return (rslt == GL_FRAMEBUFFER_COMPLETE);
     }
 
@@ -25,7 +24,7 @@ namespace mogl
                                   static_cast<GLenum>(attachment),
                                   static_cast<GLenum>(RenderBufferObject::Target::RenderBuffer),
                                   renderbuffer.getHandle()
-        ); MOGL_GL_CALL();
+        );
     }
 
     inline void FrameBuffer::setTexture(Target target, Attachment attachment, mogl::TextureObject& texture, GLint level)
@@ -34,7 +33,7 @@ namespace mogl
                                static_cast<GLenum>(attachment),
                                texture.getHandle(),
                                level
-        ); MOGL_GL_CALL();
+        );
     }
 
     inline void FrameBuffer::setTexture1D(Target target, Attachment attachment, mogl::TextureObject& texture, GLint level)
@@ -44,7 +43,7 @@ namespace mogl
                                texture.getTarget(),
                                texture.getHandle(),
                                level
-        ); MOGL_GL_CALL();
+        );
     }
 
     inline void FrameBuffer::setTexture2D(Target target, Attachment attachment, mogl::TextureObject& texture, GLint level)
@@ -54,7 +53,7 @@ namespace mogl
                                texture.getTarget(),
                                texture.getHandle(),
                                level
-        ); MOGL_GL_CALL();
+        );
     }
 
     inline void FrameBuffer::setTexture3D(Target target, Attachment attachment, mogl::TextureObject& texture, GLint level, GLint layer)
@@ -65,6 +64,6 @@ namespace mogl
                                texture.getHandle(),
                                level,
                                layer
-        ); MOGL_GL_CALL();
+        );
     }
 }

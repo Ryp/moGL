@@ -38,8 +38,8 @@ namespace mogl
         void    setParameterPtr(GLenum property, const T* value);
 
     private:
-        GLuint  _handle;
-        GLenum  _target;
+        GLuint          _handle;
+        const GLenum    _target;
     };
 }
 

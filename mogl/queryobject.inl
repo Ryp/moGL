@@ -9,7 +9,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "queryobject.hpp"
-#include "mogl/debug.hpp"
 
 namespace mogl
 {
@@ -17,29 +16,29 @@ namespace mogl
     :   _id(0),
         _type(type)
     {
-        glGenQueries(1, &_id); MOGL_GL_CALL();
+        glGenQueries(1, &_id);
     }
 
     inline QueryObject::~QueryObject()
     {
-        glDeleteQueries(1, &_id); MOGL_GL_CALL();
+        glDeleteQueries(1, &_id);
     }
 
     inline void QueryObject::begin()
     {
-        glBeginQuery(_type, _id); MOGL_GL_CALL();
+        glBeginQuery(_type, _id);
     }
 
     inline void QueryObject::end()
     {
-        glEndQuery(_type); MOGL_GL_CALL();
+        glEndQuery(_type);
     }
 
     template <>
     inline GLint QueryObject::getResult(GLenum param)
     {
         GLint   rslt;
-        glGetQueryObjectiv(_id, param, &rslt); MOGL_GL_CALL();
+        glGetQueryObjectiv(_id, param, &rslt);
         return (rslt);
     }
 
@@ -47,7 +46,7 @@ namespace mogl
     inline GLuint QueryObject::getResult(GLenum param)
     {
         GLuint  rslt;
-        glGetQueryObjectuiv(_id, param, &rslt); MOGL_GL_CALL();
+        glGetQueryObjectuiv(_id, param, &rslt);
         return (rslt);
     }
 
@@ -55,7 +54,7 @@ namespace mogl
     inline GLint64 QueryObject::getResult(GLenum param)
     {
         GLint64 rslt;
-        glGetQueryObjecti64v(_id, param, &rslt); MOGL_GL_CALL();
+        glGetQueryObjecti64v(_id, param, &rslt);
         return (rslt);
     }
 
@@ -63,7 +62,7 @@ namespace mogl
     inline GLuint64 QueryObject::getResult(GLenum param)
     {
         GLuint64    rslt;
-        glGetQueryObjectui64v(_id, param, &rslt); MOGL_GL_CALL();
+        glGetQueryObjectui64v(_id, param, &rslt);
         return (rslt);
     }
 }

@@ -9,24 +9,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "vertexarrayobject.hpp"
-#include "mogl/debug.hpp"
 
 namespace mogl
 {
     inline VertexArrayObject::VertexArrayObject()
     :   _handle(0)
     {
-        glGenVertexArrays(1, &_handle); MOGL_GL_CALL();
+        glGenVertexArrays(1, &_handle);
     }
 
     inline VertexArrayObject::~VertexArrayObject()
     {
-        glDeleteVertexArrays(1, &_handle); MOGL_GL_CALL();
+        glDeleteVertexArrays(1, &_handle);
     }
 
     inline void VertexArrayObject::bind()
     {
-        glBindVertexArray(_handle); MOGL_GL_CALL();
+        glBindVertexArray(_handle);
     }
 
     inline GLuint VertexArrayObject::getHandle() const
