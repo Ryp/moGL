@@ -9,6 +9,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "shaderprogram.hpp"
+#include "mogl/exception.hpp"
 
 #include <iostream>
 #include <iomanip>
