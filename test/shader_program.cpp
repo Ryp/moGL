@@ -12,15 +12,7 @@
 
 #include <fstream>
 
-class ShaderProgramTest : public ::testing::Test
-{
-public:
-    void SetUp() override final { _ctx.create(40, 30, 4, 5); };
-    void TearDown() override final { _ctx.destroy(); };
-
-protected:
-    GLContext   _ctx;
-};
+class ShaderProgramTest : public GLTestFixture {};
 
 using mogl::ShaderObject;
 using mogl::ShaderProgram;

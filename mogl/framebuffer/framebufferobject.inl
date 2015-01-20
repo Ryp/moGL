@@ -15,7 +15,7 @@ namespace mogl
     inline FrameBufferObject::FrameBufferObject()
     :   _handle(0)
     {
-        glGenFramebuffers(1, &_handle);
+        glCreateFramebuffers(1, &_handle);
     }
 
     inline FrameBufferObject::~FrameBufferObject()
@@ -23,18 +23,29 @@ namespace mogl
         glDeleteFramebuffers(1, &_handle);
     }
 
-    inline void FrameBufferObject::bind(FrameBuffer::Target target)
+    inline void FrameBufferObject::bind(GLenum target)
     {
-        glBindFramebuffer(static_cast<GLenum>(target), _handle);
+        glBindFramebuffer(target, _handle);
     }
 
-    inline void FrameBufferObject::setRenderBuffer(FrameBuffer::Attachment attachment, const RenderBufferObject& renderbuffer)
+    inline void FrameBufferObject::setRenderBuffer(GLenum attachment, RenderBufferObject& renderbuffer)
     {
-        glNamedFramebufferRenderbuffer(_handle,
-                                       static_cast<GLenum>(attachment),
-                                       static_cast<GLenum>(RenderBufferObject::Target::RenderBuffer),
-                                       renderbuffer.getHandle()
-        );
+        glNamedFramebufferRenderbuffer(_handle, attachment, GL_RENDERBUFFER, renderbuffer.getHandle());
+    }
+
+    inline void FrameBufferObject::setTexture(GLenum attachment, TextureObject& texture, GLint level)
+    {
+        glNamedFramebufferTexture(_handle, attachment, texture.getHandle(), level);
+    }
+
+    inline void FrameBufferObject::setParameter(GLenum property, GLint value)
+    {
+        glNamedFramebufferParameteri(_handle, property, value);
+    }
+
+    inline bool FrameBufferObject::isComplete(GLenum target)
+    {
+        return (glCheckNamedFramebufferStatus(_handle, target) == GL_FRAMEBUFFER_COMPLETE);
     }
 
     inline GLuint FrameBufferObject::getHandle() const

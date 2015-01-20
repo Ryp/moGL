@@ -6,7 +6,7 @@ using namespace gl;
 
 #include <mogl/mogl.hpp>
 
-#include "common/glcontext.hpp"
+#include "common/gltestfixture.hpp"
 
 #include "gtest/gtest.h"
 

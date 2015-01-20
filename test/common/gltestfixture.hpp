@@ -4,13 +4,24 @@
 /// Copyright (c) 2015 Thibault Schueller
 /// This file is distributed under the MIT License
 ///
-/// @file framebuffer.hpp
+/// @file gltestfixture.hpp
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef MOGL_FRAMEBUFFER_INCLUDED
-#define MOGL_FRAMEBUFFER_INCLUDED
+#ifndef MOGL_GLTESTFIXTURE_INCLUDED
+#define MOGL_GLTESTFIXTURE_INCLUDED
 
-#include "framebuffer/framebufferobject.hpp"
+#include "glcontext.hpp"
+#include "gtest/gtest.h"
 
-#endif // MOGL_FRAMEBUFFER_INCLUDED
+class GLTestFixture : public ::testing::Test
+{
+public:
+    void SetUp() override;
+    void TearDown() override;
+
+protected:
+    GLContext   _ctx;
+};
+
+#endif // MOGL_GLTESTFIXTURE_INCLUDED

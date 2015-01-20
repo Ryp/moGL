@@ -6,13 +6,15 @@
 ///
 /// @file framebufferobject.hpp
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
+///
+/// @brief Framebuffer object OO wrapper using OpenGL 4.5 DSA features
 ////////////////////////////////////////////////////////////////////////////////
 
 #ifndef MOGL_FRAMEBUFFEROBJECT_INCLUDED
 #define MOGL_FRAMEBUFFEROBJECT_INCLUDED
 
 #include <mogl/renderbuffer/renderbufferobject.hpp>
-#include <mogl/framebuffer/framebufferfunctions.hpp>
+#include <mogl/texture/textureobject.hpp>
 
 namespace mogl
 {
@@ -26,8 +28,11 @@ namespace mogl
         FrameBufferObject& operator=(const FrameBufferObject& other) = delete;
 
     public:
-        void    bind(FrameBuffer::Target target);
-        void    setRenderBuffer(FrameBuffer::Attachment attachment, const RenderBufferObject& renderbuffer); // NOTE OpenGL 4.5
+        void    bind(GLenum target); // TODO change this ?
+        void    setRenderBuffer(GLenum attachment, RenderBufferObject& renderbuffer);
+        void    setTexture(GLenum attachment, TextureObject& texture, GLint level = 0);
+        void    setParameter(GLenum property, GLint value);
+        bool    isComplete(GLenum target);
 
     public:
         GLuint  getHandle() const;

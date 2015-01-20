@@ -10,15 +10,7 @@
 
 #include "stdafx.h" // For IDE completion only
 
-class QueryObjectTest : public ::testing::Test
-{
-public:
-    void SetUp() override final { _ctx.create(40, 30, 4, 5); };
-    void TearDown() override final { _ctx.destroy(); };
-
-protected:
-    GLContext   _ctx;
-};
+class QueryObjectTest : public GLTestFixture {};
 
 using mogl::QueryObject;
 

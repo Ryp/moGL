@@ -34,8 +34,8 @@ add_custom_target(${PRECOMPILED_HEADER_TARGET}
     DEPENDS ${PRECOMPILED_HEADER_OUTPUT})
 
 # Setup context library
-add_library(context SHARED common/glcontext.cpp)
-target_link_libraries(context ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GLFW_LIBRARY})
+add_library(context SHARED common/glcontext.cpp common/gltestfixture.cpp)
+target_link_libraries(context ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GLFW_LIBRARY} ${GLBINDING_LIBRARIES} ${GTEST_BOTH_LIBRARIES} pthread)
 set_target_properties(context PROPERTIES COMPILE_FLAGS "${MOGL_TEST_COMPILE_FLAGS}")
 
 function(moglCreateTest NAME)
