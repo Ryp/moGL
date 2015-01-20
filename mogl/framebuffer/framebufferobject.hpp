@@ -28,13 +28,18 @@ namespace mogl
         FrameBufferObject& operator=(const FrameBufferObject& other) = delete;
 
     public:
-        void    bind(GLenum target); // TODO change this ?
+        void    bind(GLenum target);
         void    setRenderBuffer(GLenum attachment, RenderBufferObject& renderbuffer);
         void    setTexture(GLenum attachment, TextureObject& texture, GLint level = 0);
         void    setParameter(GLenum property, GLint value);
         void    setDrawBuffer(GLenum buffer);
         void    setDrawBuffers(GLsizei size, const GLenum* buffers);
         bool    isComplete(GLenum target);
+
+    public:
+        template <class T>
+        void    clear(GLenum buffer, GLint drawbuffer, const T* value);
+        void    clear(GLenum buffer, GLfloat depth, GLint stencil);
 
     public:
         GLuint  getHandle() const;
