@@ -24,9 +24,9 @@ namespace mogl
         glDeleteTextures(1, &_handle);
     }
 
-    inline void TextureObject::bind()
+    inline void TextureObject::bind(GLuint unit)
     {
-        glBindTextures(0, 1, &_handle);
+        glBindTextureUnit(unit, _handle);
     }
 
     inline void TextureObject::setStorage2D(GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height)

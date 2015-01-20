@@ -1,7 +1,7 @@
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 find_package(CXX11 REQUIRED)
 find_package(OpenGL REQUIRED)
-find_package(glfw REQUIRED)
+find_library(glfw REQUIRED)
 find_package(glbinding REQUIRED)
 find_package(GTest REQUIRED)
 

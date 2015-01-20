@@ -33,7 +33,6 @@ TEST_F(TextureTest, frame_texture)
     frameTexture.setParameter(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     frameTexture.setParameter(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     frameTexture.setParameterPtr(GL_TEXTURE_BORDER_COLOR, border);
-    frameTexture.bind();
 }
 
 TEST_F(TextureTest, depth_texture)
@@ -47,5 +46,4 @@ TEST_F(TextureTest, depth_texture)
     depthTexture.setParameter(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     depthTexture.setParameter(GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
     depthTexture.setParameter(GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
-    depthTexture.bind();
 }

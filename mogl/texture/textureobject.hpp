@@ -23,7 +23,7 @@ namespace mogl
         TextureObject& operator=(const TextureObject& other) = delete;
 
     public:
-        void    bind();
+        void    bind(GLuint unit);
         void    setStorage2D(GLsizei levels, GLenum internalformat,
                              GLsizei width, GLsizei height);
         void    setImage2D(GLint level, GLint internalFormat, GLsizei width,
