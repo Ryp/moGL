@@ -16,7 +16,7 @@ namespace mogl
     :   _id(0),
         _type(type)
     {
-        glGenQueries(1, &_id);
+        glCreateQueries(_type, 1, &_id);
     }
 
     inline QueryObject::~QueryObject()

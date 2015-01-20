@@ -6,6 +6,8 @@
 ///
 /// @file queryobject.hpp
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
+///
+/// @brief Query object OO wrapper using OpenGL 4.5 DSA features
 ////////////////////////////////////////////////////////////////////////////////
 
 #ifndef MOGL_QUERYOBJECT_INCLUDED

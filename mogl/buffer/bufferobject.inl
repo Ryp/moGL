@@ -16,7 +16,7 @@ namespace mogl
     :   _handle(0),
         _target(target)
     {
-        glGenBuffers(1, &_handle);
+        glCreateBuffers(1, &_handle);
     }
 
     inline BufferObject::~BufferObject()
@@ -31,7 +31,7 @@ namespace mogl
 
     inline void BufferObject::setData(GLsizeiptr size, const GLvoid* data, GLenum usage)
     {
-        glBufferData(_target, size, data, usage);
+        glNamedBufferData(_handle, size, data, usage);
     }
 
     inline GLuint BufferObject::getHandle() const

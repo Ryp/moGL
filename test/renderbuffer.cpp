@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// Modern OpenGL Wrapper
 ///
-/// Copyright (c) 2014 Thibault Schueller
+/// Copyright (c) 2015 Thibault Schueller
 /// This file is distributed under the MIT License
 ///
 /// @file renderbuffer.cpp
@@ -26,6 +26,6 @@ TEST_F(RenderBufferTest, binding)
 {
     RenderBufferObject  rbo;
 
-    rbo.bind();
+    rbo.setStorage(GL_DEPTH_COMPONENT, 1024, 1024);
     rbo.getHandle();
 }

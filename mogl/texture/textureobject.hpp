@@ -6,6 +6,8 @@
 ///
 /// @file textureobject.hpp
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
+///
+/// @brief Texture object OO wrapper using OpenGL 4.5 DSA features
 ////////////////////////////////////////////////////////////////////////////////
 
 #ifndef MOGL_TEXTUREOBJECT_INCLUDED
@@ -28,7 +30,7 @@ namespace mogl
                              GLsizei width, GLsizei height);
         void    setImage2D(GLint level, GLint internalFormat, GLsizei width,
                            GLsizei height, GLint border, GLenum format,
-                           GLenum type, const GLvoid* data);
+                           GLenum type, const GLvoid* data); // TODO is this GL 4.5 core ?
         void    generateMipmap();
         GLuint  getHandle() const;
         GLenum  getTarget() const;

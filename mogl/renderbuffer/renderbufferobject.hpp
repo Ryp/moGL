@@ -6,6 +6,8 @@
 ///
 /// @file renderbufferobject.hpp
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
+///
+/// @brief RenderBuffer object OO wrapper using OpenGL 4.5 DSA features
 ////////////////////////////////////////////////////////////////////////////////
 
 #ifndef MOGL_RENDERBUFFEROBJECT_INCLUDED
@@ -28,7 +30,6 @@ namespace mogl
         RenderBufferObject& operator=(const RenderBufferObject& other) = delete;
 
     public:
-        void    bind();
         void    setStorage(GLenum internalformat, GLsizei width, GLsizei height);
 
     public:

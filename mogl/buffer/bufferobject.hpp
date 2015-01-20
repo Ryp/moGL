@@ -6,6 +6,8 @@
 ///
 /// @file bufferobject.hpp
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
+///
+/// @brief Buffer object OO wrapper using OpenGL 4.5 DSA features
 ////////////////////////////////////////////////////////////////////////////////
 
 #ifndef MOGL_BUFFEROBJECT_INCLUDED
