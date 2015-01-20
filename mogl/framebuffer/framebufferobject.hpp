@@ -32,6 +32,8 @@ namespace mogl
         void    setRenderBuffer(GLenum attachment, RenderBufferObject& renderbuffer);
         void    setTexture(GLenum attachment, TextureObject& texture, GLint level = 0);
         void    setParameter(GLenum property, GLint value);
+        void    setDrawBuffer(GLenum buffer);
+        void    setDrawBuffers(GLsizei size, const GLenum* buffers);
         bool    isComplete(GLenum target);
 
     public:

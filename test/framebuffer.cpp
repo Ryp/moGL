@@ -28,12 +28,10 @@ TEST_F(FrameBufferObjectTest, instantiation)
 
     depthRenderBuffer.setStorage(GL_DEPTH_COMPONENT, _ctx.getWindowSize().x, _ctx.getWindowSize().y);
 
-    fbo.bind(GL_FRAMEBUFFER);
     colorTexture.bind(0);
     fbo.setTexture(GL_COLOR_ATTACHMENT0, colorTexture);
     fbo.setRenderBuffer(GL_DEPTH_ATTACHMENT, depthRenderBuffer);
-    GLenum DrawBuffers[] = {GL_COLOR_ATTACHMENT0};
-    glDrawBuffers(1, DrawBuffers); MOGL_ASSERT_GLSTATE();
+    fbo.setDrawBuffer(GL_COLOR_ATTACHMENT0);
     if (!fbo.isComplete(GL_FRAMEBUFFER))
         throw (std::runtime_error("bad framebuffer"));
 }

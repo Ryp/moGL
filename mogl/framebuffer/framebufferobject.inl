@@ -43,6 +43,16 @@ namespace mogl
         glNamedFramebufferParameteri(_handle, property, value);
     }
 
+    inline void FrameBufferObject::setDrawBuffer(GLenum buffer)
+    {
+        glNamedFramebufferDrawBuffer(_handle, buffer);
+    }
+
+    inline void FrameBufferObject::setDrawBuffers(GLsizei size, const GLenum* buffers)
+    {
+        glNamedFramebufferDrawBuffers(_handle, size, buffers);
+    }
+
     inline bool FrameBufferObject::isComplete(GLenum target)
     {
         return (glCheckNamedFramebufferStatus(_handle, target) == GL_FRAMEBUFFER_COMPLETE);
