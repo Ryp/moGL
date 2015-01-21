@@ -18,11 +18,6 @@ namespace mogl
     class RenderBufferObject
     {
     public:
-        enum class Target {
-            RenderBuffer = static_cast<GLenum>(GL_RENDERBUFFER),
-        };
-
-    public:
         RenderBufferObject();
         ~RenderBufferObject();
 
@@ -31,6 +26,8 @@ namespace mogl
 
     public:
         void    setStorage(GLenum internalformat, GLsizei width, GLsizei height);
+        void    setStorageMultisample(GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height);
+        void    getParameteriv(GLenum property, GLint* value);
 
     public:
         GLuint  getHandle() const;

@@ -26,8 +26,21 @@ namespace mogl
 
     public:
         void    bind();
-        void    setData(GLsizeiptr size, const GLvoid* data, GLenum usage);
         GLuint  getHandle() const;
+        void    setStorage(GLsizeiptr size, const void* data, GLbitfield flags);
+        void    setData(GLsizeiptr size, const void* data, GLenum usage);
+        void    setSubData(GLintptr offset, GLsizeiptr size, const void* data);
+        void    copySubData(GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
+        void    clearData(GLenum internalformat, GLenum format, GLenum type, const void* data);
+        void    clearSubData(GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum type, const void* data);
+        void*   map(GLenum access);
+        void*   mapRange(GLintptr offset, GLsizeiptr length, GLbitfield access);
+        bool    unmap();
+        void    flushMappedRange(GLintptr offset, GLsizeiptr length);
+        void    getParameteriv(GLenum property, int* value);
+        void    getParameteri64v(GLenum property, GLint64* value);
+        void    getPointerv(GLenum property, void** value);
+        void    getSubData(GLintptr offset, GLsizeiptr size, void* data);
 
     private:
         GLuint  _handle;

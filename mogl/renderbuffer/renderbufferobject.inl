@@ -25,8 +25,17 @@ namespace mogl
 
     inline void RenderBufferObject::setStorage(GLenum internalformat, GLsizei width, GLsizei height)
     {
-        //Only Target::RenderBuffer is allowed
         glNamedRenderbufferStorage(_handle, internalformat, width, height);
+    }
+
+    inline void RenderBufferObject::setStorageMultisample(GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
+    {
+        glNamedRenderbufferStorageMultisample(_handle, samples, internalformat, width, height);
+    }
+
+    inline void RenderBufferObject::getParameteriv(GLenum property, GLint* value)
+    {
+        glGetNamedRenderbufferParameteriv(_handle, property, value);
     }
 
     inline GLuint RenderBufferObject::getHandle() const
