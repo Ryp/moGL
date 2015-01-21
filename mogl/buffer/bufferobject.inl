@@ -74,7 +74,7 @@ namespace mogl
         return glMapNamedBufferRange(_handle, offset, length, static_cast<gl::BufferAccessMask>(access)); // TODO Find solution to remove glbinding dependance
     }
 
-    bool BufferObject::unmap()
+    inline bool BufferObject::unmap()
     {
         return glUnmapNamedBuffer(_handle) == GL_TRUE;
     }
