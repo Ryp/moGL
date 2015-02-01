@@ -7,8 +7,6 @@
 # free to make use of it in any way you like.
 #===============================================================================
 
-# FindMoGL.cmake      - attempts to locate the MoGL library.
-#
 # This module defines the following variables (on success):
 #   MOGL_FOUND        - if the library was successfully located
 #   MOGL_INCLUDE_DIRS - where to find mogl/mogl.hpp
