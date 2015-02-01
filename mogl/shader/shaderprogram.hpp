@@ -26,6 +26,7 @@ namespace mogl
     public:
         void                attach(const ShaderObject& object);
         void                detach(const ShaderObject& object);
+        void                bindAttribLocation(GLuint location, const std::string& attribute);
         bool                link();
         void                use();
         GLuint              getHandle() const;

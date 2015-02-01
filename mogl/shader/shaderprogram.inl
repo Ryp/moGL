@@ -37,6 +37,11 @@ namespace mogl
     {
         glDetachShader(_handle, object.getHandle());
     }
+    
+    inline void ShaderProgram::bindAttribLocation(GLuint location, const std::string& attribute)
+    {
+        glBindAttribLocation(_handle, location, attribute.c_str());
+    }
 
     inline bool ShaderProgram::link()
     {
