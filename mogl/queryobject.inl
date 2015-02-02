@@ -13,20 +13,20 @@
 namespace mogl
 {
     inline QueryObject::QueryObject(GLenum type)
-    :   _id(0),
+    :   _handle(0),
         _type(type)
     {
-        glCreateQueries(_type, 1, &_id);
+        glCreateQueries(_type, 1, &_handle);
     }
 
     inline QueryObject::~QueryObject()
     {
-        glDeleteQueries(1, &_id);
+        glDeleteQueries(1, &_handle);
     }
 
     inline void QueryObject::begin()
     {
-        glBeginQuery(_type, _id);
+        glBeginQuery(_type, _handle);
     }
 
     inline void QueryObject::end()
@@ -38,7 +38,7 @@ namespace mogl
     inline GLint QueryObject::getResult(GLenum param)
     {
         GLint   rslt;
-        glGetQueryObjectiv(_id, param, &rslt);
+        glGetQueryObjectiv(_handle, param, &rslt);
         return (rslt);
     }
 
@@ -46,7 +46,7 @@ namespace mogl
     inline GLuint QueryObject::getResult(GLenum param)
     {
         GLuint  rslt;
-        glGetQueryObjectuiv(_id, param, &rslt);
+        glGetQueryObjectuiv(_handle, param, &rslt);
         return (rslt);
     }
 
@@ -54,7 +54,7 @@ namespace mogl
     inline GLint64 QueryObject::getResult(GLenum param)
     {
         GLint64 rslt;
-        glGetQueryObjecti64v(_id, param, &rslt);
+        glGetQueryObjecti64v(_handle, param, &rslt);
         return (rslt);
     }
 
@@ -62,7 +62,7 @@ namespace mogl
     inline GLuint64 QueryObject::getResult(GLenum param)
     {
         GLuint64    rslt;
-        glGetQueryObjectui64v(_id, param, &rslt);
+        glGetQueryObjectui64v(_handle, param, &rslt);
         return (rslt);
     }
 }

@@ -33,17 +33,18 @@ void    example(GLContext& ctx)
     mogl::BufferObject      elementBuffer(GL_ELEMENT_ARRAY_BUFFER);
     mogl::TextureObject     texture(GL_TEXTURE_2D);
     mogl::QueryObject       timeQuery(GL_TIME_ELAPSED);
+    mogl::QueryObject       polyQuery(GL_PRIMITIVES_GENERATED);
     std::ifstream           vsFile("data/basic_shading.vert");
     std::ifstream           fsFile("data/basic_shading.frag");
     mogl::ShaderProgram     shader;
     mogl::ShaderObject      vertex(vsFile, mogl::ShaderObject::ShaderType::VertexShader);
     mogl::ShaderObject      fragment(fsFile, mogl::ShaderObject::ShaderType::FragmentShader);
-    glm::mat4               Projection  = glm::perspective(45.0f, static_cast<float>(ctx.getWindowSize().x) / static_cast<float>(ctx.getWindowSize().y), 1.0f, 1000.0f);
-    glm::mat4               View        = glm::lookAt(glm::vec3(1.5f, 1.5f, 1.5f), glm::vec3(), glm::vec3(0, 1, 0));
+    glm::mat4               Projection  = glm::perspective(45.0f, static_cast<float>(ctx.getWindowSize().x) / static_cast<float>(ctx.getWindowSize().y), 0.1f, 100.0f);
+    glm::mat4               View        = glm::lookAt(glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(), glm::vec3(0, 1, 0));
     glm::mat4               Model       = glm::mat4(1.0);
     glm::mat4               MV          = View * Model;
     glm::mat4               MVP         = Projection * MV;
-    glm::vec3               lightInvDir = glm::vec3(0.5f,2,2);
+    glm::vec3               lightInvDir = glm::vec3(0.5f, 2, 2);
 
     texture.bind(0);
     ImageLoader::loadDDS("data/uvmap.dds", texture);
@@ -87,6 +88,7 @@ void    example(GLContext& ctx)
     {
         frameTime = ctx.getTime();
         timeQuery.begin();
+        polyQuery.begin();
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -118,12 +120,14 @@ void    example(GLContext& ctx)
         vao.disableAttrib(1);
         vao.disableAttrib(2);
 
+        polyQuery.end();
         timeQuery.end();
         double glms = static_cast<double>(timeQuery.getResult<GLuint>(GL_QUERY_RESULT)) * 0.000001;
+        unsigned int poly = polyQuery.getResult<GLuint>(GL_QUERY_RESULT);
 
         ctx.swapBuffers();
         frameTime = ctx.getTime() - frameTime;
-        ctx.setTitle("Total " + std::to_string(frameTime * 1000.0f) + " ms / GPU " + std::to_string(glms) + " ms " + std::to_string(ctx.getWindowSize().x) + "x"  + std::to_string(ctx.getWindowSize().y));
+        ctx.setTitle(std::to_string(poly) + " Primitives | Total " + std::to_string(frameTime * 1000.0f) + " ms / GPU " + std::to_string(glms) + " ms " + std::to_string(ctx.getWindowSize().x) + "x"  + std::to_string(ctx.getWindowSize().y));
     }
 }
 

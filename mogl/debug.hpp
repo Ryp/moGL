@@ -21,6 +21,9 @@ namespace mogl
     public:
         Debug() = delete;
 
+    private:
+        
+
     public:
         static std::string  getErrorString(GLenum error);
         static void         assertGLState(const char* file, const char* func, int line);

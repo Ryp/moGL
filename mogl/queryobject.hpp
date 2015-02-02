@@ -31,7 +31,7 @@ namespace mogl
         T       getResult(GLenum param);
 
     private:
-        GLuint  _id;
+        GLuint  _handle;
         GLenum  _type;
     };
 }

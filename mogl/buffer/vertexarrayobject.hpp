@@ -13,14 +13,6 @@
 #ifndef MOGL_VERTEXARRAYOBJECT_INCLUDED
 #define MOGL_VERTEXARRAYOBJECT_INCLUDED
 
-/*
- * https://www.opengl.org/registry/specs/ARB/direct_state_access.txt
- * https://www.opengl.org/sdk/docs/man/html/glMapBufferRange.xhtml
- * https://www.opengl.org/registry/specs/ARB/vertex_attrib_binding.txt
- * https://www.opengl.org/wiki/Vertex_Specification
- * https://github.com/g-truc/ogl-samples/blob/master/tests/gl-450-direct-state-access.cpp
- */
-
 namespace mogl
 {
     class VertexArrayObject
