@@ -9,7 +9,7 @@ notifications:
   email:
     - ryp.sqrt@gmail.com
 before_install:
-    - sudo add-apt-repository -y "deb http://fr.archive.ubuntu.com/ubuntu/ trusty main universe" # NOTE use ubuntu trusty repo instead of hacking with custom user packages
+    - sudo add-apt-repository -y "deb http://fr.archive.ubuntu.com/ubuntu/ utopic main universe" # NOTE use ubuntu utopic repo instead of hacking with custom user packages
     - sudo apt-get update -qq
 install:
     - sudo apt-get install -qq g++ clang cmake
@@ -29,7 +29,7 @@ install:
     - popd
     - git clone https://github.com/hpicgs/glbinding.git
     - pushd glbinding
-    - git checkout v1.0.4
+    - git checkout v1.0.5
     - cmake -DOPTION_BUILD_STATIC=OFF . && make && sudo make install
     - popd
 before_script:
