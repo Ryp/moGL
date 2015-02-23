@@ -13,11 +13,11 @@
 
 namespace mogl
 {
-    static void enable(GLenum flag);
-    static void disable(GLenum flag);
-    static void setActiveTexture(GLenum unit);
-    static void setViewport(GLint x, GLint y, GLsizei width, GLsizei height);
-    static void setCullFace(GLenum mode);
+    void enable(GLenum flag);
+    void disable(GLenum flag);
+    void setActiveTexture(GLenum unit);
+    void setViewport(GLint x, GLint y, GLsizei width, GLsizei height);
+    void setCullFace(GLenum mode);
 }
 
 #include "states.inl"

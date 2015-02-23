@@ -13,5 +13,6 @@
 
 #include "mogl/buffer/bufferobject.hpp"
 #include "mogl/buffer/vertexarrayobject.hpp"
+#include "mogl/buffer/transformfeedbackobject.hpp"
 
 #endif // MOGL_BUFFER_INCLUDED

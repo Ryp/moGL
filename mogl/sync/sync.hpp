@@ -15,8 +15,8 @@ namespace mogl
 {
     namespace Sync
     {
-        static void flush();
-        static void finish();
+        void flush();
+        void finish();
     };
 }
 
