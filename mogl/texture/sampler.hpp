@@ -25,11 +25,11 @@ namespace mogl
         Sampler& operator=(const Sampler& other) = delete;
 
     public:
-        template <class T>
-        void    set(GLenum property, T value);
+        template <class T> void get(GLenum property, T* value); // Direct call to glGetSamplerParameter*v()
+        template <class T> T    get(GLenum property);
+        template <class T> void set(GLenum property, T value);
         bool    isValid() const override final;
     };
-
 }
 
 #include "sampler.inl"

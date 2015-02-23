@@ -27,7 +27,6 @@ namespace mogl
         TextureObject& operator=(const TextureObject& other) = delete;
 
     public:
-        bool    isValid() const override final;
         void    bind(GLuint unit);
         void    setStorage2D(GLsizei levels, GLenum internalformat,
                              GLsizei width, GLsizei height);
@@ -36,8 +35,12 @@ namespace mogl
                            GLenum type, const GLvoid* data); // TODO is this GL 4.5 core ?
         void    generateMipmap();
         GLenum  getTarget() const;
-        template <class T>
-        void    set(GLenum property, T value);
+        template <class T> void get(GLenum property, T* value); // Direct call to glGetTextureParameter*v()
+        template <class T> T    get(GLenum property);
+        template <class T> void get(GLint level, GLenum property, T* value); // Direct call to glGetTextureLevelParameter*v()
+        template <class T> T    get(GLint level, GLenum property);
+        template <class T> void set(GLenum property, T value);
+        bool    isValid() const override final;
 
     private:
         const GLenum    _target;

@@ -80,7 +80,7 @@ namespace mogl
         glClearNamedFramebufferfv(_handle, buffer, drawbuffer, value);
     }
 
-    inline void mogl::FrameBufferObject::clear(GLenum buffer, GLfloat depth, GLint stencil)
+    inline void FrameBufferObject::clear(GLenum buffer, GLfloat depth, GLint stencil)
     {
         glClearNamedFramebufferfi(_handle, buffer, depth, stencil);
     }

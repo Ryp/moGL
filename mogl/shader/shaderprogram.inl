@@ -44,7 +44,7 @@ namespace mogl
     inline bool ShaderProgram::link()
     {
         GLint       logLength = 0;
- 
+
         glLinkProgram(_handle);
         if (get(GL_LINK_STATUS) == static_cast<GLint>(GL_FALSE))
         {
@@ -120,15 +120,15 @@ namespace mogl
         }
     }
 
-    inline void ShaderProgram::get(GLenum parameter, GLint* value)
+    inline void ShaderProgram::get(GLenum property, GLint* value)
     {
-        glGetProgramiv(_handle, parameter, value);
+        glGetProgramiv(_handle, property, value);
     }
 
-    inline GLint ShaderProgram::get(GLenum parameter)
+    inline GLint ShaderProgram::get(GLenum property)
     {
         GLint   value;
-        glGetProgramiv(_handle, parameter, &value);
+        glGetProgramiv(_handle, property, &value);
         return value;
     }
 

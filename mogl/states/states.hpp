@@ -19,14 +19,10 @@ namespace mogl
     void setViewport(GLint x, GLint y, GLsizei width, GLsizei height);
     void setCullFace(GLenum mode);
 
-    template <class T>
-    void    get(GLenum parameter, T* value); // Direct call to glGet*v()
-    template <class T>
-    void    get(GLenum parameter, GLuint index, T* value); // Direct call to glGet*i_v()
-    template <class T>
-    T       get(GLenum parameter);
-    template <class T>
-    T       get(GLenum parameter, GLuint index);
+    template <class T> void get(GLenum property, T* value); // Direct call to glGet*v()
+    template <class T> void get(GLenum property, GLuint index, T* value); // Direct call to glGet*i_v()
+    template <class T> T    get(GLenum property);
+    template <class T> T    get(GLenum property, GLuint index);
 }
 
 #include "states.inl"

@@ -42,33 +42,33 @@ namespace mogl
      */
 
     template <>
-    inline void get<GLboolean>(GLenum parameter, GLboolean* value)
+    inline void get<GLboolean>(GLenum property, GLboolean* value)
     {
-        glGetBooleanv(parameter, value);
+        glGetBooleanv(property, value);
     }
 
     template <>
-    inline void get<GLfloat>(GLenum parameter, GLfloat* value)
+    inline void get<GLfloat>(GLenum property, GLfloat* value)
     {
-        glGetFloatv(parameter, value);
+        glGetFloatv(property, value);
     }
 
     template <>
-    inline void get<GLdouble>(GLenum parameter, GLdouble* value)
+    inline void get<GLdouble>(GLenum property, GLdouble* value)
     {
-        glGetDoublev(parameter, value);
+        glGetDoublev(property, value);
     }
 
     template <>
-    inline void get<GLint>(GLenum parameter, GLint* value)
+    inline void get<GLint>(GLenum property, GLint* value)
     {
-        glGetIntegerv(parameter, value);
+        glGetIntegerv(property, value);
     }
 
     template <>
-    inline void get<GLint64>(GLenum parameter, GLint64* value)
+    inline void get<GLint64>(GLenum property, GLint64* value)
     {
-        glGetInteger64v(parameter, value);
+        glGetInteger64v(property, value);
     }
 
     /*
@@ -76,33 +76,33 @@ namespace mogl
      */
 
     template <>
-    inline void get<GLboolean>(GLenum parameter, GLuint index, GLboolean* value)
+    inline void get<GLboolean>(GLenum property, GLuint index, GLboolean* value)
     {
-        glGetBooleani_v(parameter, index, value);
+        glGetBooleani_v(property, index, value);
     }
 
     template <>
-    inline void get<GLfloat>(GLenum parameter, GLuint index, GLfloat* value)
+    inline void get<GLfloat>(GLenum property, GLuint index, GLfloat* value)
     {
-        glGetFloati_v(parameter, index, value);
+        glGetFloati_v(property, index, value);
     }
 
     template <>
-    inline void get<GLdouble>(GLenum parameter, GLuint index, GLdouble* value)
+    inline void get<GLdouble>(GLenum property, GLuint index, GLdouble* value)
     {
-        glGetDoublei_v(parameter, index, value);
+        glGetDoublei_v(property, index, value);
     }
 
     template <>
-    inline void get<GLint>(GLenum parameter, GLuint index, GLint* value)
+    inline void get<GLint>(GLenum property, GLuint index, GLint* value)
     {
-        glGetIntegeri_v(parameter, index, value);
+        glGetIntegeri_v(property, index, value);
     }
 
     template <>
-    inline void get<GLint64>(GLenum parameter, GLuint index, GLint64* value)
+    inline void get<GLint64>(GLenum property, GLuint index, GLint64* value)
     {
-        glGetInteger64i_v(parameter, index, value);
+        glGetInteger64i_v(property, index, value);
     }
 
     /*
@@ -110,42 +110,42 @@ namespace mogl
      */
 
     template <>
-    inline GLboolean get<GLboolean>(GLenum parameter)
+    inline GLboolean get<GLboolean>(GLenum property)
     {
         GLboolean   value;
-        glGetBooleanv(parameter, &value);
+        glGetBooleanv(property, &value);
         return value;
     }
 
     template <>
-    inline GLfloat get<GLfloat>(GLenum parameter)
+    inline GLfloat get<GLfloat>(GLenum property)
     {
         GLfloat     value;
-        glGetFloatv(parameter, &value);
+        glGetFloatv(property, &value);
         return value;
     }
 
     template <>
-    inline GLdouble get<GLdouble>(GLenum parameter)
+    inline GLdouble get<GLdouble>(GLenum property)
     {
         GLdouble    value;
-        glGetDoublev(parameter, &value);
+        glGetDoublev(property, &value);
         return value;
     }
 
     template <>
-    inline GLint get<GLint>(GLenum parameter)
+    inline GLint get<GLint>(GLenum property)
     {
         GLint       value;
-        glGetIntegerv(parameter, &value);
+        glGetIntegerv(property, &value);
         return value;
     }
 
     template <>
-    inline GLint64 get<GLint64>(GLenum parameter)
+    inline GLint64 get<GLint64>(GLenum property)
     {
         GLint64     value;
-        glGetInteger64v(parameter, &value);
+        glGetInteger64v(property, &value);
         return value;
     }
 
@@ -154,42 +154,42 @@ namespace mogl
      */
 
     template <>
-    inline GLboolean get<GLboolean>(GLenum parameter, GLuint index)
+    inline GLboolean get<GLboolean>(GLenum property, GLuint index)
     {
         GLboolean   value;
-        glGetBooleani_v(parameter, index, &value);
+        glGetBooleani_v(property, index, &value);
         return value;
     }
 
     template <>
-    inline GLfloat get<GLfloat>(GLenum parameter, GLuint index)
+    inline GLfloat get<GLfloat>(GLenum property, GLuint index)
     {
         GLfloat     value;
-        glGetFloati_v(parameter, index, &value);
+        glGetFloati_v(property, index, &value);
         return value;
     }
 
     template <>
-    inline GLdouble get<GLdouble>(GLenum parameter, GLuint index)
+    inline GLdouble get<GLdouble>(GLenum property, GLuint index)
     {
         GLdouble    value;
-        glGetDoublei_v(parameter, index, &value);
+        glGetDoublei_v(property, index, &value);
         return value;
     }
 
     template <>
-    inline GLint get<GLint>(GLenum parameter, GLuint index)
+    inline GLint get<GLint>(GLenum property, GLuint index)
     {
         GLint       value;
-        glGetIntegeri_v(parameter, index, &value);
+        glGetIntegeri_v(property, index, &value);
         return value;
     }
 
     template <>
-    inline GLint64 get<GLint64>(GLenum parameter, GLuint index)
+    inline GLint64 get<GLint64>(GLenum property, GLuint index)
     {
         GLint64     value;
-        glGetInteger64i_v(parameter, index, &value);
+        glGetInteger64i_v(property, index, &value);
         return value;
     }
 }

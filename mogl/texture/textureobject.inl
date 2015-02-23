@@ -23,11 +23,6 @@ namespace mogl
         glDeleteTextures(1, &_handle);
     }
 
-    inline bool TextureObject::isValid() const
-    {
-        return glIsTexture(_handle) == GL_TRUE;
-    }
-
     inline void TextureObject::bind(GLuint unit)
     {
         glBindTextureUnit(unit, _handle);
@@ -52,6 +47,74 @@ namespace mogl
     {
         return _target;
     }
+
+    /*
+     * Templated accessors definitions
+     */
+
+    template <>
+    inline void TextureObject::get<GLint>(GLenum property, GLint* value)
+    {
+        glGetTextureParameteriv(_handle, property, value);
+    }
+
+    template <>
+    inline void TextureObject::get<GLfloat>(GLenum property, GLfloat* value)
+    {
+        glGetTextureParameterfv(_handle, property, value);
+    }
+
+    template <>
+    inline GLint TextureObject::get<GLint>(GLenum property)
+    {
+        GLint value;
+        glGetTextureParameteriv(_handle, property, &value);
+        return value;
+    }
+
+    template <>
+    inline GLfloat TextureObject::get<GLfloat>(GLenum property)
+    {
+        GLfloat value;
+        glGetTextureParameterfv(_handle, property, &value);
+        return value;
+    }
+
+    /*
+     * Level specific accessors definitions
+     */
+
+    template <>
+    inline void TextureObject::get<GLint>(GLint level, GLenum property, GLint* value)
+    {
+        glGetTextureLevelParameteriv(_handle, level, property, value);
+    }
+
+    template <>
+    inline void TextureObject::get<GLfloat>(GLint level, GLenum property, GLfloat* value)
+    {
+        glGetTextureLevelParameterfv(_handle, level, property, value);
+    }
+
+    template <>
+    inline GLint TextureObject::get<GLint>(GLint level, GLenum property)
+    {
+        GLint value;
+        glGetTextureLevelParameteriv(_handle, level, property, &value);
+        return value;
+    }
+
+    template <>
+    inline GLfloat TextureObject::get<GLfloat>(GLint level, GLenum property)
+    {
+        GLfloat value;
+        glGetTextureLevelParameterfv(_handle, level, property, &value);
+        return value;
+    }
+
+    /*
+     * Templated mutators definitions
+     */
 
     template <>
     inline void TextureObject::set<GLint>(GLenum property, GLint value)
@@ -93,5 +156,10 @@ namespace mogl
     inline void TextureObject::set<const GLfloat*>(GLenum property, const GLfloat* value)
     {
         glTextureParameterfv(_handle, property, value);
+    }
+
+    inline bool TextureObject::isValid() const
+    {
+        return glIsTexture(_handle) == GL_TRUE;
     }
 }

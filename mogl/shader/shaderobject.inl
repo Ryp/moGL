@@ -74,15 +74,15 @@ namespace mogl
         return _log;
     }
 
-    inline void ShaderObject::get(GLenum parameter, GLint* value)
+    inline void ShaderObject::get(GLenum property, GLint* value)
     {
-        glGetShaderiv(_handle, parameter, value);
+        glGetShaderiv(_handle, property, value);
     }
 
-    inline GLint ShaderObject::get(GLenum parameter)
+    inline GLint ShaderObject::get(GLenum property)
     {
         GLint   value;
-        glGetShaderiv(_handle, parameter, &value);
+        glGetShaderiv(_handle, property, &value);
         return value;
     }
 

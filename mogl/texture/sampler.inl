@@ -22,6 +22,42 @@ namespace mogl
         glDeleteSamplers(1, &_handle);
     }
 
+    /*
+     * Templated accessors definitions
+     */
+
+    template <>
+    inline void Sampler::get<GLint>(GLenum property, GLint* value)
+    {
+        glGetSamplerParameteriv(_handle, property, value);
+    }
+
+    template <>
+    inline void Sampler::get<GLfloat>(GLenum property, GLfloat* value)
+    {
+        glGetSamplerParameterfv(_handle, property, value);
+    }
+
+    template <>
+    inline GLint Sampler::get<GLint>(GLenum property)
+    {
+        GLint value;
+        glGetSamplerParameteriv(_handle, property, &value);
+        return value;
+    }
+
+    template <>
+    inline GLfloat Sampler::get<GLfloat>(GLenum property)
+    {
+        GLfloat value;
+        glGetSamplerParameterfv(_handle, property, &value);
+        return value;
+    }
+
+    /*
+     * Templated mutators definitions
+     */
+
     template <>
     inline void Sampler::set<GLint>(GLenum property, GLint value)
     {
