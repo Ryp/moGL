@@ -132,6 +132,11 @@ namespace mogl
         return value;
     }
 
+    inline void ShaderProgram::set(GLenum property, GLint value)
+    {
+        glProgramParameteri(_handle, property, value);
+    }
+
     inline bool ShaderProgram::isValid() const
     {
         return glIsProgram(_handle) == GL_TRUE;
