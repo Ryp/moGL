@@ -37,9 +37,7 @@ namespace mogl
         void    generateMipmap();
         GLenum  getTarget() const;
         template <class T>
-        void    setParameter(GLenum property, T value);
-        template <class T>
-        void    setParameterPtr(GLenum property, const T* value);
+        void    set(GLenum property, T value);
 
     private:
         const GLenum    _target;

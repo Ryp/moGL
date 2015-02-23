@@ -13,31 +13,31 @@
 class TextureTest : public GLTestFixture {};
 
 using mogl::TextureObject;
+using mogl::Sampler;
 
-TEST_F(TextureTest, frame_texture)
+TEST_F(TextureTest, texture)
 {
     TextureObject   frameTexture(GL_TEXTURE_2D);
+    TextureObject   depthTexture(GL_TEXTURE_2D);
+    Sampler         sampler;
     GLfloat         border[] = {1.0f, 0.0f, 0.0f, 0.0f};
 
     frameTexture.setImage2D(0, static_cast<GLint>(GL_RGB), _ctx.getWindowSize().x, _ctx.getWindowSize().y, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
-    frameTexture.setParameter(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    frameTexture.setParameter(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    frameTexture.setParameter(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    frameTexture.setParameter(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    frameTexture.setParameterPtr(GL_TEXTURE_BORDER_COLOR, border);
-}
-
-TEST_F(TextureTest, depth_texture)
-{
-    TextureObject   depthTexture(GL_TEXTURE_2D);
-    GLfloat         border[] = {1.0f, 0.0f, 0.0f, 0.0f};
+    frameTexture.set(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    frameTexture.set(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    frameTexture.set(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    frameTexture.set(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    frameTexture.set(GL_TEXTURE_BORDER_COLOR, border);
 
     depthTexture.setImage2D(0, static_cast<GLint>(GL_DEPTH_COMPONENT), _ctx.getWindowSize().x, _ctx.getWindowSize().y, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, 0);
-    depthTexture.setParameter(GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    depthTexture.setParameter(GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    depthTexture.setParameter(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-    depthTexture.setParameter(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-    depthTexture.setParameter(GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
-    depthTexture.setParameter(GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
-    depthTexture.setParameterPtr(GL_TEXTURE_BORDER_COLOR, border);
+    depthTexture.set(GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    depthTexture.set(GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    depthTexture.set(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+    depthTexture.set(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+    depthTexture.set(GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
+    depthTexture.set(GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
+    depthTexture.set(GL_TEXTURE_BORDER_COLOR, border);
+
+    sampler.set(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    sampler.set(GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
 }

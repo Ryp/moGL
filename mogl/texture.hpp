@@ -12,5 +12,6 @@
 #define MOGL_TEXTURE_INCLUDED
 
 #include "mogl/texture/textureobject.hpp"
+#include "mogl/texture/sampler.hpp"
 
 #endif // MOGL_TEXTURE_INCLUDED

@@ -37,11 +37,6 @@ namespace mogl
         glNamedFramebufferTexture(_handle, attachment, texture.getHandle(), level);
     }
 
-    inline void FrameBufferObject::setParameter(GLenum property, GLint value)
-    {
-        glNamedFramebufferParameteri(_handle, property, value);
-    }
-
     inline void FrameBufferObject::setDrawBuffer(GLenum buffer)
     {
         glNamedFramebufferDrawBuffer(_handle, buffer);
@@ -50,6 +45,11 @@ namespace mogl
     inline void FrameBufferObject::setDrawBuffers(GLsizei size, const GLenum* buffers)
     {
         glNamedFramebufferDrawBuffers(_handle, size, buffers);
+    }
+
+    inline void FrameBufferObject::set(GLenum property, GLint value)
+    {
+        glNamedFramebufferParameteri(_handle, property, value);
     }
 
     inline bool FrameBufferObject::isComplete(GLenum target)

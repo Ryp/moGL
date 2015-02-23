@@ -32,9 +32,9 @@ namespace mogl
         void    bind(GLenum target);
         void    setRenderBuffer(GLenum attachment, RenderBufferObject& renderbuffer);
         void    setTexture(GLenum attachment, TextureObject& texture, GLint level = 0);
-        void    setParameter(GLenum property, GLint value);
         void    setDrawBuffer(GLenum buffer);
         void    setDrawBuffers(GLsizei size, const GLenum* buffers);
+        void    set(GLenum property, GLint value);
         bool    isComplete(GLenum target);
         bool    isValid() const override final;
 

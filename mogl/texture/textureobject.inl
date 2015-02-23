@@ -54,31 +54,43 @@ namespace mogl
     }
 
     template <>
-    inline void TextureObject::setParameter<GLint>(GLenum property, GLint value)
+    inline void TextureObject::set<GLint>(GLenum property, GLint value)
     {
         glTextureParameteri(_handle, property, value);
     }
 
     template <>
-    inline void TextureObject::setParameter<GLenum>(GLenum property, GLenum value)
+    inline void TextureObject::set<GLenum>(GLenum property, GLenum value)
     {
         glTextureParameteri(_handle, property, static_cast<GLint>(value));
     }
 
     template <>
-    inline void TextureObject::setParameter<GLfloat>(GLenum property, GLfloat value)
+    inline void TextureObject::set<GLfloat>(GLenum property, GLfloat value)
     {
         glTextureParameterf(_handle, property, value);
     }
 
     template <>
-    inline void TextureObject::setParameterPtr<GLint>(GLenum property, const GLint* value)
+    inline void TextureObject::set<GLint*>(GLenum property, GLint* value)
     {
         glTextureParameteriv(_handle, property, value);
     }
 
     template <>
-    inline void TextureObject::setParameterPtr<GLfloat>(GLenum property, const GLfloat* value)
+    inline void TextureObject::set<GLfloat*>(GLenum property, GLfloat* value)
+    {
+        glTextureParameterfv(_handle, property, value);
+    }
+
+    template <>
+    inline void TextureObject::set<const GLint*>(GLenum property, const GLint* value)
+    {
+        glTextureParameteriv(_handle, property, value);
+    }
+
+    template <>
+    inline void TextureObject::set<const GLfloat*>(GLenum property, const GLfloat* value)
     {
         glTextureParameterfv(_handle, property, value);
     }
