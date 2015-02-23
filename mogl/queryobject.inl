@@ -23,11 +23,6 @@ namespace mogl
         glDeleteQueries(1, &_handle);
     }
 
-    inline bool QueryObject::isValid() const
-    {
-        return glIsQuery(_handle) == GL_TRUE;
-    }
-
     inline void QueryObject::begin()
     {
         glBeginQuery(_type, _handle);
@@ -69,4 +64,10 @@ namespace mogl
         glGetQueryObjectui64v(_handle, param, &rslt);
         return rslt;
     }
+
+    inline bool QueryObject::isValid() const
+    {
+        return glIsQuery(_handle) == GL_TRUE;
+    }
+
 }

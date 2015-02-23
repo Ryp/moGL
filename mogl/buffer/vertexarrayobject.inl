@@ -27,11 +27,6 @@ namespace mogl
         glBindVertexArray(_handle);
     }
 
-    inline bool VertexArrayObject::isValid() const
-    {
-        return glIsVertexArray(_handle) == GL_TRUE;
-    }
-
     inline void VertexArrayObject::enableAttrib(GLuint index)
     {
         glEnableVertexArrayAttrib(_handle, index);
@@ -95,5 +90,10 @@ namespace mogl
     inline void VertexArrayObject::getParameterIndexed64iv(GLuint index, GLenum property, GLint64* value)
     {
         glGetVertexArrayIndexed64iv(_handle, index, property, value);
+    }
+
+    inline bool VertexArrayObject::isValid() const
+    {
+        return glIsVertexArray(_handle) == GL_TRUE;
     }
 }

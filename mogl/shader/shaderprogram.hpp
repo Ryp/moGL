@@ -25,7 +25,6 @@ namespace mogl
         ~ShaderProgram();
 
     public:
-        bool                isValid() const override final;
         void                attach(const ShaderObject& object);
         void                detach(const ShaderObject& object);
         void                bindAttribLocation(GLuint location, const std::string& attribute);
@@ -66,6 +65,7 @@ namespace mogl
 
     public:
         void    printDebug();
+        bool    isValid() const override final;
 
     private:
         void    retrieveLocations();

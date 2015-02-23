@@ -27,11 +27,6 @@ namespace mogl
         _isCompiled(false)
     {}
 
-    inline bool ShaderObject::isValid() const
-    {
-        return glIsShader(_handle) == GL_TRUE;
-    }
-
     inline ShaderObject::~ShaderObject()
     {
         glDeleteShader(_handle);
@@ -87,5 +82,10 @@ namespace mogl
     inline bool ShaderObject::isCompiled() const
     {
         return _isCompiled;
+    }
+
+    inline bool ShaderObject::isValid() const
+    {
+        return glIsShader(_handle) == GL_TRUE;
     }
 }

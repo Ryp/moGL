@@ -29,7 +29,6 @@ namespace mogl
         FrameBufferObject& operator=(const FrameBufferObject& other) = delete;
 
     public:
-        bool    isValid() const override final;
         void    bind(GLenum target);
         void    setRenderBuffer(GLenum attachment, RenderBufferObject& renderbuffer);
         void    setTexture(GLenum attachment, TextureObject& texture, GLint level = 0);
@@ -37,6 +36,7 @@ namespace mogl
         void    setDrawBuffer(GLenum buffer);
         void    setDrawBuffers(GLsizei size, const GLenum* buffers);
         bool    isComplete(GLenum target);
+        bool    isValid() const override final;
 
     public:
         template <class T>

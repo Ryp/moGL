@@ -27,7 +27,6 @@ namespace mogl
         BufferObject& operator=(const BufferObject& other) = delete;
 
     public:
-        bool    isValid() const override final;
         void    bind();
         void    setStorage(GLsizeiptr size, const void* data, GLbitfield flags);
         void    setData(GLsizeiptr size, const void* data, GLenum usage);
@@ -43,6 +42,7 @@ namespace mogl
         void    getParameteri64v(GLenum property, GLint64* value);
         void    getPointerv(GLenum property, void** value);
         void    getSubData(GLintptr offset, GLsizeiptr size, void* data);
+        bool    isValid() const override final;
 
     private:
         const GLenum    _target;

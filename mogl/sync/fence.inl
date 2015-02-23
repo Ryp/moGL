@@ -12,19 +12,14 @@
 
 namespace mogl
 {
-    Fence::Fence(GLenum condition, GLbitfield flags)
+    inline Fence::Fence(GLenum condition, GLbitfield flags)
     {
         _handle = glFenceSync(condition, static_cast<gl::UnusedMask>(flags)); // TODO find solution to remove cast
     }
 
-    Fence::~Fence()
+    inline Fence::~Fence()
     {
         glDeleteSync(_handle);
-    }
-
-    inline bool Fence::isValid() const
-    {
-        return glIsSync(_handle) == GL_TRUE;
     }
 
     inline void Fence::waitSync(GLbitfield flags, GLuint64 timeout)
@@ -35,5 +30,10 @@ namespace mogl
     inline GLenum Fence::waitClientSync(GLbitfield flags, GLuint64 timeout)
     {
         return glClientWaitSync(_handle, static_cast<gl::SyncObjectMask>(flags), timeout);
+    }
+
+    inline bool Fence::isValid() const
+    {
+        return glIsSync(_handle) == GL_TRUE;
     }
 }

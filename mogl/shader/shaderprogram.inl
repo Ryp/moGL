@@ -28,11 +28,6 @@ namespace mogl
         glDeleteProgram(_handle);
     }
 
-    inline bool ShaderProgram::isValid() const
-    {
-        return glIsProgram(_handle) == GL_TRUE;
-    }
-
     inline void ShaderProgram::attach(const ShaderObject& object)
     {
         glAttachShader(_handle, object.getHandle());
@@ -473,5 +468,10 @@ namespace mogl
 
         indices[uniformIdx] = subroutineIdx;
         glUniformSubroutinesuiv(static_cast<GLenum>(type), size, indices);
+    }
+
+    inline bool ShaderProgram::isValid() const
+    {
+        return glIsProgram(_handle) == GL_TRUE;
     }
 }

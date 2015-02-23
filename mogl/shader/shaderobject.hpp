@@ -38,12 +38,12 @@ namespace mogl
         ShaderObject& operator=(const ShaderObject& other) = delete;
 
     public:
-        bool                isValid() const override final;
         bool                compile();
         const std::string&  getCode() const;
         ShaderType          getType() const;
         const std::string&  getLog() const;
         bool                isCompiled() const;
+        bool                isValid() const override final;
 
     private:
         std::string     _code;

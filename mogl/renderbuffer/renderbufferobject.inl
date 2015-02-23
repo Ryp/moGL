@@ -22,11 +22,6 @@ namespace mogl
         glDeleteRenderbuffers(1, &_handle);
     }
 
-    inline bool RenderBufferObject::isValid() const
-    {
-        return glIsRenderbuffer(_handle) == GL_TRUE;
-    }
-
     inline void RenderBufferObject::setStorage(GLenum internalformat, GLsizei width, GLsizei height)
     {
         glNamedRenderbufferStorage(_handle, internalformat, width, height);
@@ -40,5 +35,10 @@ namespace mogl
     inline void RenderBufferObject::getParameteriv(GLenum property, GLint* value)
     {
         glGetNamedRenderbufferParameteriv(_handle, property, value);
+    }
+
+    inline bool RenderBufferObject::isValid() const
+    {
+        return glIsRenderbuffer(_handle) == GL_TRUE;
     }
 }

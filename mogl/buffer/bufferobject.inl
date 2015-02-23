@@ -23,11 +23,6 @@ namespace mogl
         glDeleteBuffers(1, &_handle);
     }
 
-    inline bool BufferObject::isValid() const
-    {
-        return glIsBuffer(_handle) == GL_TRUE;
-    }
-
     inline void BufferObject::bind()
     {
         glBindBuffer(_target, _handle);
@@ -101,5 +96,10 @@ namespace mogl
     inline void BufferObject::getSubData(GLintptr offset, GLsizeiptr size, void* data)
     {
         glGetNamedBufferSubData(_handle, offset, size, data);
+    }
+
+    inline bool BufferObject::isValid() const
+    {
+        return glIsBuffer(_handle) == GL_TRUE;
     }
 }

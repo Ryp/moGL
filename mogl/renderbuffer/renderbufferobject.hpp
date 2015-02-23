@@ -27,10 +27,10 @@ namespace mogl
         RenderBufferObject& operator=(const RenderBufferObject& other) = delete;
 
     public:
-        bool    isValid() const override final;
         void    setStorage(GLenum internalformat, GLsizei width, GLsizei height);
         void    setStorageMultisample(GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height);
         void    getParameteriv(GLenum property, GLint* value);
+        bool    isValid() const override final;
     };
 }
 

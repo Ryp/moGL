@@ -22,11 +22,6 @@ namespace mogl
         glDeleteFramebuffers(1, &_handle);
     }
 
-    inline bool FrameBufferObject::isValid() const
-    {
-        return glIsFramebuffer(_handle) == GL_TRUE;
-    }
-
     inline void FrameBufferObject::bind(GLenum target)
     {
         glBindFramebuffer(target, _handle);
@@ -60,6 +55,11 @@ namespace mogl
     inline bool FrameBufferObject::isComplete(GLenum target)
     {
         return glCheckNamedFramebufferStatus(_handle, target) == GL_FRAMEBUFFER_COMPLETE;
+    }
+
+    inline bool FrameBufferObject::isValid() const
+    {
+        return glIsFramebuffer(_handle) == GL_TRUE;
     }
 
     template <>

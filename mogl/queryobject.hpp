@@ -27,11 +27,11 @@ namespace mogl
         QueryObject& operator=(const QueryObject& other) = delete;
 
     public:
-        bool    isValid() const override final;
         void    begin();
         void    end();
         template <class T>
         T       getResult(GLenum param);
+        bool    isValid() const override final;
 
     private:
         GLenum  _type;

@@ -27,7 +27,6 @@ namespace mogl
         VertexArrayObject& operator=(const VertexArrayObject& other) = delete;
 
     public:
-        bool    isValid() const override final;
         void    bind();
         void    enableAttrib(GLuint index);
         void    disableAttrib(GLuint index);
@@ -43,6 +42,7 @@ namespace mogl
         void    getParameteriv(GLenum property, GLint* value);
         void    getParameterIndexediv(GLuint index, GLenum property, GLint* value);
         void    getParameterIndexed64iv(GLuint index, GLenum property, GLint64* value);
+        bool    isValid() const override final;
     };
 }
 
