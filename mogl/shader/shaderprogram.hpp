@@ -80,11 +80,12 @@ namespace mogl
             HandleMap   subroutines;
         };
         using SubroutineMap = std::map<std::string, SubroutineUniform>;
+        using ShaderSubroutineMap = std::map<ShaderObject::ShaderType, SubroutineMap>;
 
-        std::string                                         _log;
-        HandleMap                                           _attribs;
-        HandleMap                                           _uniforms;
-        std::map<ShaderObject::ShaderType, SubroutineMap>   _subroutines;
+        std::string         _log;
+        HandleMap           _attribs;
+        HandleMap           _uniforms;
+        ShaderSubroutineMap _subroutines;
     };
 }
 

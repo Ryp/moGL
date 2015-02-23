@@ -44,7 +44,7 @@ namespace mogl
     inline bool ShaderProgram::link()
     {
         GLint       logLength = 0;
-
+ 
         glLinkProgram(_handle);
         if (get(GL_LINK_STATUS) == static_cast<GLint>(GL_FALSE))
         {
@@ -58,15 +58,15 @@ namespace mogl
             }
             return false;
         }
+        _log = std::string();
         retrieveLocations();
-        //FIXME
+        // NOTE can be improved
         retrieveSubroutines(ShaderObject::ShaderType::VertexShader);
         retrieveSubroutines(ShaderObject::ShaderType::GeometryShader);
         retrieveSubroutines(ShaderObject::ShaderType::TesselationControlShader);
         retrieveSubroutines(ShaderObject::ShaderType::TesselationEvaluationShader);
         retrieveSubroutines(ShaderObject::ShaderType::ComputeShader);
         retrieveSubroutines(ShaderObject::ShaderType::FragmentShader);
-        _log = std::string();
         return true;
     }
 

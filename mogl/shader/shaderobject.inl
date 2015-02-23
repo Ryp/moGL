@@ -41,23 +41,21 @@ namespace mogl
         GLint       logLength = 0;
         char const* srcPtr = _code.c_str();
 
-        glShaderSource(handle, 1, &srcPtr, 0);
-        glCompileShader(handle);
-        if (get(GL_COMPILE_STATUS) == static_cast<GLint>(GL_FALSE))
+        glShaderSource(_handle, 1, &srcPtr, 0);
+        glCompileShader(_handle);
+        _isCompiled = (get(GL_COMPILE_STATUS) == static_cast<GLint>(GL_TRUE));
+        _log = std::string();
+        if (!_isCompiled)
         {
             logLength = get(GL_INFO_LOG_LENGTH);
             if (logLength > 1)
             {
                 std::vector<GLchar> infoLog(logLength);
-                glGetShaderInfoLog(handle, logLength, &logLength, &infoLog[0]);
+                glGetShaderInfoLog(_handle, logLength, &logLength, &infoLog[0]);
                 infoLog[logLength - 1] = '\0'; // Overwrite endline
                 _log = &infoLog[0];
             }
-            glDeleteShader(handle);
-            return false;
         }
-        _isCompiled = true;
-        _log = std::string();
         return _isCompiled;
     }
 
