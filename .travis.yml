@@ -17,20 +17,18 @@ install:
     - sudo apt-get install -qq libXxf86vm-dev
     #  NOTE gtest install workaround
     - pushd /usr/src/gtest
-    - sudo cmake .
-    - sudo make
-    - sudo mv libgtest* /usr/lib/
+    - sudo cmake . && sudo make && sudo mv libgtest* /usr/lib/
     - popd
     # -- workaround end
     - git clone https://github.com/glfw/glfw.git
     - pushd glfw
     - git checkout 3.1
-    - cmake -DBUILD_SHARED_LIBS=ON . && make && sudo make install
+    - cmake -DBUILD_SHARED_LIBS=ON . && make -j2 && sudo make install
     - popd
     - git clone https://github.com/hpicgs/glbinding.git
     - pushd glbinding
     - git checkout v1.0.5
-    - cmake -DOPTION_BUILD_STATIC=OFF . && make && sudo make install
+    - cmake -DOPTION_BUILD_STATIC=OFF . && make -j2 && sudo make install
     - popd
 before_script:
     - mkdir build && pushd build
