@@ -28,6 +28,11 @@ namespace mogl
         glDeleteProgram(_handle);
     }
 
+    inline bool ShaderProgram::isValid() const
+    {
+        return glIsProgram(_handle) == GL_TRUE;
+    }
+
     inline void ShaderProgram::attach(const ShaderObject& object)
     {
         glAttachShader(_handle, object.getHandle());
@@ -37,7 +42,7 @@ namespace mogl
     {
         glDetachShader(_handle, object.getHandle());
     }
-    
+
     inline void ShaderProgram::bindAttribLocation(GLuint location, const std::string& attribute)
     {
         glBindAttribLocation(_handle, location, attribute.c_str());
@@ -61,7 +66,7 @@ namespace mogl
                 _log = &infoLog[0];
             }
             glDeleteProgram(_handle);
-            return (false);
+            return false;
         }
         retrieveLocations();
         //FIXME
@@ -72,7 +77,7 @@ namespace mogl
         retrieveSubroutines(ShaderObject::ShaderType::ComputeShader);
         retrieveSubroutines(ShaderObject::ShaderType::FragmentShader);
         _log = std::string();
-        return (true);
+        return true;
     }
 
     inline void ShaderProgram::use()
@@ -82,14 +87,9 @@ namespace mogl
         glUseProgram(_handle);
     }
 
-    inline GLuint ShaderProgram::getHandle() const
-    {
-        return (_handle);
-    }
-
     inline const std::string& ShaderProgram::getLog() const
     {
-        return (_log);
+        return _log;
     }
 
     inline GLuint ShaderProgram::getAttribLocation(const std::string& name) const
@@ -97,9 +97,9 @@ namespace mogl
         std::map<std::string, GLuint>::const_iterator it;
 
         if ((it = _attribs.find(name)) != _attribs.end())
-            return (it->second);
+            return it->second;
         std::cerr << "Shader attribute \'" << name << "\' does not exist" << std::endl;
-        return (-1);
+        return -1;
     }
 
     inline GLuint ShaderProgram::getUniformLocation(const std::string& name) const
@@ -107,9 +107,9 @@ namespace mogl
         std::map<std::string, GLuint>::const_iterator it;
 
         if ((it = _uniforms.find(name)) != _uniforms.end())
-            return (it->second);
+            return it->second;
         std::cerr << "Shader uniform \'" << name << "\' does not exist" << std::endl;
-        return (-1);
+        return -1;
     }
 
     inline void ShaderProgram::printDebug()

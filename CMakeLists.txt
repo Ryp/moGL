@@ -19,7 +19,7 @@ install(DIRECTORY mogl DESTINATION include FILES_MATCHING PATTERN "*.inl")
 configure_file(cmake/moGLConfig.cmake.in ${PROJECT_BINARY_DIR}/moGLConfig.cmake @ONLY)
 install(FILES ${PROJECT_BINARY_DIR}/moGLConfig.cmake DESTINATION ${INSTALL_CMAKE_DIR})
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 if(MOGL_BUILD_TESTS)
     enable_testing()

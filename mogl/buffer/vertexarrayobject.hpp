@@ -13,9 +13,11 @@
 #ifndef MOGL_VERTEXARRAYOBJECT_INCLUDED
 #define MOGL_VERTEXARRAYOBJECT_INCLUDED
 
+#include "mogl/handle.hpp"
+
 namespace mogl
 {
-    class VertexArrayObject
+    class VertexArrayObject : public Handle<>
     {
     public:
         VertexArrayObject();
@@ -25,8 +27,8 @@ namespace mogl
         VertexArrayObject& operator=(const VertexArrayObject& other) = delete;
 
     public:
+        bool    isValid() const override final;
         void    bind();
-        GLuint  getHandle() const;
         void    enableAttrib(GLuint index);
         void    disableAttrib(GLuint index);
         void    setVertexBuffer(GLuint bindingindex, GLuint buffer, GLintptr offset = GLintptr(0), GLsizei stride = 0);
@@ -41,9 +43,6 @@ namespace mogl
         void    getParameteriv(GLenum property, GLint* value);
         void    getParameterIndexediv(GLuint index, GLenum property, GLint* value);
         void    getParameterIndexed64iv(GLuint index, GLenum property, GLint64* value);
-
-    private:
-        GLuint  _handle;
     };
 }
 

@@ -13,12 +13,13 @@
 #ifndef MOGL_FRAMEBUFFEROBJECT_INCLUDED
 #define MOGL_FRAMEBUFFEROBJECT_INCLUDED
 
+#include <mogl/handle.hpp>
 #include <mogl/renderbuffer/renderbufferobject.hpp>
 #include <mogl/texture/textureobject.hpp>
 
 namespace mogl
 {
-    class FrameBufferObject
+    class FrameBufferObject : public Handle<>
     {
     public:
         FrameBufferObject();
@@ -28,6 +29,7 @@ namespace mogl
         FrameBufferObject& operator=(const FrameBufferObject& other) = delete;
 
     public:
+        bool    isValid() const override final;
         void    bind(GLenum target);
         void    setRenderBuffer(GLenum attachment, RenderBufferObject& renderbuffer);
         void    setTexture(GLenum attachment, TextureObject& texture, GLint level = 0);
@@ -40,12 +42,6 @@ namespace mogl
         template <class T>
         void    clear(GLenum buffer, GLint drawbuffer, const T* value);
         void    clear(GLenum buffer, GLfloat depth, GLint stencil);
-
-    public:
-        GLuint  getHandle() const;
-
-    private:
-        GLuint  _handle;
     };
 }
 

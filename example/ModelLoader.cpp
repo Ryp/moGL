@@ -32,7 +32,7 @@ Model* ModelLoader::load(std::string filename)
     if (!file.good())
         throw (std::runtime_error("Could not open file \'" + filename + "\'"));
     model = ((*this).*(_parsers[extension]))(file);
-    return (model);
+    return model;
 }
 
 Model* ModelLoader::loadOBJ(std::ifstream& src)
@@ -143,5 +143,5 @@ Model* ModelLoader::loadOBJ(std::ifstream& src)
     }
     if (!model->_hasNormals)
         model->computeNormalsSimple();
-    return (model);
+    return model;
 }

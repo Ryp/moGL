@@ -13,8 +13,7 @@
 namespace mogl
 {
     inline QueryObject::QueryObject(GLenum type)
-    :   _handle(0),
-        _type(type)
+    :   _type(type)
     {
         glCreateQueries(_type, 1, &_handle);
     }
@@ -22,6 +21,11 @@ namespace mogl
     inline QueryObject::~QueryObject()
     {
         glDeleteQueries(1, &_handle);
+    }
+
+    inline bool QueryObject::isValid() const
+    {
+        return glIsQuery(_handle) == GL_TRUE;
     }
 
     inline void QueryObject::begin()
@@ -39,7 +43,7 @@ namespace mogl
     {
         GLint   rslt;
         glGetQueryObjectiv(_handle, param, &rslt);
-        return (rslt);
+        return rslt;
     }
 
     template <>
@@ -47,7 +51,7 @@ namespace mogl
     {
         GLuint  rslt;
         glGetQueryObjectuiv(_handle, param, &rslt);
-        return (rslt);
+        return rslt;
     }
 
     template <>
@@ -55,7 +59,7 @@ namespace mogl
     {
         GLint64 rslt;
         glGetQueryObjecti64v(_handle, param, &rslt);
-        return (rslt);
+        return rslt;
     }
 
     template <>
@@ -63,6 +67,6 @@ namespace mogl
     {
         GLuint64    rslt;
         glGetQueryObjectui64v(_handle, param, &rslt);
-        return (rslt);
+        return rslt;
     }
 }

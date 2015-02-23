@@ -50,7 +50,7 @@ void GLContext::create(unsigned int width, unsigned int height, unsigned int maj
 
 bool GLContext::isOpen()
 {
-    return (!glfwWindowShouldClose(_window));
+    return !glfwWindowShouldClose(_window);
 }
 
 void GLContext::swapBuffers()
@@ -73,12 +73,12 @@ void GLContext::destroy()
 
 const Vect2u& GLContext::getWindowSize() const
 {
-    return (_windowSize);
+    return _windowSize;
 }
 
 double GLContext::getTime() const
 {
-    return (glfwGetTime());
+    return glfwGetTime();
 }
 
 Vect2u GLContext::getCursorPosition() const
@@ -86,7 +86,7 @@ Vect2u GLContext::getCursorPosition() const
     double  v[2];
 
     glfwGetCursorPos(_window, &(v[0]), &(v[1]));
-    return (Vect2u{static_cast<unsigned int>(v[0]), static_cast<unsigned int>(v[1])});
+    return Vect2u{static_cast<unsigned int>(v[0]), static_cast<unsigned int>(v[1])};
 }
 
 void GLContext::setCursorPosition(const Vect2u& position)

@@ -19,6 +19,7 @@
 #include "renderbuffer.hpp"
 #include "shader.hpp"
 #include "states/states.hpp"
+#include "sync/fence.hpp"
 #include "texture.hpp"
 #include "version.hpp"
 

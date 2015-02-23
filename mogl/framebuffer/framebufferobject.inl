@@ -13,7 +13,6 @@
 namespace mogl
 {
     inline FrameBufferObject::FrameBufferObject()
-    :   _handle(0)
     {
         glCreateFramebuffers(1, &_handle);
     }
@@ -21,6 +20,11 @@ namespace mogl
     inline FrameBufferObject::~FrameBufferObject()
     {
         glDeleteFramebuffers(1, &_handle);
+    }
+
+    inline bool FrameBufferObject::isValid() const
+    {
+        return glIsFramebuffer(_handle) == GL_TRUE;
     }
 
     inline void FrameBufferObject::bind(GLenum target)
@@ -55,7 +59,7 @@ namespace mogl
 
     inline bool FrameBufferObject::isComplete(GLenum target)
     {
-        return (glCheckNamedFramebufferStatus(_handle, target) == GL_FRAMEBUFFER_COMPLETE);
+        return glCheckNamedFramebufferStatus(_handle, target) == GL_FRAMEBUFFER_COMPLETE;
     }
 
     template <>
@@ -79,10 +83,5 @@ namespace mogl
     inline void mogl::FrameBufferObject::clear(GLenum buffer, GLfloat depth, GLint stencil)
     {
         glClearNamedFramebufferfi(_handle, buffer, depth, stencil);
-    }
-
-    inline GLuint FrameBufferObject::getHandle() const
-    {
-        return (_handle);
     }
 }

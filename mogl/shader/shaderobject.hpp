@@ -13,9 +13,11 @@
 
 #include <string>
 
+#include <mogl/handle.hpp>
+
 namespace mogl
 {
-    class ShaderObject
+    class ShaderObject : public Handle<>
     {
     public:
         enum class ShaderType {
@@ -36,8 +38,8 @@ namespace mogl
         ShaderObject& operator=(const ShaderObject& other) = delete;
 
     public:
+        bool                isValid() const override final;
         bool                compile();
-        GLuint              getHandle() const;
         const std::string&  getCode() const;
         ShaderType          getType() const;
         const std::string&  getLog() const;
@@ -45,7 +47,6 @@ namespace mogl
 
     private:
         std::string     _code;
-        GLuint          _handle;
         ShaderType      _type;
         std::string     _log;
         bool            _isCompiled;

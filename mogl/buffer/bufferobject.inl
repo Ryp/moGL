@@ -13,8 +13,7 @@
 namespace mogl
 {
     inline BufferObject::BufferObject(GLenum target)
-    :   _handle(0),
-        _target(target)
+    :   _target(target)
     {
         glCreateBuffers(1, &_handle);
     }
@@ -24,14 +23,14 @@ namespace mogl
         glDeleteBuffers(1, &_handle);
     }
 
+    inline bool BufferObject::isValid() const
+    {
+        return glIsBuffer(_handle) == GL_TRUE;
+    }
+
     inline void BufferObject::bind()
     {
         glBindBuffer(_target, _handle);
-    }
-
-    inline GLuint BufferObject::getHandle() const
-    {
-        return _handle;
     }
 
     inline void BufferObject::setStorage(GLsizeiptr size, const void* data, GLbitfield flags)

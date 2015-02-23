@@ -13,7 +13,6 @@
 namespace mogl
 {
     inline RenderBufferObject::RenderBufferObject()
-    :   _handle(0)
     {
         glCreateRenderbuffers(1, &_handle);
     }
@@ -21,6 +20,11 @@ namespace mogl
     inline RenderBufferObject::~RenderBufferObject()
     {
         glDeleteRenderbuffers(1, &_handle);
+    }
+
+    inline bool RenderBufferObject::isValid() const
+    {
+        return glIsRenderbuffer(_handle) == GL_TRUE;
     }
 
     inline void RenderBufferObject::setStorage(GLenum internalformat, GLsizei width, GLsizei height)
@@ -36,10 +40,5 @@ namespace mogl
     inline void RenderBufferObject::getParameteriv(GLenum property, GLint* value)
     {
         glGetNamedRenderbufferParameteriv(_handle, property, value);
-    }
-
-    inline GLuint RenderBufferObject::getHandle() const
-    {
-        return (_handle);
     }
 }

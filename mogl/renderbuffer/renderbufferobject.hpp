@@ -13,9 +13,11 @@
 #ifndef MOGL_RENDERBUFFEROBJECT_INCLUDED
 #define MOGL_RENDERBUFFEROBJECT_INCLUDED
 
+#include <mogl/handle.hpp>
+
 namespace mogl
 {
-    class RenderBufferObject
+    class RenderBufferObject : public Handle<>
     {
     public:
         RenderBufferObject();
@@ -25,15 +27,10 @@ namespace mogl
         RenderBufferObject& operator=(const RenderBufferObject& other) = delete;
 
     public:
+        bool    isValid() const override final;
         void    setStorage(GLenum internalformat, GLsizei width, GLsizei height);
         void    setStorageMultisample(GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height);
         void    getParameteriv(GLenum property, GLint* value);
-
-    public:
-        GLuint  getHandle() const;
-
-    private:
-        GLuint  _handle;
     };
 }
 

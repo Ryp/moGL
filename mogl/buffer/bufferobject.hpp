@@ -13,9 +13,11 @@
 #ifndef MOGL_BUFFEROBJECT_INCLUDED
 #define MOGL_BUFFEROBJECT_INCLUDED
 
+#include "mogl/handle.hpp"
+
 namespace mogl
 {
-    class BufferObject
+    class BufferObject : public Handle<>
     {
     public:
         BufferObject(GLenum target);
@@ -25,8 +27,8 @@ namespace mogl
         BufferObject& operator=(const BufferObject& other) = delete;
 
     public:
+        bool    isValid() const override final;
         void    bind();
-        GLuint  getHandle() const;
         void    setStorage(GLsizeiptr size, const void* data, GLbitfield flags);
         void    setData(GLsizeiptr size, const void* data, GLenum usage);
         void    setSubData(GLintptr offset, GLsizeiptr size, const void* data);
@@ -43,8 +45,7 @@ namespace mogl
         void    getSubData(GLintptr offset, GLsizeiptr size, void* data);
 
     private:
-        GLuint  _handle;
-        GLenum  _target;
+        const GLenum    _target;
     };
 }
 

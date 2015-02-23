@@ -13,9 +13,11 @@
 #ifndef MOGL_TEXTUREOBJECT_INCLUDED
 #define MOGL_TEXTUREOBJECT_INCLUDED
 
+#include <mogl/handle.hpp>
+
 namespace mogl
 {
-    class TextureObject
+    class TextureObject : public Handle<>
     {
     public:
         TextureObject(GLenum target);
@@ -25,6 +27,7 @@ namespace mogl
         TextureObject& operator=(const TextureObject& other) = delete;
 
     public:
+        bool    isValid() const override final;
         void    bind(GLuint unit);
         void    setStorage2D(GLsizei levels, GLenum internalformat,
                              GLsizei width, GLsizei height);
@@ -32,7 +35,6 @@ namespace mogl
                            GLsizei height, GLint border, GLenum format,
                            GLenum type, const GLvoid* data); // TODO is this GL 4.5 core ?
         void    generateMipmap();
-        GLuint  getHandle() const;
         GLenum  getTarget() const;
         template <class T>
         void    setParameter(GLenum property, T value);
@@ -40,7 +42,6 @@ namespace mogl
         void    setParameterPtr(GLenum property, const T* value);
 
     private:
-        GLuint          _handle;
         const GLenum    _target;
     };
 }

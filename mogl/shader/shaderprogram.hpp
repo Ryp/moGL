@@ -13,23 +13,24 @@
 
 #include <map>
 
-#include "shaderobject.hpp"
+#include <mogl/handle.hpp>
+#include <mogl/shader/shaderobject.hpp>
 
 namespace mogl
 {
-    class ShaderProgram
+    class ShaderProgram : public Handle<>
     {
     public:
         ShaderProgram();
         ~ShaderProgram();
 
     public:
+        bool                isValid() const override final;
         void                attach(const ShaderObject& object);
         void                detach(const ShaderObject& object);
         void                bindAttribLocation(GLuint location, const std::string& attribute);
         bool                link();
         void                use();
-        GLuint              getHandle() const;
         const std::string&  getLog() const;
         GLuint              getAttribLocation(const std::string& name) const;
         GLuint              getUniformLocation(const std::string& name) const;
@@ -78,7 +79,6 @@ namespace mogl
         };
         using SubroutineMap = std::map<std::string, SubroutineUniform>;
 
-        GLuint                                              _handle;
         std::string                                         _log;
         HandleMap                                           _attribs;
         HandleMap                                           _uniforms;

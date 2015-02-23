@@ -13,9 +13,11 @@
 #ifndef MOGL_QUERYOBJECT_INCLUDED
 #define MOGL_QUERYOBJECT_INCLUDED
 
+#include <mogl/handle.hpp>
+
 namespace mogl
 {
-    class QueryObject
+    class QueryObject : public Handle<>
     {
     public:
         QueryObject(GLenum type);
@@ -25,13 +27,13 @@ namespace mogl
         QueryObject& operator=(const QueryObject& other) = delete;
 
     public:
+        bool    isValid() const override final;
         void    begin();
         void    end();
         template <class T>
         T       getResult(GLenum param);
 
     private:
-        GLuint  _handle;
         GLenum  _type;
     };
 }

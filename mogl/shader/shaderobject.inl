@@ -17,17 +17,20 @@ namespace mogl
 {
     inline ShaderObject::ShaderObject(std::istream& sourceFile, ShaderType type)
     :   _code(std::istreambuf_iterator<char>(static_cast<std::istream&>(sourceFile)), std::istreambuf_iterator<char>()),
-        _handle(0),
         _type(type),
         _isCompiled(false)
     {}
 
     inline ShaderObject::ShaderObject(std::string& sourceCode, ShaderType type)
     :   _code(sourceCode),
-        _handle(0),
         _type(type),
         _isCompiled(false)
     {}
+
+    inline bool ShaderObject::isValid() const
+    {
+        return glIsShader(_handle) == GL_TRUE;
+    }
 
     inline ShaderObject::~ShaderObject()
     {
@@ -43,7 +46,7 @@ namespace mogl
 
         handle = glCreateShader(static_cast<GLenum>(_type));
         if (!handle)
-            return (false);
+            return false;
         glShaderSource(handle, 1, &srcPtr, 0);
         glCompileShader(handle);
         glGetShaderiv(handle, GL_COMPILE_STATUS, &success);
@@ -58,36 +61,31 @@ namespace mogl
                 _log = &infoLog[0];
             }
             glDeleteShader(handle);
-            return (false);
+            return false;
         }
         _isCompiled = true;
         _handle = handle;
         _log = std::string();
-        return (_isCompiled);
-    }
-
-    inline GLuint ShaderObject::getHandle() const
-    {
-        return (_handle);
+        return _isCompiled;
     }
 
     inline const std::string& ShaderObject::getCode() const
     {
-        return (_code);
+        return _code;
     }
 
     inline ShaderObject::ShaderType ShaderObject::getType() const
     {
-        return (_type);
+        return _type;
     }
 
     inline const std::string& ShaderObject::getLog() const
     {
-        return (_log);
+        return _log;
     }
 
     inline bool ShaderObject::isCompiled() const
     {
-        return (_isCompiled);
+        return _isCompiled;
     }
 }

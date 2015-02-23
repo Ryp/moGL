@@ -28,6 +28,10 @@ TEST_F(ShaderProgramTest, linking)
     EXPECT_TRUE(vertex.compile()) << vertex.getLog();
     EXPECT_TRUE(fragment.compile()) << fragment.getLog();
 
+    EXPECT_TRUE(vertex.isValid());
+    EXPECT_TRUE(fragment.isValid());
+    EXPECT_TRUE(shader.isValid());
+
     EXPECT_NO_THROW(shader.attach(vertex));
     EXPECT_NO_THROW(shader.attach(fragment));
 

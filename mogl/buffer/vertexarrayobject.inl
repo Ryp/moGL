@@ -13,7 +13,6 @@
 namespace mogl
 {
     inline VertexArrayObject::VertexArrayObject()
-    :   _handle(0)
     {
         glCreateVertexArrays(1, &_handle);
     }
@@ -28,9 +27,9 @@ namespace mogl
         glBindVertexArray(_handle);
     }
 
-    inline GLuint VertexArrayObject::getHandle() const
+    inline bool VertexArrayObject::isValid() const
     {
-        return _handle;
+        return glIsVertexArray(_handle) == GL_TRUE;
     }
 
     inline void VertexArrayObject::enableAttrib(GLuint index)

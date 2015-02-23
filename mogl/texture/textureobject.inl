@@ -13,8 +13,7 @@
 namespace mogl
 {
     inline TextureObject::TextureObject(GLenum target)
-    :   _handle(0),
-        _target(target)
+    :   _target(target)
     {
         glCreateTextures(_target, 1, &_handle);
     }
@@ -22,6 +21,11 @@ namespace mogl
     inline TextureObject::~TextureObject()
     {
         glDeleteTextures(1, &_handle);
+    }
+
+    inline bool TextureObject::isValid() const
+    {
+        return glIsTexture(_handle) == GL_TRUE;
     }
 
     inline void TextureObject::bind(GLuint unit)
@@ -42,11 +46,6 @@ namespace mogl
     inline void TextureObject::generateMipmap()
     {
         glGenerateTextureMipmap(_handle);
-    }
-
-    inline GLuint TextureObject::getHandle() const
-    {
-        return _handle;
     }
 
     inline GLenum TextureObject::getTarget() const
