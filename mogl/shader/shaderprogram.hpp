@@ -65,6 +65,8 @@ namespace mogl
 
     public:
         void    printDebug();
+        void    get(GLenum parameter, GLint* value); // Direct call to glGetProgramiv()
+        GLint   get(GLenum parameter);
         bool    isValid() const override final;
 
     private:

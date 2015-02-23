@@ -19,8 +19,6 @@ namespace mogl
     inline ShaderProgram::ShaderProgram()
     {
         _handle = glCreateProgram();
-        if (!_handle)
-            throw(mogl::MoGLException("Could not create shader program"));
     }
 
     inline ShaderProgram::~ShaderProgram()
@@ -45,14 +43,12 @@ namespace mogl
 
     inline bool ShaderProgram::link()
     {
-        GLint       success;
         GLint       logLength = 0;
 
         glLinkProgram(_handle);
-        glGetProgramiv(_handle, GL_LINK_STATUS, &success);
-        if (success == static_cast<GLint>(GL_FALSE))
+        if (get(GL_LINK_STATUS) == static_cast<GLint>(GL_FALSE))
         {
-            glGetProgramiv(_handle, GL_INFO_LOG_LENGTH, &logLength);
+            logLength = get(GL_INFO_LOG_LENGTH);
             if (logLength > 1)
             {
                 std::vector<GLchar> infoLog(logLength);
@@ -60,7 +56,6 @@ namespace mogl
                 infoLog[logLength - 1] = '\0'; // Overwrite endline
                 _log = &infoLog[0];
             }
-            glDeleteProgram(_handle);
             return false;
         }
         retrieveLocations();
@@ -77,8 +72,6 @@ namespace mogl
 
     inline void ShaderProgram::use()
     {
-        if (!_handle)
-            throw (mogl::ShaderException("Invalid shader program"));
         glUseProgram(_handle);
     }
 
@@ -127,6 +120,23 @@ namespace mogl
         }
     }
 
+    inline void ShaderProgram::get(GLenum parameter, GLint* value)
+    {
+        glGetProgramiv(_handle, parameter, value);
+    }
+
+    inline GLint ShaderProgram::get(GLenum parameter)
+    {
+        GLint   value;
+        glGetProgramiv(_handle, parameter, &value);
+        return value;
+    }
+
+    inline bool ShaderProgram::isValid() const
+    {
+        return glIsProgram(_handle) == GL_TRUE;
+    }
+
     inline void ShaderProgram::retrieveLocations()
     {
         GLint       n, maxLen;
@@ -137,8 +147,8 @@ namespace mogl
         std::string uniformName;
         std::string arraySuffix("[0]");
 
-        glGetProgramiv(_handle, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxLen);
-        glGetProgramiv(_handle, GL_ACTIVE_ATTRIBUTES, &n);
+        maxLen = get(GL_ACTIVE_ATTRIBUTE_MAX_LENGTH);
+        n = get(GL_ACTIVE_ATTRIBUTES);
         name = new GLchar[maxLen];
         for (int i = 0; i < n; ++i)
         {
@@ -147,8 +157,8 @@ namespace mogl
             _attribs[name] = location;
         }
         delete[] name;
-        glGetProgramiv(_handle, GL_ACTIVE_UNIFORM_MAX_LENGTH, &maxLen);
-        glGetProgramiv(_handle, GL_ACTIVE_UNIFORMS, &n);
+        maxLen = get(GL_ACTIVE_UNIFORM_MAX_LENGTH);
+        n = get(GL_ACTIVE_UNIFORMS);
         name = new GLchar[maxLen];
         for (int i = 0; i < n; ++i)
         {
@@ -468,10 +478,5 @@ namespace mogl
 
         indices[uniformIdx] = subroutineIdx;
         glUniformSubroutinesuiv(static_cast<GLenum>(type), size, indices);
-    }
-
-    inline bool ShaderProgram::isValid() const
-    {
-        return glIsProgram(_handle) == GL_TRUE;
     }
 }

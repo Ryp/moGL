@@ -19,13 +19,17 @@ namespace mogl
     :   _code(std::istreambuf_iterator<char>(static_cast<std::istream&>(sourceFile)), std::istreambuf_iterator<char>()),
         _type(type),
         _isCompiled(false)
-    {}
+    {
+        _handle = glCreateShader(static_cast<GLenum>(_type));
+    }
 
     inline ShaderObject::ShaderObject(std::string& sourceCode, ShaderType type)
     :   _code(sourceCode),
         _type(type),
         _isCompiled(false)
-    {}
+    {
+        _handle = glCreateShader(static_cast<GLenum>(_type));
+    }
 
     inline ShaderObject::~ShaderObject()
     {
@@ -34,20 +38,14 @@ namespace mogl
 
     inline bool ShaderObject::compile()
     {
-        GLint       success;
         GLint       logLength = 0;
-        GLuint      handle;
         char const* srcPtr = _code.c_str();
 
-        handle = glCreateShader(static_cast<GLenum>(_type));
-        if (!handle)
-            return false;
         glShaderSource(handle, 1, &srcPtr, 0);
         glCompileShader(handle);
-        glGetShaderiv(handle, GL_COMPILE_STATUS, &success);
-        if (success == static_cast<GLint>(GL_FALSE))
+        if (get(GL_COMPILE_STATUS) == static_cast<GLint>(GL_FALSE))
         {
-            glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &logLength);
+            logLength = get(GL_INFO_LOG_LENGTH);
             if (logLength > 1)
             {
                 std::vector<GLchar> infoLog(logLength);
@@ -59,7 +57,6 @@ namespace mogl
             return false;
         }
         _isCompiled = true;
-        _handle = handle;
         _log = std::string();
         return _isCompiled;
     }
@@ -77,6 +74,18 @@ namespace mogl
     inline const std::string& ShaderObject::getLog() const
     {
         return _log;
+    }
+
+    inline void ShaderObject::get(GLenum parameter, GLint* value)
+    {
+        glGetShaderiv(_handle, parameter, value);
+    }
+
+    inline GLint ShaderObject::get(GLenum parameter)
+    {
+        GLint   value;
+        glGetShaderiv(_handle, parameter, &value);
+        return value;
     }
 
     inline bool ShaderObject::isCompiled() const

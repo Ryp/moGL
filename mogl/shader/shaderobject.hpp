@@ -42,6 +42,8 @@ namespace mogl
         const std::string&  getCode() const;
         ShaderType          getType() const;
         const std::string&  getLog() const;
+        void                get(GLenum parameter, GLint* value); // Direct call to glGetShaderiv()
+        GLint               get(GLenum parameter);
         bool                isCompiled() const;
         bool                isValid() const override final;
 
