@@ -32,7 +32,8 @@ add_custom_target(${PRECOMPILED_HEADER_TARGET}
 add_library(context SHARED
     ${CMAKE_SOURCE_DIR}/common/glcontext.cpp
     ${CMAKE_SOURCE_DIR}/common/gltestfixture.cpp)
-target_link_libraries(context ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GLFW_LIBRARY} ${GLBINDING_LIBRARIES} ${GTEST_LIBRARIES} pthread)
+target_link_libraries(context ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GLFW_LIBRARY} ${GLBINDING_LIBRARIES} pthread)
+#${GTEST_LIBRARIES}
 set_target_properties(context PROPERTIES COMPILE_FLAGS "${MOGL_TEST_COMPILE_FLAGS}")
 
 function(moglCreateTest NAME)

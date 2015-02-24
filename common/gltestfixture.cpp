@@ -43,7 +43,7 @@ static void debugCallback(GLenum /*source*/, GLenum type, GLuint id, GLenum seve
         default:
             break;
     }
-    std::cout << " id: " << id << std::cout << " severity: ";
+    std::cout << " id: " << id << " severity: ";
     switch (severity){
         case GL_DEBUG_SEVERITY_LOW:
             std::cout << "LOW";

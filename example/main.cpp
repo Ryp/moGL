@@ -23,7 +23,6 @@ using namespace gl;
 
 void    example(GLContext& ctx)
 {
-    float                   frameTime;
     ModelLoader             loader;
     Model*                  mesh = loader.load("data/cube.obj");
     mogl::VertexArrayObject vao;
@@ -86,7 +85,7 @@ void    example(GLContext& ctx)
     glViewport(0, 0, ctx.getWindowSize().x, ctx.getWindowSize().y);
     while (ctx.isOpen())
     {
-        frameTime = ctx.getTime();
+        float frameTime = ctx.getTime();
         timeQuery.begin();
         polyQuery.begin();
 
