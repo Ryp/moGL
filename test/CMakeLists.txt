@@ -33,7 +33,7 @@ add_library(context SHARED
     ${CMAKE_SOURCE_DIR}/common/glcontext.cpp
     ${CMAKE_SOURCE_DIR}/common/gltestfixture.cpp)
 target_link_libraries(context ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GLFW_LIBRARY} ${GLBINDING_LIBRARIES} pthread)
-#${GTEST_LIBRARIES}
+
 set_target_properties(context PROPERTIES COMPILE_FLAGS "${MOGL_TEST_COMPILE_FLAGS}")
 
 function(moglCreateTest NAME)
@@ -41,7 +41,7 @@ function(moglCreateTest NAME)
         set(TEST_NAME test-${NAME})
         add_executable(${TEST_NAME} ${NAME}.cpp ${PRECOMPILED_HEADER_OUTPUT})
         set_target_properties(${TEST_NAME} PROPERTIES COMPILE_FLAGS "${MOGL_TEST_COMPILE_FLAGS} -include ${PRECOMPILED_HEADER_SOURCE} -Winvalid-pch")
-        target_link_libraries(${TEST_NAME} ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GTEST_BOTH_LIBRARIES} pthread context)
+        target_link_libraries(${TEST_NAME} ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GLFW_LIBRARY} ${GTEST_BOTH_LIBRARIES} pthread context)
         add_test(NAME ${TEST_NAME}
             COMMAND $<TARGET_FILE:${TEST_NAME}>)
         add_dependencies(${TEST_NAME} ${PRECOMPILED_HEADER_TARGET})
