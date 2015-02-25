@@ -1,0 +1,23 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$mogl_8hpp.html" title="mogl.hpp" alt="" coords="805,392,880,421"/>
+<area shape="rect" id="node5" href="$handle_8inl.html" title="object/handle.inl" alt="" coords="332,83,447,112"/>
+<area shape="rect" id="node7" href="$handle_8hpp.html" title="GL Handle wrapper, base class to most mogl objects, templated on the handle type, because it is not a..." alt="" coords="617,160,740,189"/>
+<area shape="rect" id="node9" href="$buffer_8hpp.html" title="Buffer object OO wrapper using OpenGL 4.5 DSA features." alt="" coords="1653,237,1808,267"/>
+<area shape="rect" id="node29" href="$fence_8hpp.html" title="Buffer object OO wrapper using OpenGL 4.5 DSA features." alt="" coords="61,315,179,344"/>
+<area shape="rect" id="node32" href="$framebuffer_8hpp.html" title="Framebuffer object OO wrapper using OpenGL 4.5 DSA features." alt="" coords="295,315,447,344"/>
+<area shape="rect" id="node35" href="$renderbuffer_8hpp.html" title="RenderBuffer object OO wrapper using OpenGL 4.5 DSA features." alt="" coords="93,237,248,267"/>
+<area shape="rect" id="node39" href="$texture_8hpp.html" title="Texture object OO wrapper using OpenGL 4.5 DSA features." alt="" coords="323,237,448,267"/>
+<area shape="rect" id="node43" href="$query_8hpp.html" title="Query object OO wrapper using OpenGL 4.5 DSA features." alt="" coords="472,237,589,267"/>
+<area shape="rect" id="node46" href="$sampler_8hpp.html" title="object/sampler.hpp" alt="" coords="613,237,744,267"/>
+<area shape="rect" id="node49" href="$programpipeline_8hpp.html" title="object/shader/programpipeline.hpp" alt="" coords="768,237,987,267"/>
+<area shape="rect" id="node52" href="$shader_8hpp.html" title="object/shader/shader.hpp" alt="" coords="1011,237,1179,267"/>
+<area shape="rect" id="node55" href="$shaderprogram_8hpp.html" title="object/shader/shaderprogram.hpp" alt="" coords="808,315,1021,344"/>
+<area shape="rect" id="node59" href="$transformfeedback_8hpp.html" title="object/transformfeedback.hpp" alt="" coords="1253,237,1448,267"/>
+<area shape="rect" id="node62" href="$vertexarray_8hpp.html" title="VAO object OO wrapper using OpenGL 4.5 DSA features." alt="" coords="1472,237,1621,267"/>
+<area shape="rect" id="node11" href="$arraybuffer_8hpp.html" title="object/buffer/arraybuffer.hpp" alt="" coords="1147,315,1331,344"/>
+<area shape="rect" id="node14" href="$atomiccounterbuffer_8hpp.html" title="object/buffer/atomiccounterbuffer.hpp" alt="" coords="1355,315,1592,344"/>
+<area shape="rect" id="node17" href="$elementarraybuffer_8hpp.html" title="object/buffer/elementarraybuffer.hpp" alt="" coords="1616,315,1845,344"/>
+<area shape="rect" id="node20" href="$shaderstoragebuffer_8hpp.html" title="object/buffer/shaderstoragebuffer.hpp" alt="" coords="1869,315,2107,344"/>
+<area shape="rect" id="node23" href="$transformfeedbackbuffer_8hpp.html" title="object/buffer/transformfeedbackbuffer.hpp" alt="" coords="2131,315,2395,344"/>
+<area shape="rect" id="node26" href="$uniformbuffer_8hpp.html" title="object/buffer/uniformbuffer.hpp" alt="" coords="2419,315,2616,344"/>
+</map>

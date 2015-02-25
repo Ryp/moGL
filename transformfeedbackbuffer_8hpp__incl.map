@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$buffer_8hpp.html" title="Buffer object OO wrapper using OpenGL 4.5 DSA features." alt="" coords="57,83,244,112"/>
+<area shape="rect" id="node5" href="$handle_8hpp.html" title="GL Handle wrapper, base class to most mogl objects, templated on the handle type, because it is not a..." alt="" coords="5,160,160,189"/>
+<area shape="rect" id="node17" href="$buffer_8inl.html" title="buffer.inl" alt="" coords="184,160,256,189"/>
+<area shape="rect" id="node9" href="$handle_8inl.html" title="handle.inl" alt="" coords="89,237,167,267"/>
+<area shape="rect" id="node13" href="$states_8hpp.html" title="mogl/function/states.hpp" alt="" coords="113,315,279,344"/>
+<area shape="rect" id="node15" href="$states_8inl.html" title="states.inl" alt="" coords="159,392,233,421"/>
+</map>

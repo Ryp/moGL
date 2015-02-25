@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$handle_8hpp.html" title="GL Handle wrapper, base class to most mogl objects, templated on the handle type, because it is not a..." alt="" coords="5,83,160,112"/>
+<area shape="rect" id="node15" href="$buffer_8inl.html" title="buffer.inl" alt="" coords="184,83,256,112"/>
+<area shape="rect" id="node7" href="$handle_8inl.html" title="handle.inl" alt="" coords="89,160,167,189"/>
+<area shape="rect" id="node11" href="$states_8hpp.html" title="mogl/function/states.hpp" alt="" coords="113,237,279,267"/>
+<area shape="rect" id="node13" href="$states_8inl.html" title="states.inl" alt="" coords="159,315,233,344"/>
+</map>

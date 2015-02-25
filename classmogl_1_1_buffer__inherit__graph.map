@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node5" href="$classmogl_1_1_array_buffer.html" title="mogl::ArrayBuffer" alt="" coords="401,5,524,35"/>
+<area shape="rect" id="node7" href="$classmogl_1_1_atomic_counter_buffer.html" title="mogl::AtomicCounterBuffer" alt="" coords="373,59,552,88"/>
+<area shape="rect" id="node9" href="$classmogl_1_1_element_array_buffer.html" title="mogl::ElementArrayBuffer" alt="" coords="377,112,548,141"/>
+<area shape="rect" id="node11" href="$classmogl_1_1_shader_storage_buffer.html" title="mogl::ShaderStorageBuffer" alt="" coords="373,165,552,195"/>
+<area shape="rect" id="node13" href="$classmogl_1_1_transform_feedback_buffer.html" title="mogl::TransformFeedbackBuffer" alt="" coords="359,219,567,248"/>
+<area shape="rect" id="node15" href="$classmogl_1_1_uniform_buffer.html" title="mogl::UniformBuffer" alt="" coords="393,272,532,301"/>
+<area shape="rect" id="node2" href="$classmogl_1_1_handle.html" title="mogl::Handle\&lt; GLuint \&gt;" alt="" coords="7,139,167,168"/>
+</map>

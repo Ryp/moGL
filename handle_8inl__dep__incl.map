@@ -1,0 +1,22 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$handle_8hpp.html" title="GL Handle wrapper, base class to most mogl objects, templated on the handle type, because it is not a..." alt="" coords="1904,83,2027,112"/>
+<area shape="rect" id="node5" href="$buffer_8hpp.html" title="Buffer object OO wrapper using OpenGL 4.5 DSA features." alt="" coords="733,160,888,189"/>
+<area shape="rect" id="node26" href="$fence_8hpp.html" title="Buffer object OO wrapper using OpenGL 4.5 DSA features." alt="" coords="1499,237,1616,267"/>
+<area shape="rect" id="node29" href="$framebuffer_8hpp.html" title="Framebuffer object OO wrapper using OpenGL 4.5 DSA features." alt="" coords="1691,237,1843,267"/>
+<area shape="rect" id="node32" href="$renderbuffer_8hpp.html" title="RenderBuffer object OO wrapper using OpenGL 4.5 DSA features." alt="" coords="1455,160,1609,189"/>
+<area shape="rect" id="node36" href="$texture_8hpp.html" title="Texture object OO wrapper using OpenGL 4.5 DSA features." alt="" coords="1684,160,1809,189"/>
+<area shape="rect" id="node40" href="$query_8hpp.html" title="Query object OO wrapper using OpenGL 4.5 DSA features." alt="" coords="1833,160,1951,189"/>
+<area shape="rect" id="node43" href="$sampler_8hpp.html" title="object/sampler.hpp" alt="" coords="1975,160,2105,189"/>
+<area shape="rect" id="node46" href="$programpipeline_8hpp.html" title="object/shader/programpipeline.hpp" alt="" coords="2129,160,2348,189"/>
+<area shape="rect" id="node49" href="$shader_8hpp.html" title="object/shader/shader.hpp" alt="" coords="2372,160,2540,189"/>
+<area shape="rect" id="node52" href="$shaderprogram_8hpp.html" title="object/shader/shaderprogram.hpp" alt="" coords="2349,237,2563,267"/>
+<area shape="rect" id="node56" href="$transformfeedback_8hpp.html" title="object/transformfeedback.hpp" alt="" coords="2615,160,2809,189"/>
+<area shape="rect" id="node59" href="$vertexarray_8hpp.html" title="VAO object OO wrapper using OpenGL 4.5 DSA features." alt="" coords="2833,160,2983,189"/>
+<area shape="rect" id="node7" href="$arraybuffer_8hpp.html" title="object/buffer/arraybuffer.hpp" alt="" coords="227,237,411,267"/>
+<area shape="rect" id="node11" href="$atomiccounterbuffer_8hpp.html" title="object/buffer/atomiccounterbuffer.hpp" alt="" coords="435,237,672,267"/>
+<area shape="rect" id="node14" href="$elementarraybuffer_8hpp.html" title="object/buffer/elementarraybuffer.hpp" alt="" coords="696,237,925,267"/>
+<area shape="rect" id="node17" href="$shaderstoragebuffer_8hpp.html" title="object/buffer/shaderstoragebuffer.hpp" alt="" coords="949,237,1187,267"/>
+<area shape="rect" id="node20" href="$transformfeedbackbuffer_8hpp.html" title="object/buffer/transformfeedbackbuffer.hpp" alt="" coords="1211,237,1475,267"/>
+<area shape="rect" id="node23" href="$uniformbuffer_8hpp.html" title="object/buffer/uniformbuffer.hpp" alt="" coords="5,237,203,267"/>
+<area shape="rect" id="node9" href="$mogl_8hpp.html" title="mogl.hpp" alt="" coords="1729,315,1804,344"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$handle_8hpp.html" title="GL Handle wrapper, base class to most mogl objects, templated on the handle type, because it is not a..." alt="" coords="152,160,307,189"/>
+<area shape="rect" id="node15" href="$renderbuffer_8hpp.html" title="RenderBuffer object OO wrapper using OpenGL 4.5 DSA features." alt="" coords="5,83,192,112"/>
+<area shape="rect" id="node20" href="$texture_8hpp.html" title="Texture object OO wrapper using OpenGL 4.5 DSA features." alt="" coords="267,83,424,112"/>
+<area shape="rect" id="node25" href="$framebuffer_8inl.html" title="framebuffer.inl" alt="" coords="448,83,552,112"/>
+<area shape="rect" id="node7" href="$handle_8inl.html" title="handle.inl" alt="" coords="235,237,312,267"/>
+<area shape="rect" id="node11" href="$states_8hpp.html" title="mogl/function/states.hpp" alt="" coords="259,315,424,344"/>
+<area shape="rect" id="node13" href="$states_8inl.html" title="states.inl" alt="" coords="304,392,379,421"/>
+<area shape="rect" id="node18" href="$renderbuffer_8inl.html" title="renderbuffer.inl" alt="" coords="21,160,128,189"/>
+<area shape="rect" id="node23" href="$texture_8inl.html" title="texture.inl" alt="" coords="331,160,408,189"/>
+</map>
