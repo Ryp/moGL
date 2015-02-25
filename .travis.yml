@@ -57,7 +57,7 @@ after_success:
     - git rm -rf *
     - cp -r $TRAVIS_BUILD_DIR/doc/html/* .
     - git add -f .
-    - git commit -am "Doxygen update by travis build #"$TRAVIS_BUILD_NUMBER
+    - git commit -am "Doxygen update by travis"
     - git push -fq origin gh-pages > /dev/null
     - popd
     - popd
