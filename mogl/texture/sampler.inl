@@ -22,6 +22,11 @@ namespace mogl
         glDeleteSamplers(1, &_handle);
     }
 
+    inline void Sampler::bind(GLuint unit)
+    {
+        glBindSampler(unit, _handle);
+    }
+
     /*
      * Templated accessors definitions
      */

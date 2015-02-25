@@ -1,5 +1,6 @@
 find_package(OpenGL REQUIRED)
-find_library(glfw3 REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_search_module(GLFW REQUIRED glfw3)
 find_package(glbinding REQUIRED)
 find_package(GTest REQUIRED)
 
@@ -13,7 +14,7 @@ include_directories(
     ${CMAKE_SOURCE_DIR}
     ${OPENGL_INCLUDE_DIR}
     ${GLBINDING_INCLUDES}
-    ${GLFW_INCLUDE_DIR}
+    ${GLFW_INCLUDE_DIRS}
     ${GTEST_INCLUDE_DIRS})
 
 # Setup Precompiled headers
@@ -23,7 +24,7 @@ get_filename_component(PRECOMPILED_HEADER_NAME ${PRECOMPILED_HEADER_SOURCE} NAME
 set(PRECOMPILED_HEADER_OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${PRECOMPILED_HEADER_NAME}.gch")
 
 add_custom_command(OUTPUT "${PRECOMPILED_HEADER_OUTPUT}"
-    COMMAND ${CMAKE_CXX_COMPILER} -std=c++11 -x c++-header -o ${PRECOMPILED_HEADER_OUTPUT} ${PRECOMPILED_HEADER_SOURCE} -I ${CMAKE_SOURCE_DIR}
+    COMMAND ${CMAKE_CXX_COMPILER} -std=c++14 -x c++-header -o ${PRECOMPILED_HEADER_OUTPUT} ${PRECOMPILED_HEADER_SOURCE} -I ${CMAKE_SOURCE_DIR}
     DEPENDS ${PRECOMPILED_HEADER_SOURCE})
 add_custom_target(${PRECOMPILED_HEADER_TARGET}
     DEPENDS ${PRECOMPILED_HEADER_OUTPUT})
@@ -32,7 +33,7 @@ add_custom_target(${PRECOMPILED_HEADER_TARGET}
 add_library(context SHARED
     ${CMAKE_SOURCE_DIR}/common/glcontext.cpp
     ${CMAKE_SOURCE_DIR}/common/gltestfixture.cpp)
-target_link_libraries(context ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GLFW_LIBRARY} ${GLBINDING_LIBRARIES} pthread)
+target_link_libraries(context ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GLFW_LIBRARIES} ${GLBINDING_LIBRARIES} ${GTEST_BOTH_LIBRARIES} pthread)
 
 set_target_properties(context PROPERTIES COMPILE_FLAGS "${MOGL_TEST_COMPILE_FLAGS}")
 
@@ -41,7 +42,7 @@ function(moglCreateTest NAME)
         set(TEST_NAME test-${NAME})
         add_executable(${TEST_NAME} ${NAME}.cpp ${PRECOMPILED_HEADER_OUTPUT})
         set_target_properties(${TEST_NAME} PROPERTIES COMPILE_FLAGS "${MOGL_TEST_COMPILE_FLAGS} -include ${PRECOMPILED_HEADER_SOURCE} -Winvalid-pch")
-        target_link_libraries(${TEST_NAME} ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GLFW_LIBRARY} ${GTEST_BOTH_LIBRARIES} pthread context)
+        target_link_libraries(${TEST_NAME} ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GLFW_LIBRARIES} ${GTEST_BOTH_LIBRARIES} pthread context)
         add_test(NAME ${TEST_NAME}
             COMMAND $<TARGET_FILE:${TEST_NAME}>)
         add_dependencies(${TEST_NAME} ${PRECOMPILED_HEADER_TARGET})

@@ -1,6 +1,7 @@
 find_package(OpenGL REQUIRED)
 find_package(glbinding REQUIRED)
-find_library(glfw3 REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_search_module(GLFW REQUIRED glfw3)
 
 set(EXAMPLE_BIN example)
 
@@ -37,7 +38,7 @@ target_include_directories(${EXAMPLE_BIN} SYSTEM PUBLIC
 #Libraries
 target_link_libraries(${EXAMPLE_BIN}
     ${OPENGL_LIBRARIES}
-    ${GLFW_LIBRARY}
+    ${GLFW_LIBRARIES}
     ${GLBINDING_LIBRARIES}
 )
 
