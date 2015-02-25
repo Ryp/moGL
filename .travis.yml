@@ -10,7 +10,7 @@ notifications:
     - ryp.sqrt@gmail.com
 env:
   global:
-    - secure: "K9NB9ZTpZpBfspbzCgiTu9hFBAzB7YcYCC3PAP0XNoxyqDnrjm3rsFsBTMTGwTwbIOGYav6hya7fk5kQfJXLp12c7XvlHjYsN9+uY6eyZiMbjnsjoPK8zqTvbpj28uDhXwCezWPzI3CsfCVyGHX7ZvsVIS4KzZcY3Tezgukw7YY="
+    - secure: "JVSODHpfFYesFxNQ/3jtl0pzO0MBnqyhL6GkFOYK3kNgfkNbN3m7iC9tl3gfS2etrpBSCUErwk8TGVa1yBvYY1uAea6mqWGqwQwKXkXpYn3nW8woouooQeplKYuSWeeKw2QSMUlgPEIePyQDh1JPyeYnB/nKi1V6PtbIscr5byE="
 before_install:
     - sudo apt-get install -qq doxygen
     - sudo apt-get install -qq graphviz
@@ -58,7 +58,7 @@ after_success:
     - git rm -rf *
     - cp -r $TRAVIS_BUILD_DIR/doc/html/* .
     - git add -f .
-    - git commit -am "Doxygen update by travis build #$TRAVIS_BUILD_NUMBER"
+    - git commit -am "Doxygen update by travis build #"$TRAVIS_BUILD_NUMBER
     - git push -fq origin gh-pages > /dev/null
     - popd
     - popd
