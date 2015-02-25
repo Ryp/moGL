@@ -17,7 +17,7 @@
 
 namespace mogl
 {
-    class QueryObject : public Handle<>
+    class QueryObject : public Handle<GLuint>
     {
     public:
         QueryObject(GLenum type);

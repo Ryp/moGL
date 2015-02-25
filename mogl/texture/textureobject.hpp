@@ -17,7 +17,7 @@
 
 namespace mogl
 {
-    class TextureObject : public Handle<>
+    class TextureObject : public Handle<GLuint>
     {
     public:
         TextureObject(GLenum target);

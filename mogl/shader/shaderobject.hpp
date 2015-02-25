@@ -17,7 +17,7 @@
 
 namespace mogl
 {
-    class ShaderObject : public Handle<>
+    class ShaderObject : public Handle<GLuint>
     {
     public:
         enum class ShaderType {

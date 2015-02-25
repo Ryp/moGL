@@ -15,7 +15,7 @@
 
 namespace mogl
 {
-    class Sampler : public Handle<>
+    class Sampler : public Handle<GLuint>
     {
     public:
         Sampler();

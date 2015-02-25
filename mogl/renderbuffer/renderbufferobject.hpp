@@ -17,7 +17,7 @@
 
 namespace mogl
 {
-    class RenderBufferObject : public Handle<>
+    class RenderBufferObject : public Handle<GLuint>
     {
     public:
         RenderBufferObject();

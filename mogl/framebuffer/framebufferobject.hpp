@@ -19,7 +19,7 @@
 
 namespace mogl
 {
-    class FrameBufferObject : public Handle<>
+    class FrameBufferObject : public Handle<GLuint>
     {
     public:
         FrameBufferObject();

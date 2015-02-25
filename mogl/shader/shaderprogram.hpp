@@ -18,7 +18,7 @@
 
 namespace mogl
 {
-    class ShaderProgram : public Handle<>
+    class ShaderProgram : public Handle<GLuint>
     {
     public:
         ShaderProgram();

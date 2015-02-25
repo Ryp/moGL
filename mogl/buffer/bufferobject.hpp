@@ -17,7 +17,7 @@
 
 namespace mogl
 {
-    class BufferObject : public Handle<>
+    class BufferObject : public Handle<GLuint>
     {
     public:
         BufferObject(GLenum target);

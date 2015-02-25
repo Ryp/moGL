@@ -15,7 +15,7 @@
 
 namespace mogl
 {
-    class TransformFeedbackObject : public Handle<>
+    class TransformFeedbackObject : public Handle<GLuint>
     {
     public:
         TransformFeedbackObject();

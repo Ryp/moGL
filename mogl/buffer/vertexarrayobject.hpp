@@ -17,7 +17,7 @@
 
 namespace mogl
 {
-    class VertexArrayObject : public Handle<>
+    class VertexArrayObject : public Handle<GLuint>
     {
     public:
         VertexArrayObject();
