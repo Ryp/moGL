@@ -33,7 +33,7 @@ install:
 before_script:
     - mkdir build && pushd build
 script:
-    - cmake .. -DCMAKE_BUILD_TYPE=Debug -DMOGL_BUILD_TESTS=ON -DMOGL_BUILD_EXAMPLES=ON -DCMAKE_INSTALL_PREFIX=/usr
+    - cmake .. -DCMAKE_BUILD_TYPE=Debug -DMOGL_BUILD_TESTS=ON -DCMAKE_INSTALL_PREFIX=/usr
     - make
 after_success:
     - ctest --output-on-failure
