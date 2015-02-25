@@ -1,5 +1,7 @@
 #MoGL [![Build Status](https://travis-ci.org/Ryp/moGL.svg?branch=develop)](https://travis-ci.org/Ryp/moGL)
 
+[![Join the chat at https://gitter.im/Ryp/moGL](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Ryp/moGL?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Modern OpenGL wrapper, thin C++11 header-only layer on top of the OpenGL 4.5+ API
 
 ##MIT LICENSE
