@@ -16,17 +16,10 @@
 
 namespace mogl
 {
-    class Debug
+    namespace Debug
     {
-    public:
-        Debug() = delete;
-
-    private:
-        
-
-    public:
-        static std::string  getErrorString(GLenum error);
-        static void         assertGLState(const char* file, const char* func, int line);
+        std::string getErrorString(GLenum error);
+        void        assertGLState(const char* file, const char* func, int line);
     };
 }
 

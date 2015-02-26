@@ -12,12 +12,12 @@ namespace mogl
 {
     namespace Sync
     {
-        void finish()
+        inline void finish()
         {
             glFinish();
         }
 
-        void flush()
+        inline void flush()
         {
             glFlush();
         }

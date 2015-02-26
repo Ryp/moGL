@@ -10,33 +10,38 @@
 
 #include <mogl/exception.hpp>
 
+#include <sstream>
+
 namespace mogl
 {
-    inline std::string Debug::getErrorString(GLenum error)
+    namespace Debug
     {
-        switch (error) {
-            case GL_INVALID_ENUM:                   return "Invalid enum"; break;
-            case GL_INVALID_VALUE:                  return "Invalid value"; break;
-            case GL_INVALID_OPERATION:              return "Invalid operation"; break;
-            case GL_INVALID_FRAMEBUFFER_OPERATION:  return "Invalid framebuffer operation"; break;
-            case GL_OUT_OF_MEMORY:                  return "Out of memory"; break;
-            case GL_STACK_UNDERFLOW:                return "Stack underflow"; break;
-            case GL_STACK_OVERFLOW:                 return "Stack overflow"; break;
-            default:                                return "Unknown error"; break;
-        }
-    }
-
-    inline void Debug::assertGLState(const char* file, const char* func, int line)
-    {
-        std::ostringstream  stream;
-        std::string         errorDescription;
-        GLenum              errorNo = glGetError();
-
-        if (errorNo != GL_NO_ERROR)
+        inline std::string getErrorString(GLenum error)
         {
-            errorDescription = getErrorString(errorNo);
-            stream << file << ':' << line << ": in '" << func << "': (" << errorNo << ") " << errorDescription;
-            throw (mogl::MoGLException(stream.str()));
+            switch (error) {
+                case GL_INVALID_ENUM:                   return "Invalid enum"; break;
+                case GL_INVALID_VALUE:                  return "Invalid value"; break;
+                case GL_INVALID_OPERATION:              return "Invalid operation"; break;
+                case GL_INVALID_FRAMEBUFFER_OPERATION:  return "Invalid framebuffer operation"; break;
+                case GL_OUT_OF_MEMORY:                  return "Out of memory"; break;
+                case GL_STACK_UNDERFLOW:                return "Stack underflow"; break;
+                case GL_STACK_OVERFLOW:                 return "Stack overflow"; break;
+                default:                                return "Unknown error"; break;
+            }
+        }
+
+        inline void assertGLState(const char* file, const char* func, int line)
+        {
+            std::ostringstream  stream;
+            std::string         errorDescription;
+            GLenum              errorNo = glGetError();
+
+            if (errorNo != GL_NO_ERROR)
+            {
+                errorDescription = getErrorString(errorNo);
+                stream << file << ':' << line << ": in '" << func << "': (" << errorNo << ") " << errorDescription;
+                throw (mogl::MoGLException(stream.str()));
+            }
         }
     }
 }
