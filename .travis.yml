@@ -45,17 +45,15 @@ after_success:
     - popd
     - cppcheck . -q --force --enable=warning --enable=style
     # Push documentation on gh-pages branch
-    - pushd doc
-    - echo "PROJECT_NUMBER         = $TRAVIS_TAG-$TRAVIS_BRANCH" >> Doxyfile
+    - echo "PROJECT_NUMBER         = $TRAVIS_BRANCH" >> Doxyfile
     - doxygen
-    - popd
     - pushd $HOME
     - git config --global user.email "travis@travis-ci.org"
     - git config --global user.name "travis-ci"
     - git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/Ryp/moGL gh-pages > /dev/null
     - pushd gh-pages
     - git rm -rf *
-    - cp -r $TRAVIS_BUILD_DIR/doc/html/* .
+    - cp -r $TRAVIS_BUILD_DIR/html/* .
     - git add -f .
     - git commit -am "Doxygen update by travis"
     - git push -fq origin gh-pages > /dev/null
