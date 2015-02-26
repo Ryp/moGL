@@ -24,14 +24,12 @@ install:
     - pushd /usr/src/gtest
     - sudo cmake . && sudo make && sudo mv libgtest* /usr/lib/
     - popd
-    - git clone https://github.com/glfw/glfw.git
+    - git clone -b 3.1 --single-branch https://github.com/glfw/glfw.git
     - pushd glfw
-    - git checkout 3.1
     - cmake -DBUILD_SHARED_LIBS=ON . && make -j2 && sudo make install
     - popd
-    - git clone https://github.com/hpicgs/glbinding.git
+    - git clone -b master --single-branch https://github.com/hpicgs/glbinding.git
     - pushd glbinding
-    - git checkout v1.0.5
     - cmake -DOPTION_BUILD_STATIC=OFF . && make -j2 && sudo make install
     - popd
 before_script:
@@ -50,12 +48,12 @@ after_success:
     - pushd $HOME
     - git config --global user.email "travis@travis-ci.org"
     - git config --global user.name "travis-ci"
-    - git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/Ryp/moGL gh-pages > /dev/null
+    - git clone -b gh-pages --single-branch https://${GH_TOKEN}@github.com/Ryp/moGL gh-pages
     - pushd gh-pages
     - git rm -rf *
     - cp -r $TRAVIS_BUILD_DIR/html/* .
     - git add -f .
     - git commit -am "Doxygen update by travis"
-    - git push -fq origin gh-pages > /dev/null
+    - git push -fq origin gh-pages
     - popd
     - popd
