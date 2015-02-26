@@ -20,8 +20,8 @@ namespace mogl
     void setCullFace(GLenum mode);
 
     template <class T> void get(GLenum property, T* value); // Direct call to glGet*v()
-    template <class T> void get(GLenum property, GLuint index, T* value); // Direct call to glGet*i_v()
     template <class T> T    get(GLenum property);
+    template <class T> void get(GLenum property, GLuint index, T* value); // Direct call to glGet*i_v()
     template <class T> T    get(GLenum property, GLuint index);
 }
 

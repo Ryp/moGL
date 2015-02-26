@@ -76,19 +76,46 @@ namespace mogl
         glVertexArrayBindingDivisor(_handle, bindingindex, divisor);
     }
 
-    inline void VertexArray::getParameteriv(GLenum property, GLint* value)
+    template <>
+    inline void VertexArray::get<GLint>(GLenum property, GLint* value)
     {
         glGetVertexArrayiv(_handle, property, value);
     }
 
-    inline void VertexArray::getParameterIndexediv(GLuint index, GLenum property, GLint* value)
+    template <>
+    inline GLint VertexArray::get<GLint>(GLenum property)
+    {
+        GLint   value;
+        glGetVertexArrayiv(_handle, property, &value);
+        return value;
+    }
+
+    template <>
+    inline void VertexArray::get<GLint>(GLuint index, GLenum property, GLint* value)
     {
         glGetVertexArrayIndexediv(_handle, index, property, value);
     }
 
-    inline void VertexArray::getParameterIndexed64iv(GLuint index, GLenum property, GLint64* value)
+    template <>
+    inline void VertexArray::get<GLint64>(GLuint index, GLenum property, GLint64* value)
     {
         glGetVertexArrayIndexed64iv(_handle, index, property, value);
+    }
+
+    template <>
+    inline GLint VertexArray::get<GLint>(GLuint index, GLenum property)
+    {
+        GLint   value;
+        glGetVertexArrayIndexediv(_handle, index, property, &value);
+        return value;
+    }
+
+    template <>
+    inline GLint64 VertexArray::get<GLint64>(GLuint index, GLenum property)
+    {
+        GLint64 value;
+        glGetVertexArrayIndexed64iv(_handle, index, property, &value);
+        return value;
     }
 
     inline bool VertexArray::isValid() const

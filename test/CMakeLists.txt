@@ -56,6 +56,6 @@ moglCreateTest(renderbuffer)
 moglCreateTest(query)
 moglCreateTest(texture)
 moglCreateTest(debug)
-# moglCreateTest(sync)
+moglCreateTest(sync)
 
 file(COPY data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

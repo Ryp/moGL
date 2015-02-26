@@ -12,7 +12,7 @@ namespace mogl
 {
     inline Fence::Fence(GLenum condition, GLbitfield flags)
     {
-        _handle = glFenceSync(condition, static_cast<gl::UnusedMask>(flags)); // TODO find solution to remove cast
+        _handle = glFenceSync(condition, static_cast<UnusedMask>(flags)); // TODO find solution to remove cast
     }
 
     inline Fence::~Fence()
@@ -23,12 +23,12 @@ namespace mogl
 
     inline void Fence::waitSync(GLbitfield flags, GLuint64 timeout)
     {
-        glWaitSync(_handle, static_cast<gl::UnusedMask>(flags), timeout);
+        glWaitSync(_handle, static_cast<UnusedMask>(flags), timeout); // TODO Find solution to remove glbinding dependance
     }
 
     inline GLenum Fence::waitClientSync(GLbitfield flags, GLuint64 timeout)
     {
-        return glClientWaitSync(_handle, static_cast<gl::SyncObjectMask>(flags), timeout);
+        return glClientWaitSync(_handle, static_cast<SyncObjectMask>(flags), timeout); // TODO Find solution to remove glbinding dependance
     }
 
     inline bool Fence::isValid() const

@@ -8,8 +8,6 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h" // For IDE completion only
-
 class TextureTest : public GLTestFixture {};
 
 using mogl::Texture;

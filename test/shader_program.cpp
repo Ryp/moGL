@@ -8,8 +8,6 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h" // For IDE completion only
-
 #include <fstream>
 
 class ShaderProgramTest : public GLTestFixture {};

@@ -8,6 +8,6 @@ using namespace gl;
 
 #include "common/gltestfixture.hpp"
 
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 
 #endif // STDAFX_INCLUDED

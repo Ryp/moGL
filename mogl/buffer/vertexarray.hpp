@@ -13,7 +13,7 @@
 #ifndef MOGL_VERTEXARRAY_INCLUDED
 #define MOGL_VERTEXARRAY_INCLUDED
 
-#include "mogl/handle.hpp"
+#include <mogl/handle.hpp>
 
 namespace mogl
 {
@@ -40,10 +40,10 @@ namespace mogl
         void    setAttribLFormat(GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset);
         void    setAttribBinding(GLuint attribindex, GLuint bindingindex);
         void    setBindingDivisor(GLuint bindingindex, GLuint divisor);
-        /* TODO see if templates are simpler, or make functions return value */
-        void    getParameteriv(GLenum property, GLint* value);
-        void    getParameterIndexediv(GLuint index, GLenum property, GLint* value);
-        void    getParameterIndexed64iv(GLuint index, GLenum property, GLint64* value);
+        template <class T> void get(GLenum property, T* value); // Direct call to glGetVertexArray*v()
+        template <class T> T    get(GLenum property);
+        template <class T> void get(GLuint index, GLenum property, T* value); // Direct call to glGetVertexArrayIndexed*v()
+        template <class T> T    get(GLuint index, GLenum property);
         bool    isValid() const override final;
     };
 }

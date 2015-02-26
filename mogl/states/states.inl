@@ -70,40 +70,6 @@ namespace mogl
     }
 
     /*
-     * get<> specialization for indexed typed arrays
-     */
-
-    template <>
-    inline void get<GLboolean>(GLenum property, GLuint index, GLboolean* value)
-    {
-        glGetBooleani_v(property, index, value);
-    }
-
-    template <>
-    inline void get<GLfloat>(GLenum property, GLuint index, GLfloat* value)
-    {
-        glGetFloati_v(property, index, value);
-    }
-
-    template <>
-    inline void get<GLdouble>(GLenum property, GLuint index, GLdouble* value)
-    {
-        glGetDoublei_v(property, index, value);
-    }
-
-    template <>
-    inline void get<GLint>(GLenum property, GLuint index, GLint* value)
-    {
-        glGetIntegeri_v(property, index, value);
-    }
-
-    template <>
-    inline void get<GLint64>(GLenum property, GLuint index, GLint64* value)
-    {
-        glGetInteger64i_v(property, index, value);
-    }
-
-    /*
      * get<> specialization for single return value
      */
 
@@ -147,6 +113,40 @@ namespace mogl
         return value;
     }
 
+    /*
+     * get<> specialization for indexed typed arrays
+     */
+
+    template <>
+    inline void get<GLboolean>(GLenum property, GLuint index, GLboolean* value)
+    {
+        glGetBooleani_v(property, index, value);
+    }
+
+    template <>
+    inline void get<GLfloat>(GLenum property, GLuint index, GLfloat* value)
+    {
+        glGetFloati_v(property, index, value);
+    }
+
+    template <>
+    inline void get<GLdouble>(GLenum property, GLuint index, GLdouble* value)
+    {
+        glGetDoublei_v(property, index, value);
+    }
+
+    template <>
+    inline void get<GLint>(GLenum property, GLuint index, GLint* value)
+    {
+        glGetIntegeri_v(property, index, value);
+    }
+
+    template <>
+    inline void get<GLint64>(GLenum property, GLuint index, GLint64* value)
+    {
+        glGetInteger64i_v(property, index, value);
+    }
+    
     /*
      * get<> specialization for single indexed return value
      */
