@@ -26,6 +26,8 @@ namespace mogl
         RenderBufferObject(const RenderBufferObject& other) = delete;
         RenderBufferObject& operator=(const RenderBufferObject& other) = delete;
 
+        RenderBufferObject(RenderBufferObject&& other) = default;
+
     public:
         void    setStorage(GLenum internalformat, GLsizei width, GLsizei height);
         void    setStorageMultisample(GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height);

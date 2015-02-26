@@ -25,10 +25,15 @@ namespace mogl
     {
     public:
         Handle() : _handle(0) {}
-        ~Handle() = default;
+        virtual ~Handle() = default;
 
-        Handle(const Handle& other) = default;
-        Handle& operator=(const Handle& other) = default;
+        Handle(const Handle& other) = delete;
+        Handle& operator=(const Handle& other) = delete;
+
+        Handle(Handle&& other) noexcept : _handle(other._handle)
+        {
+            other._handle = 0;
+        }
 
     public:
         T   getHandle() const { return _handle; }

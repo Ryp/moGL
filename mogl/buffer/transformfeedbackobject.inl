@@ -8,8 +8,6 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "transformfeedbackobject.hpp"
-
 namespace mogl
 {
     inline TransformFeedbackObject::TransformFeedbackObject()
@@ -19,7 +17,8 @@ namespace mogl
 
     inline TransformFeedbackObject::~TransformFeedbackObject()
     {
-        glDeleteTransformFeedbacks(1, &_handle);
+        if (_handle)
+            glDeleteTransformFeedbacks(1, &_handle);
     }
 
     inline void TransformFeedbackObject::bind(GLenum target)

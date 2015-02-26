@@ -8,8 +8,6 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "framebufferobject.hpp"
-
 namespace mogl
 {
     inline FrameBufferObject::FrameBufferObject()
@@ -19,7 +17,8 @@ namespace mogl
 
     inline FrameBufferObject::~FrameBufferObject()
     {
-        glDeleteFramebuffers(1, &_handle);
+        if (_handle)
+            glDeleteFramebuffers(1, &_handle);
     }
 
     inline void FrameBufferObject::bind(GLenum target)

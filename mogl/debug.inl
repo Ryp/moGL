@@ -8,9 +8,7 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "debug.hpp"
-
-#include "mogl/exception/shaderexception.hpp"
+#include <mogl/exception.hpp>
 
 namespace mogl
 {

@@ -49,6 +49,7 @@ function(moglCreateTest NAME)
     endif()
 endfunction()
 
+moglCreateTest(buffer_object)
 moglCreateTest(shader_program)
 moglCreateTest(framebuffer)
 moglCreateTest(renderbuffer)

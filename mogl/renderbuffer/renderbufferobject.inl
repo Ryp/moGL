@@ -8,8 +8,6 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "renderbufferobject.hpp"
-
 namespace mogl
 {
     inline RenderBufferObject::RenderBufferObject()
@@ -19,7 +17,8 @@ namespace mogl
 
     inline RenderBufferObject::~RenderBufferObject()
     {
-        glDeleteRenderbuffers(1, &_handle);
+        if (_handle)
+            glDeleteRenderbuffers(1, &_handle);
     }
 
     inline void RenderBufferObject::setStorage(GLenum internalformat, GLsizei width, GLsizei height)

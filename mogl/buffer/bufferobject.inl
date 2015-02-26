@@ -8,8 +8,6 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "bufferobject.hpp"
-
 namespace mogl
 {
     inline BufferObject::BufferObject(GLenum target)
@@ -20,7 +18,8 @@ namespace mogl
 
     inline BufferObject::~BufferObject()
     {
-        glDeleteBuffers(1, &_handle);
+        if (_handle)
+            glDeleteBuffers(1, &_handle);
     }
 
     inline void BufferObject::bind()
@@ -78,14 +77,32 @@ namespace mogl
         glFlushMappedNamedBufferRange(_handle, offset, length);
     }
 
-    inline void BufferObject::getParameteriv(GLenum property, int* value)
+    template <>
+    inline void BufferObject::get<GLint>(GLenum property, GLint* value)
     {
         glGetNamedBufferParameteriv(_handle, property, value);
     }
 
-    inline void BufferObject::getParameteri64v(GLenum property, GLint64* value)
+    template <>
+    inline void BufferObject::get<GLint64>(GLenum property, GLint64* value)
     {
         glGetNamedBufferParameteri64v(_handle, property, value);
+    }
+
+    template <>
+    inline GLint BufferObject::get<GLint>(GLenum property)
+    {
+        GLint   value;
+        glGetNamedBufferParameteriv(_handle, property, &value);
+        return value;
+    }
+
+    template <>
+    inline GLint64 BufferObject::get<GLint64>(GLenum property)
+    {
+        GLint64 value;
+        glGetNamedBufferParameteri64v(_handle, property, &value);
+        return value;
     }
 
     inline void BufferObject::getPointerv(GLenum property, void** value)
@@ -96,6 +113,11 @@ namespace mogl
     inline void BufferObject::getSubData(GLintptr offset, GLsizeiptr size, void* data)
     {
         glGetNamedBufferSubData(_handle, offset, size, data);
+    }
+
+    inline GLenum BufferObject::getTarget() const
+    {
+        return _target;
     }
 
     inline bool BufferObject::isValid() const

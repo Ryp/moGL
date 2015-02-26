@@ -8,8 +8,6 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "fence.hpp"
-
 namespace mogl
 {
     inline Fence::Fence(GLenum condition, GLbitfield flags)
@@ -19,7 +17,8 @@ namespace mogl
 
     inline Fence::~Fence()
     {
-        glDeleteSync(_handle);
+        if (_handle)
+            glDeleteSync(_handle);
     }
 
     inline void Fence::waitSync(GLbitfield flags, GLuint64 timeout)

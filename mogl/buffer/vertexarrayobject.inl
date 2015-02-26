@@ -8,8 +8,6 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "vertexarrayobject.hpp"
-
 namespace mogl
 {
     inline VertexArrayObject::VertexArrayObject()
@@ -19,7 +17,8 @@ namespace mogl
 
     inline VertexArrayObject::~VertexArrayObject()
     {
-        glDeleteVertexArrays(1, &_handle);
+        if (_handle)
+            glDeleteVertexArrays(1, &_handle);
     }
 
     inline void VertexArrayObject::bind()

@@ -26,6 +26,8 @@ namespace mogl
         VertexArrayObject(const VertexArrayObject& other) = delete;
         VertexArrayObject& operator=(const VertexArrayObject& other) = delete;
 
+        VertexArrayObject(VertexArrayObject&& other) = default;
+
     public:
         void    bind();
         void    enableAttrib(GLuint index);

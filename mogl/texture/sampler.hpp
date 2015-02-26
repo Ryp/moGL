@@ -24,6 +24,8 @@ namespace mogl
         Sampler(const Sampler& other) = delete;
         Sampler& operator=(const Sampler& other) = delete;
 
+        Sampler(Sampler&& other) = default;
+
     public:
         void    bind(GLuint unit);
         template <class T> void get(GLenum property, T* value); // Direct call to glGetSamplerParameter*v()

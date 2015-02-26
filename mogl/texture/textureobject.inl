@@ -8,8 +8,6 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "textureobject.hpp"
-
 namespace mogl
 {
     inline TextureObject::TextureObject(GLenum target)
@@ -20,7 +18,8 @@ namespace mogl
 
     inline TextureObject::~TextureObject()
     {
-        glDeleteTextures(1, &_handle);
+        if (_handle)
+            glDeleteTextures(1, &_handle);
     }
 
     inline void TextureObject::bind(GLuint unit)

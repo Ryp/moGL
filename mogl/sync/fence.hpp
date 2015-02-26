@@ -25,6 +25,8 @@ namespace mogl
         Fence(const Fence& other) = delete;
         Fence& operator=(const Fence& other) = delete;
 
+        Fence(Fence&& other) = default;
+
     public:
         void    waitSync(GLbitfield flags, GLuint64 timeout = 0);
         GLenum  waitClientSync(GLbitfield flags, GLuint64 timeout = 0);

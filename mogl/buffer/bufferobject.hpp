@@ -13,7 +13,7 @@
 #ifndef MOGL_BUFFEROBJECT_INCLUDED
 #define MOGL_BUFFEROBJECT_INCLUDED
 
-#include "mogl/handle.hpp"
+#include <mogl/handle.hpp>
 
 namespace mogl
 {
@@ -25,6 +25,8 @@ namespace mogl
 
         BufferObject(const BufferObject& other) = delete;
         BufferObject& operator=(const BufferObject& other) = delete;
+
+        BufferObject(BufferObject&& other) = default;
 
     public:
         void    bind();
@@ -38,10 +40,11 @@ namespace mogl
         void*   mapRange(GLintptr offset, GLsizeiptr length, GLbitfield access);
         bool    unmap();
         void    flushMappedRange(GLintptr offset, GLsizeiptr length);
-        void    getParameteriv(GLenum property, int* value);
-        void    getParameteri64v(GLenum property, GLint64* value);
+        template <class T> void get(GLenum property, T* value); // Direct call to glGetNamedBufferParameter*v()
+        template <class T> T    get(GLenum property);
         void    getPointerv(GLenum property, void** value);
         void    getSubData(GLintptr offset, GLsizeiptr size, void* data);
+        GLenum  getTarget() const;
         bool    isValid() const override final;
 
     private:

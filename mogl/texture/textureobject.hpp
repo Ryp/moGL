@@ -26,6 +26,8 @@ namespace mogl
         TextureObject(const TextureObject& other) = delete;
         TextureObject& operator=(const TextureObject& other) = delete;
 
+        TextureObject(TextureObject&& other) = default;
+
     public:
         void    bind(GLuint unit);
         void    setStorage2D(GLsizei levels, GLenum internalformat,

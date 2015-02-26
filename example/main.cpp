@@ -128,6 +128,7 @@ void    example(GLContext& ctx)
         frameTime = ctx.getTime() - frameTime;
         ctx.setTitle(std::to_string(poly) + " Primitives | Total " + std::to_string(frameTime * 1000.0f) + " ms / GPU " + std::to_string(glms) + " ms " + std::to_string(ctx.getWindowSize().x) + "x"  + std::to_string(ctx.getWindowSize().y));
     }
+    delete mesh;
 }
 
 int main(int /*ac*/, char** /*av*/)

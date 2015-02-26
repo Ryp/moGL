@@ -8,8 +8,6 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "queryobject.hpp"
-
 namespace mogl
 {
     inline QueryObject::QueryObject(GLenum type)
@@ -20,7 +18,8 @@ namespace mogl
 
     inline QueryObject::~QueryObject()
     {
-        glDeleteQueries(1, &_handle);
+        if (_handle)
+            glDeleteQueries(1, &_handle);
     }
 
     inline void QueryObject::begin()
@@ -63,6 +62,11 @@ namespace mogl
         GLuint64    rslt;
         glGetQueryObjectui64v(_handle, param, &rslt);
         return rslt;
+    }
+
+    inline GLenum QueryObject::getType() const
+    {
+        return _type;
     }
 
     inline bool QueryObject::isValid() const

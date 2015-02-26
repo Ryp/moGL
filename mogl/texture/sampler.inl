@@ -8,8 +8,6 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "sampler.hpp"
-
 namespace mogl
 {
     inline Sampler::Sampler()
@@ -19,7 +17,8 @@ namespace mogl
 
     inline Sampler::~Sampler()
     {
-        glDeleteSamplers(1, &_handle);
+        if (_handle)
+            glDeleteSamplers(1, &_handle);
     }
 
     inline void Sampler::bind(GLuint unit)

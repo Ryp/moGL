@@ -26,15 +26,18 @@ namespace mogl
         QueryObject(const QueryObject& other) = delete;
         QueryObject& operator=(const QueryObject& other) = delete;
 
+        QueryObject(QueryObject&& other) = default;
+
     public:
         void    begin();
         void    end();
         template <class T>
         T       getResult(GLenum param);
+        GLenum  getType() const;
         bool    isValid() const override final;
 
     private:
-        GLenum  _type;
+        const GLenum    _type;
     };
 }
 

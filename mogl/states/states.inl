@@ -8,8 +8,6 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "states.hpp"
-
 namespace mogl
 {
     inline void enable(GLenum flag)

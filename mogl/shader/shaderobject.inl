@@ -8,8 +8,6 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "shaderobject.hpp"
-
 #include <vector>
 #include <istream>
 
@@ -33,7 +31,8 @@ namespace mogl
 
     inline ShaderObject::~ShaderObject()
     {
-        glDeleteShader(_handle);
+        if (_handle)
+            glDeleteShader(_handle);
     }
 
     inline bool ShaderObject::compile()

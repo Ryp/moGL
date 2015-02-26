@@ -8,8 +8,7 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "shaderprogram.hpp"
-#include "mogl/exception.hpp"
+#include <mogl/exception.hpp>
 
 #include <iostream>
 #include <iomanip>
@@ -23,7 +22,8 @@ namespace mogl
 
     inline ShaderProgram::~ShaderProgram()
     {
-        glDeleteProgram(_handle);
+        if (_handle)
+            glDeleteProgram(_handle);
     }
 
     inline void ShaderProgram::attach(const ShaderObject& object)

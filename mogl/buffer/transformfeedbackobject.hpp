@@ -24,6 +24,8 @@ namespace mogl
         TransformFeedbackObject(const TransformFeedbackObject& other) = delete;
         TransformFeedbackObject& operator=(const TransformFeedbackObject& other) = delete;
 
+        TransformFeedbackObject(TransformFeedbackObject&& other) = default;
+
     public:
         void    bind(GLenum target = GL_TRANSFORM_FEEDBACK);
         bool    isValid() const override final;

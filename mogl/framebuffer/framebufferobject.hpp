@@ -28,6 +28,8 @@ namespace mogl
         FrameBufferObject(const FrameBufferObject& other) = delete;
         FrameBufferObject& operator=(const FrameBufferObject& other) = delete;
 
+        FrameBufferObject(FrameBufferObject&& other) = default;
+
     public:
         void    bind(GLenum target);
         void    setRenderBuffer(GLenum attachment, RenderBufferObject& renderbuffer);
@@ -48,3 +50,4 @@ namespace mogl
 #include "framebufferobject.inl"
 
 #endif // MOGL_FRAMEBUFFEROBJECT_INCLUDED
+
