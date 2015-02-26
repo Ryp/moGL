@@ -14,7 +14,7 @@ using mogl::RenderBuffer;
 
 TEST_F(RenderBufferTest, binding)
 {
-    RenderBuffer  rbo;
+    RenderBuffer    rbo;
 
     rbo.setStorage(GL_DEPTH_COMPONENT, 1024, 1024);
     rbo.getHandle();

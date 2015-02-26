@@ -14,9 +14,9 @@ using mogl::Buffer;
 
 Buffer    createVbo()
 {
-    Buffer    vbo(GL_ARRAY_BUFFER);
-    std::size_t     size = 3 * 4;
-    float           buffer[size];
+    Buffer      vbo(GL_ARRAY_BUFFER);
+    std::size_t size = 3 * 4;
+    float       buffer[size];
 
     vbo.setData(sizeof(buffer[0]) * size, buffer, GL_STATIC_DRAW);
     EXPECT_TRUE(vbo.isValid());
@@ -25,7 +25,7 @@ Buffer    createVbo()
 
 TEST_F(BufferTest, vbo)
 {
-    Buffer    vbo(createVbo()); // Use move semantics
+    Buffer  vbo(createVbo()); // Use move semantics
 
     EXPECT_TRUE(vbo.isValid());
 }

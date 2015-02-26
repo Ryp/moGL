@@ -31,8 +31,8 @@ public:
     void            setTitle(const std::string& title);
 
 private:
-    GLFWwindow*   _window;
-    Vect2u        _windowSize;
+    GLFWwindow* _window;
+    Vect2u      _windowSize;
 };
 
 #endif // GLCONTEXT_INCLUDED

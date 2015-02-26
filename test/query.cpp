@@ -14,7 +14,7 @@ using mogl::Query;
 
 TEST_F(QueryTest, timer)
 {
-    Query qo(GL_TIME_ELAPSED);
+    Query   qo(GL_TIME_ELAPSED);
 
     qo.begin();
     qo.end();

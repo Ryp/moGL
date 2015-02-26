@@ -15,10 +15,10 @@ using mogl::Sampler;
 
 TEST_F(TextureTest, texture)
 {
-    Texture   frameTexture(GL_TEXTURE_2D);
-    Texture   depthTexture(GL_TEXTURE_2D);
-    Sampler         sampler;
-    GLfloat         border[] = {1.0f, 0.0f, 0.0f, 0.0f};
+    Texture frameTexture(GL_TEXTURE_2D);
+    Texture depthTexture(GL_TEXTURE_2D);
+    Sampler sampler;
+    GLfloat border[] = {1.0f, 0.0f, 0.0f, 0.0f};
 
     frameTexture.setImage2D(0, static_cast<GLint>(GL_RGB), _ctx.getWindowSize().x, _ctx.getWindowSize().y, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
     frameTexture.set(GL_TEXTURE_MAG_FILTER, GL_NEAREST);

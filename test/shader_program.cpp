@@ -19,8 +19,8 @@ TEST_F(ShaderProgramTest, linking)
 {
     std::ifstream   vsFile("data/shader001-valid.vert");
     std::ifstream   fsFile("data/shader001-valid.frag");
-    Shader    vertex(vsFile, Shader::Type::VertexShader);
-    Shader    fragment(fsFile, Shader::Type::FragmentShader);
+    Shader          vertex(vsFile, Shader::Type::VertexShader);
+    Shader          fragment(fsFile, Shader::Type::FragmentShader);
     ShaderProgram   shader;
 
     EXPECT_TRUE(vertex.compile()) << vertex.getLog();
