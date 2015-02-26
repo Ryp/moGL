@@ -43,7 +43,7 @@ after_success:
     - ctest --output-on-failure
     - sudo make install
     - popd
-    - cppcheck . -q --force --enable=warning --enable=style
+    - cppcheck -q --force --enable=warning --enable=style mogl test example
     # Push documentation on gh-pages branch
     - echo "PROJECT_NUMBER         = $TRAVIS_BRANCH" >> Doxyfile
     - doxygen
