@@ -4,12 +4,12 @@
 /// Copyright (c) 2015 Thibault Schueller
 /// This file is distributed under the MIT License
 ///
-/// @file shaderobject.hpp
+/// @file shader.hpp
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef MOGL_SHADEROBJECT_INCLUDED
-#define MOGL_SHADEROBJECT_INCLUDED
+#ifndef MOGL_SHADER_INCLUDED
+#define MOGL_SHADER_INCLUDED
 
 #include <string>
 
@@ -17,10 +17,10 @@
 
 namespace mogl
 {
-    class ShaderObject : public Handle<GLuint>
+    class Shader : public Handle<GLuint>
     {
     public:
-        enum class ShaderType {
+        enum class Type {
             VertexShader                = GL_VERTEX_SHADER,
             TesselationControlShader    = GL_TESS_CONTROL_SHADER,
             TesselationEvaluationShader = GL_TESS_EVALUATION_SHADER,
@@ -30,17 +30,17 @@ namespace mogl
         };
 
     public:
-        ShaderObject(std::istream& sourceFile, ShaderType type);
-        ShaderObject(std::string& sourceCode, ShaderType type);
-        ~ShaderObject();
+        Shader(std::istream& sourceFile, Type type);
+        Shader(std::string& sourceCode, Type type);
+        ~Shader();
 
-        ShaderObject(const ShaderObject& other) = delete;
-        ShaderObject& operator=(const ShaderObject& other) = delete;
+        Shader(const Shader& other) = delete;
+        Shader& operator=(const Shader& other) = delete;
 
     public:
         bool                compile();
         const std::string&  getCode() const;
-        ShaderType          getType() const;
+        Type                getType() const;
         const std::string&  getLog() const;
         void                get(GLenum property, GLint* value); // Direct call to glGetShaderiv()
         GLint               get(GLenum property);
@@ -48,13 +48,13 @@ namespace mogl
         bool                isValid() const override final;
 
     private:
-        std::string     _code;
-        ShaderType      _type;
-        std::string     _log;
-        bool            _isCompiled;
+        std::string _code;
+        Type        _type;
+        std::string _log;
+        bool        _isCompiled;
     };
 }
 
-#include "shaderobject.inl"
+#include "shader.inl"
 
-#endif // MOGL_SHADEROBJECT_INCLUDED
+#endif // MOGL_SHADER_INCLUDED

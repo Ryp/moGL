@@ -4,29 +4,29 @@
 /// Copyright (c) 2015 Thibault Schueller
 /// This file is distributed under the MIT License
 ///
-/// @file vertexarrayobject.hpp
+/// @file vertexarray.hpp
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ///
 /// @brief VAO object OO wrapper using OpenGL 4.5 DSA features
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef MOGL_VERTEXARRAYOBJECT_INCLUDED
-#define MOGL_VERTEXARRAYOBJECT_INCLUDED
+#ifndef MOGL_VERTEXARRAY_INCLUDED
+#define MOGL_VERTEXARRAY_INCLUDED
 
 #include "mogl/handle.hpp"
 
 namespace mogl
 {
-    class VertexArrayObject : public Handle<GLuint>
+    class VertexArray : public Handle<GLuint>
     {
     public:
-        VertexArrayObject();
-        ~VertexArrayObject();
+        VertexArray();
+        ~VertexArray();
 
-        VertexArrayObject(const VertexArrayObject& other) = delete;
-        VertexArrayObject& operator=(const VertexArrayObject& other) = delete;
+        VertexArray(const VertexArray& other) = delete;
+        VertexArray& operator=(const VertexArray& other) = delete;
 
-        VertexArrayObject(VertexArrayObject&& other) = default;
+        VertexArray(VertexArray&& other) = default;
 
     public:
         void    bind();
@@ -48,6 +48,6 @@ namespace mogl
     };
 }
 
-#include "vertexarrayobject.inl"
+#include "vertexarray.inl"
 
-#endif // MOGL_VERTEXARRAYOBJECT_INCLUDED
+#endif // MOGL_VERTEXARRAY_INCLUDED

@@ -14,12 +14,12 @@
 
 using namespace gl;
 
-#include <mogl/texture.hpp>
+#include <mogl/texture/texture.hpp>
 
 #include <gli/gli.hpp>
 #include <gli/core/load_dds.hpp>
 
-void ImageLoader::loadDDS(const std::string& file, mogl::TextureObject& texture)
+void ImageLoader::loadDDS(const std::string& file, mogl::Texture& texture)
 {
     gli::texture2D gliTexture(gli::load_dds(file.c_str()));
     if (gliTexture.empty())

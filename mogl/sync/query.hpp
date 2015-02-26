@@ -4,35 +4,35 @@
 /// Copyright (c) 2015 Thibault Schueller
 /// This file is distributed under the MIT License
 ///
-/// @file queryobject.hpp
+/// @file query.hpp
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ///
 /// @brief Query object OO wrapper using OpenGL 4.5 DSA features
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef MOGL_QUERYOBJECT_INCLUDED
-#define MOGL_QUERYOBJECT_INCLUDED
+#ifndef MOGL_QUERY_INCLUDED
+#define MOGL_QUERY_INCLUDED
 
 #include <mogl/handle.hpp>
 
 namespace mogl
 {
-    class QueryObject : public Handle<GLuint>
+    class Query : public Handle<GLuint>
     {
     public:
-        QueryObject(GLenum type);
-        ~QueryObject();
+        Query(GLenum type);
+        ~Query();
 
-        QueryObject(const QueryObject& other) = delete;
-        QueryObject& operator=(const QueryObject& other) = delete;
+        Query(const Query& other) = delete;
+        Query& operator=(const Query& other) = delete;
 
-        QueryObject(QueryObject&& other) = default;
+        Query(Query&& other) = default;
 
     public:
         void    begin();
         void    end();
-        template <class T>
-        T       getResult(GLenum param);
+        template <class T> void get(GLenum property, T* value); // Direct call to glGetQuery*v()
+        template <class T> T    get(GLenum property);
         GLenum  getType() const;
         bool    isValid() const override final;
 
@@ -41,6 +41,6 @@ namespace mogl
     };
 }
 
-#include "queryobject.inl"
+#include "query.inl"
 
-#endif // MOGL_QUERYOBJECT_INCLUDED
+#endif // MOGL_QUERY_INCLUDED

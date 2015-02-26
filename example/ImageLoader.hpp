@@ -12,14 +12,14 @@
 
 #include <string>
 
-namespace mogl { class TextureObject; }
+namespace mogl { class Texture; }
 
 class ImageLoader
 {
     ImageLoader() = delete;
 
 public:
-    static void loadDDS(const std::string& file, mogl::TextureObject& texture);
+    static void loadDDS(const std::string& file, mogl::Texture& texture);
 };
 
 #endif // IMAGELOADER_INCLUDED

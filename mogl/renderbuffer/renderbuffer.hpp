@@ -4,29 +4,29 @@
 /// Copyright (c) 2015 Thibault Schueller
 /// This file is distributed under the MIT License
 ///
-/// @file renderbufferobject.hpp
+/// @file renderbuffer.hpp
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ///
 /// @brief RenderBuffer object OO wrapper using OpenGL 4.5 DSA features
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef MOGL_RENDERBUFFEROBJECT_INCLUDED
-#define MOGL_RENDERBUFFEROBJECT_INCLUDED
+#ifndef MOGL_RENDERBUFFER_INCLUDED
+#define MOGL_RENDERBUFFER_INCLUDED
 
 #include <mogl/handle.hpp>
 
 namespace mogl
 {
-    class RenderBufferObject : public Handle<GLuint>
+    class RenderBuffer : public Handle<GLuint>
     {
     public:
-        RenderBufferObject();
-        ~RenderBufferObject();
+        RenderBuffer();
+        ~RenderBuffer();
 
-        RenderBufferObject(const RenderBufferObject& other) = delete;
-        RenderBufferObject& operator=(const RenderBufferObject& other) = delete;
+        RenderBuffer(const RenderBuffer& other) = delete;
+        RenderBuffer& operator=(const RenderBuffer& other) = delete;
 
-        RenderBufferObject(RenderBufferObject&& other) = default;
+        RenderBuffer(RenderBuffer&& other) = default;
 
     public:
         void    setStorage(GLenum internalformat, GLsizei width, GLsizei height);
@@ -36,6 +36,6 @@ namespace mogl
     };
 }
 
-#include "renderbufferobject.inl"
+#include "renderbuffer.inl"
 
-#endif // MOGL_RENDERBUFFEROBJECT_INCLUDED
+#endif // MOGL_RENDERBUFFER_INCLUDED

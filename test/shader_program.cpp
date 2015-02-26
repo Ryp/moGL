@@ -14,15 +14,15 @@
 
 class ShaderProgramTest : public GLTestFixture {};
 
-using mogl::ShaderObject;
+using mogl::Shader;
 using mogl::ShaderProgram;
 
 TEST_F(ShaderProgramTest, linking)
 {
     std::ifstream   vsFile("data/shader001-valid.vert");
     std::ifstream   fsFile("data/shader001-valid.frag");
-    ShaderObject    vertex(vsFile, ShaderObject::ShaderType::VertexShader);
-    ShaderObject    fragment(fsFile, ShaderObject::ShaderType::FragmentShader);
+    Shader    vertex(vsFile, Shader::Type::VertexShader);
+    Shader    fragment(fsFile, Shader::Type::FragmentShader);
     ShaderProgram   shader;
 
     EXPECT_TRUE(vertex.compile()) << vertex.getLog();
@@ -42,8 +42,8 @@ TEST_F(ShaderProgramTest, linking)
     color[0] = 1.0f;
 
     ASSERT_NO_THROW(shader.setUniformPtr<4>("color", color));
-    ASSERT_NO_THROW(shader.setUniformSubroutine(ShaderObject::ShaderType::FragmentShader, "colorSelector", "customColor"));
-    ASSERT_NO_THROW(shader.setUniformSubroutine(ShaderObject::ShaderType::FragmentShader, "colorSelector", "redColor"));
+    ASSERT_NO_THROW(shader.setUniformSubroutine(Shader::Type::FragmentShader, "colorSelector", "customColor"));
+    ASSERT_NO_THROW(shader.setUniformSubroutine(Shader::Type::FragmentShader, "colorSelector", "redColor"));
 
     EXPECT_NO_THROW(shader.detach(vertex));
     EXPECT_NO_THROW(shader.detach(fragment));

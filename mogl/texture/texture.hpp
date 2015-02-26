@@ -4,29 +4,29 @@
 /// Copyright (c) 2015 Thibault Schueller
 /// This file is distributed under the MIT License
 ///
-/// @file textureobject.hpp
+/// @file texture.hpp
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ///
 /// @brief Texture object OO wrapper using OpenGL 4.5 DSA features
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef MOGL_TEXTUREOBJECT_INCLUDED
-#define MOGL_TEXTUREOBJECT_INCLUDED
+#ifndef MOGL_TEXTURE_INCLUDED
+#define MOGL_TEXTURE_INCLUDED
 
 #include <mogl/handle.hpp>
 
 namespace mogl
 {
-    class TextureObject : public Handle<GLuint>
+    class Texture : public Handle<GLuint>
     {
     public:
-        TextureObject(GLenum target);
-        ~TextureObject();
+        Texture(GLenum target);
+        ~Texture();
 
-        TextureObject(const TextureObject& other) = delete;
-        TextureObject& operator=(const TextureObject& other) = delete;
+        Texture(const Texture& other) = delete;
+        Texture& operator=(const Texture& other) = delete;
 
-        TextureObject(TextureObject&& other) = default;
+        Texture(Texture&& other) = default;
 
     public:
         void    bind(GLuint unit);
@@ -49,6 +49,6 @@ namespace mogl
     };
 }
 
-#include "textureobject.inl"
+#include "texture.inl"
 
-#endif // MOGL_TEXTUREOBJECT_INCLUDED
+#endif // MOGL_TEXTURE_INCLUDED

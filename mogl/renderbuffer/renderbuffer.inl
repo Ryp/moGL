@@ -4,39 +4,39 @@
 /// Copyright (c) 2015 Thibault Schueller
 /// This file is distributed under the MIT License
 ///
-/// @file renderbufferobject.inl
+/// @file renderbuffer.inl
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
 namespace mogl
 {
-    inline RenderBufferObject::RenderBufferObject()
+    inline RenderBuffer::RenderBuffer()
     {
         glCreateRenderbuffers(1, &_handle);
     }
 
-    inline RenderBufferObject::~RenderBufferObject()
+    inline RenderBuffer::~RenderBuffer()
     {
         if (_handle)
             glDeleteRenderbuffers(1, &_handle);
     }
 
-    inline void RenderBufferObject::setStorage(GLenum internalformat, GLsizei width, GLsizei height)
+    inline void RenderBuffer::setStorage(GLenum internalformat, GLsizei width, GLsizei height)
     {
         glNamedRenderbufferStorage(_handle, internalformat, width, height);
     }
 
-    inline void RenderBufferObject::setStorageMultisample(GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
+    inline void RenderBuffer::setStorageMultisample(GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
     {
         glNamedRenderbufferStorageMultisample(_handle, samples, internalformat, width, height);
     }
 
-    inline void RenderBufferObject::getParameteriv(GLenum property, GLint* value)
+    inline void RenderBuffer::getParameteriv(GLenum property, GLint* value)
     {
         glGetNamedRenderbufferParameteriv(_handle, property, value);
     }
 
-    inline bool RenderBufferObject::isValid() const
+    inline bool RenderBuffer::isValid() const
     {
         return glIsRenderbuffer(_handle) == GL_TRUE;
     }

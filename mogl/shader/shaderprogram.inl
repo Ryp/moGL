@@ -8,7 +8,7 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include <mogl/exception.hpp>
+#include <mogl/exception/shaderexception.hpp>
 
 #include <iostream>
 #include <iomanip>
@@ -26,12 +26,12 @@ namespace mogl
             glDeleteProgram(_handle);
     }
 
-    inline void ShaderProgram::attach(const ShaderObject& object)
+    inline void ShaderProgram::attach(const Shader& object)
     {
         glAttachShader(_handle, object.getHandle());
     }
 
-    inline void ShaderProgram::detach(const ShaderObject& object)
+    inline void ShaderProgram::detach(const Shader& object)
     {
         glDetachShader(_handle, object.getHandle());
     }
@@ -61,12 +61,12 @@ namespace mogl
         _log = std::string();
         retrieveLocations();
         // NOTE can be improved
-        retrieveSubroutines(ShaderObject::ShaderType::VertexShader);
-        retrieveSubroutines(ShaderObject::ShaderType::GeometryShader);
-        retrieveSubroutines(ShaderObject::ShaderType::TesselationControlShader);
-        retrieveSubroutines(ShaderObject::ShaderType::TesselationEvaluationShader);
-        retrieveSubroutines(ShaderObject::ShaderType::ComputeShader);
-        retrieveSubroutines(ShaderObject::ShaderType::FragmentShader);
+        retrieveSubroutines(Shader::Type::VertexShader);
+        retrieveSubroutines(Shader::Type::GeometryShader);
+        retrieveSubroutines(Shader::Type::TesselationControlShader);
+        retrieveSubroutines(Shader::Type::TesselationEvaluationShader);
+        retrieveSubroutines(Shader::Type::ComputeShader);
+        retrieveSubroutines(Shader::Type::FragmentShader);
         return true;
     }
 
@@ -178,7 +178,7 @@ namespace mogl
         delete[] name;
     }
 
-    inline void ShaderProgram::retrieveSubroutines(ShaderObject::ShaderType type)
+    inline void ShaderProgram::retrieveSubroutines(Shader::Type type)
     {
         GLenum  shaderType = static_cast<GLenum>(type);
         int     countActiveSU;
@@ -463,7 +463,7 @@ namespace mogl
         glUniformMatrix4fv(getUniformLocation(name), count, transpose, ptr);
     }
 
-    inline void ShaderProgram::setUniformSubroutine(ShaderObject::ShaderType type, const std::string& uniform, const std::string& subroutine)
+    inline void ShaderProgram::setUniformSubroutine(Shader::Type type, const std::string& uniform, const std::string& subroutine)
     {
         if (!_subroutines.count(type))
             throw(mogl::ShaderException("no subroutine for this shader stage"));

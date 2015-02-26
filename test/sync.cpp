@@ -13,14 +13,14 @@
 class FenceTest : public GLTestFixture {};
 
 using mogl::Fence;
-using mogl::BufferObject;
-using mogl::VertexArrayObject;
+using mogl::Buffer;
+using mogl::VertexArray;
 
 TEST_F(FenceTest, fence)
 {
     Fence               fence(GL_SYNC_GPU_COMMANDS_COMPLETE, 0);
-    VertexArrayObject   vao;
-    BufferObject        vbo(GL_ARRAY_BUFFER);
+    VertexArray   vao;
+    Buffer        vbo(GL_ARRAY_BUFFER);
     unsigned int        vboSize = 12;
 //     float               vertices[vboSize];
     GLbitfield          flags = GL_MAP_WRITE_BIT | GL_MAP_PERSISTENT_BIT | GL_MAP_COHERENT_BIT;

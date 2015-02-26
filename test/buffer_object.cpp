@@ -10,13 +10,13 @@
 
 #include "stdafx.h" // For IDE completion only
 
-class BufferObjectTest : public GLTestFixture {};
+class BufferTest : public GLTestFixture {};
 
-using mogl::BufferObject;
+using mogl::Buffer;
 
-BufferObject    createVbo()
+Buffer    createVbo()
 {
-    BufferObject    vbo(GL_ARRAY_BUFFER);
+    Buffer    vbo(GL_ARRAY_BUFFER);
     std::size_t     size = 3 * 4;
     float           buffer[size];
 
@@ -25,9 +25,9 @@ BufferObject    createVbo()
     return vbo;
 }
 
-TEST_F(BufferObjectTest, vbo)
+TEST_F(BufferTest, vbo)
 {
-    BufferObject    vbo(createVbo()); // Use move semantics
+    Buffer    vbo(createVbo()); // Use move semantics
 
     EXPECT_TRUE(vbo.isValid());
 }

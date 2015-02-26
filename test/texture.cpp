@@ -12,13 +12,13 @@
 
 class TextureTest : public GLTestFixture {};
 
-using mogl::TextureObject;
+using mogl::Texture;
 using mogl::Sampler;
 
 TEST_F(TextureTest, texture)
 {
-    TextureObject   frameTexture(GL_TEXTURE_2D);
-    TextureObject   depthTexture(GL_TEXTURE_2D);
+    Texture   frameTexture(GL_TEXTURE_2D);
+    Texture   depthTexture(GL_TEXTURE_2D);
     Sampler         sampler;
     GLfloat         border[] = {1.0f, 0.0f, 0.0f, 0.0f};
 

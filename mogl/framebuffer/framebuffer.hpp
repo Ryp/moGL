@@ -4,36 +4,36 @@
 /// Copyright (c) 2015 Thibault Schueller
 /// This file is distributed under the MIT License
 ///
-/// @file framebufferobject.hpp
+/// @file framebuffer.hpp
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ///
 /// @brief Framebuffer object OO wrapper using OpenGL 4.5 DSA features
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef MOGL_FRAMEBUFFEROBJECT_INCLUDED
-#define MOGL_FRAMEBUFFEROBJECT_INCLUDED
+#ifndef MOGL_FRAMEBUFFER_INCLUDED
+#define MOGL_FRAMEBUFFER_INCLUDED
 
 #include <mogl/handle.hpp>
-#include <mogl/renderbuffer/renderbufferobject.hpp>
-#include <mogl/texture/textureobject.hpp>
+#include <mogl/renderbuffer/renderbuffer.hpp>
+#include <mogl/texture/texture.hpp>
 
 namespace mogl
 {
-    class FrameBufferObject : public Handle<GLuint>
+    class FrameBuffer : public Handle<GLuint>
     {
     public:
-        FrameBufferObject();
-        ~FrameBufferObject();
+        FrameBuffer();
+        ~FrameBuffer();
 
-        FrameBufferObject(const FrameBufferObject& other) = delete;
-        FrameBufferObject& operator=(const FrameBufferObject& other) = delete;
+        FrameBuffer(const FrameBuffer& other) = delete;
+        FrameBuffer& operator=(const FrameBuffer& other) = delete;
 
-        FrameBufferObject(FrameBufferObject&& other) = default;
+        FrameBuffer(FrameBuffer&& other) = default;
 
     public:
         void    bind(GLenum target);
-        void    setRenderBuffer(GLenum attachment, RenderBufferObject& renderbuffer);
-        void    setTexture(GLenum attachment, TextureObject& texture, GLint level = 0);
+        void    setRenderBuffer(GLenum attachment, RenderBuffer& renderbuffer);
+        void    setTexture(GLenum attachment, Texture& texture, GLint level = 0);
         void    setDrawBuffer(GLenum buffer);
         void    setDrawBuffers(GLsizei size, const GLenum* buffers);
         void    set(GLenum property, GLint value);
@@ -47,7 +47,7 @@ namespace mogl
     };
 }
 
-#include "framebufferobject.inl"
+#include "framebuffer.inl"
 
-#endif // MOGL_FRAMEBUFFEROBJECT_INCLUDED
+#endif // MOGL_FRAMEBUFFER_INCLUDED
 

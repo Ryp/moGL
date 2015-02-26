@@ -14,7 +14,7 @@
 #include <map>
 
 #include <mogl/handle.hpp>
-#include <mogl/shader/shaderobject.hpp>
+#include <mogl/shader/shader.hpp>
 
 namespace mogl
 {
@@ -25,8 +25,8 @@ namespace mogl
         ~ShaderProgram();
 
     public:
-        void                attach(const ShaderObject& object);
-        void                detach(const ShaderObject& object);
+        void                attach(const Shader& object);
+        void                detach(const Shader& object);
         void                bindAttribLocation(GLuint location, const std::string& attribute);
         bool                link();
         void                use();
@@ -61,7 +61,7 @@ namespace mogl
         void    setUniformMatrixPtr(const std::string& name, const T* ptr, GLboolean transpose = GL_FALSE, GLsizei count = 1);
 
     public:
-        void    setUniformSubroutine(ShaderObject::ShaderType type, const std::string& uniform, const std::string& subroutine);
+        void    setUniformSubroutine(Shader::Type type, const std::string& uniform, const std::string& subroutine);
 
     public:
         void    printDebug();
@@ -72,7 +72,7 @@ namespace mogl
 
     private:
         void    retrieveLocations();
-        void    retrieveSubroutines(ShaderObject::ShaderType type);
+        void    retrieveSubroutines(Shader::Type type);
 
     private:
         using HandleMap = std::map<std::string, GLuint>;
@@ -81,7 +81,7 @@ namespace mogl
             HandleMap   subroutines;
         };
         using SubroutineMap = std::map<std::string, SubroutineUniform>;
-        using ShaderSubroutineMap = std::map<ShaderObject::ShaderType, SubroutineMap>;
+        using ShaderSubroutineMap = std::map<Shader::Type, SubroutineMap>;
 
         std::string         _log;
         HandleMap           _attribs;

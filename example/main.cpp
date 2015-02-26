@@ -7,11 +7,11 @@ using namespace gl;
 
 #include <fstream>
 
-#include <mogl/shader.hpp>
-#include <mogl/texture.hpp>
-#include <mogl/buffer/bufferobject.hpp>
-#include <mogl/buffer/vertexarrayobject.hpp>
-#include <mogl/queryobject.hpp>
+#include <mogl/shader/shaderprogram.hpp>
+#include <mogl/texture/texture.hpp>
+#include <mogl/buffer/buffer.hpp>
+#include <mogl/buffer/vertexarray.hpp>
+#include <mogl/sync/query.hpp>
 #include <mogl/states/states.hpp>
 
 #define GLM_FORCE_RADIANS
@@ -23,27 +23,27 @@ using namespace gl;
 
 void    example(GLContext& ctx)
 {
-    ModelLoader             loader;
-    Model*                  mesh = loader.load("data/cube.obj");
-    mogl::VertexArrayObject vao;
-    mogl::BufferObject      vertexBuffer(GL_ARRAY_BUFFER);
-    mogl::BufferObject      normalBuffer(GL_ARRAY_BUFFER);
-    mogl::BufferObject      uvBuffer(GL_ARRAY_BUFFER);
-    mogl::BufferObject      elementBuffer(GL_ELEMENT_ARRAY_BUFFER);
-    mogl::TextureObject     texture(GL_TEXTURE_2D);
-    mogl::QueryObject       timeQuery(GL_TIME_ELAPSED);
-    mogl::QueryObject       polyQuery(GL_PRIMITIVES_GENERATED);
-    std::ifstream           vsFile("data/basic_shading.vert");
-    std::ifstream           fsFile("data/basic_shading.frag");
-    mogl::ShaderProgram     shader;
-    mogl::ShaderObject      vertex(vsFile, mogl::ShaderObject::ShaderType::VertexShader);
-    mogl::ShaderObject      fragment(fsFile, mogl::ShaderObject::ShaderType::FragmentShader);
-    glm::mat4               Projection  = glm::perspective(45.0f, static_cast<float>(ctx.getWindowSize().x) / static_cast<float>(ctx.getWindowSize().y), 0.1f, 100.0f);
-    glm::mat4               View        = glm::lookAt(glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(), glm::vec3(0, 1, 0));
-    glm::mat4               Model       = glm::mat4(1.0);
-    glm::mat4               MV          = View * Model;
-    glm::mat4               MVP         = Projection * MV;
-    glm::vec3               lightInvDir = glm::vec3(0.5f, 2, 2);
+    ModelLoader         loader;
+    Model*              mesh = loader.load("data/cube.obj");
+    mogl::VertexArray   vao;
+    mogl::Buffer        vertexBuffer(GL_ARRAY_BUFFER);
+    mogl::Buffer        normalBuffer(GL_ARRAY_BUFFER);
+    mogl::Buffer        uvBuffer(GL_ARRAY_BUFFER);
+    mogl::Buffer        elementBuffer(GL_ELEMENT_ARRAY_BUFFER);
+    mogl::Texture       texture(GL_TEXTURE_2D);
+    mogl::Query         timeQuery(GL_TIME_ELAPSED);
+    mogl::Query         polyQuery(GL_PRIMITIVES_GENERATED);
+    std::ifstream       vsFile("data/basic_shading.vert");
+    std::ifstream       fsFile("data/basic_shading.frag");
+    mogl::ShaderProgram shader;
+    mogl::Shader        vertex(vsFile, mogl::Shader::Type::VertexShader);
+    mogl::Shader        fragment(fsFile, mogl::Shader::Type::FragmentShader);
+    glm::mat4           Projection  = glm::perspective(45.0f, static_cast<float>(ctx.getWindowSize().x) / static_cast<float>(ctx.getWindowSize().y), 0.1f, 100.0f);
+    glm::mat4           View        = glm::lookAt(glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(), glm::vec3(0, 1, 0));
+    glm::mat4           Model       = glm::mat4(1.0);
+    glm::mat4           MV          = View * Model;
+    glm::mat4           MVP         = Projection * MV;
+    glm::vec3           lightInvDir = glm::vec3(0.5f, 2, 2);
 
     texture.bind(0);
     ImageLoader::loadDDS("data/uvmap.dds", texture);
@@ -121,8 +121,8 @@ void    example(GLContext& ctx)
 
         polyQuery.end();
         timeQuery.end();
-        double glms = static_cast<double>(timeQuery.getResult<GLuint>(GL_QUERY_RESULT)) * 0.000001;
-        unsigned int poly = polyQuery.getResult<GLuint>(GL_QUERY_RESULT);
+        double glms = static_cast<double>(timeQuery.get<GLuint>(GL_QUERY_RESULT)) * 0.000001;
+        unsigned int poly = polyQuery.get<GLuint>(GL_QUERY_RESULT);
 
         ctx.swapBuffers();
         frameTime = ctx.getTime() - frameTime;

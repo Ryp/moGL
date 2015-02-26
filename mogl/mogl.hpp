@@ -11,17 +11,23 @@
 #ifndef MOGL_INCLUDED
 #define MOGL_INCLUDED
 
-#include "buffer.hpp"
-#include "exception.hpp"
-#include "debug.hpp"
-#include "framebuffer.hpp"
-#include "queryobject.hpp"
-#include "renderbuffer.hpp"
-#include "shader.hpp"
-#include "states/states.hpp"
-#include "sync/fence.hpp"
-#include "sync/sync.hpp"
-#include "texture.hpp"
-#include "version.hpp"
+#include <mogl/buffer/buffer.hpp>
+#include <mogl/buffer/transformfeedback.hpp>
+#include <mogl/buffer/vertexarray.hpp>
+#include <mogl/debug.hpp>
+#include <mogl/exception/moglexception.hpp>
+#include <mogl/exception/shaderexception.hpp>
+#include <mogl/framebuffer/framebuffer.hpp>
+#include <mogl/handle.hpp>
+#include <mogl/renderbuffer/renderbuffer.hpp>
+#include <mogl/shader/shader.hpp>
+#include <mogl/shader/shaderprogram.hpp>
+#include <mogl/states/states.hpp>
+#include <mogl/sync/fence.hpp>
+#include <mogl/sync/query.hpp>
+#include <mogl/sync/sync.hpp>
+#include <mogl/texture/sampler.hpp>
+#include <mogl/texture/texture.hpp>
+#include <mogl/version.hpp>
 
 #endif // MOGL_INCLUDED

@@ -4,7 +4,7 @@
 /// Copyright (c) 2015 Thibault Schueller
 /// This file is distributed under the MIT License
 ///
-/// @file shaderobject.inl
+/// @file shader.inl
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -13,7 +13,7 @@
 
 namespace mogl
 {
-    inline ShaderObject::ShaderObject(std::istream& sourceFile, ShaderType type)
+    inline Shader::Shader(std::istream& sourceFile, Type type)
     :   _code(std::istreambuf_iterator<char>(static_cast<std::istream&>(sourceFile)), std::istreambuf_iterator<char>()),
         _type(type),
         _isCompiled(false)
@@ -21,7 +21,7 @@ namespace mogl
         _handle = glCreateShader(static_cast<GLenum>(_type));
     }
 
-    inline ShaderObject::ShaderObject(std::string& sourceCode, ShaderType type)
+    inline Shader::Shader(std::string& sourceCode, Type type)
     :   _code(sourceCode),
         _type(type),
         _isCompiled(false)
@@ -29,13 +29,13 @@ namespace mogl
         _handle = glCreateShader(static_cast<GLenum>(_type));
     }
 
-    inline ShaderObject::~ShaderObject()
+    inline Shader::~Shader()
     {
         if (_handle)
             glDeleteShader(_handle);
     }
 
-    inline bool ShaderObject::compile()
+    inline bool Shader::compile()
     {
         GLint       logLength = 0;
         char const* srcPtr = _code.c_str();
@@ -58,39 +58,39 @@ namespace mogl
         return _isCompiled;
     }
 
-    inline const std::string& ShaderObject::getCode() const
+    inline const std::string& Shader::getCode() const
     {
         return _code;
     }
 
-    inline ShaderObject::ShaderType ShaderObject::getType() const
+    inline Shader::Type Shader::getType() const
     {
         return _type;
     }
 
-    inline const std::string& ShaderObject::getLog() const
+    inline const std::string& Shader::getLog() const
     {
         return _log;
     }
 
-    inline void ShaderObject::get(GLenum property, GLint* value)
+    inline void Shader::get(GLenum property, GLint* value)
     {
         glGetShaderiv(_handle, property, value);
     }
 
-    inline GLint ShaderObject::get(GLenum property)
+    inline GLint Shader::get(GLenum property)
     {
         GLint   value;
         glGetShaderiv(_handle, property, &value);
         return value;
     }
 
-    inline bool ShaderObject::isCompiled() const
+    inline bool Shader::isCompiled() const
     {
         return _isCompiled;
     }
 
-    inline bool ShaderObject::isValid() const
+    inline bool Shader::isValid() const
     {
         return glIsShader(_handle) == GL_TRUE;
     }

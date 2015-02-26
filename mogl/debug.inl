@@ -8,7 +8,7 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include <mogl/exception.hpp>
+#include <mogl/exception/moglexception.hpp>
 
 #include <sstream>
 

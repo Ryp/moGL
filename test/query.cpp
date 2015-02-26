@@ -10,20 +10,20 @@
 
 #include "stdafx.h" // For IDE completion only
 
-class QueryObjectTest : public GLTestFixture {};
+class QueryTest : public GLTestFixture {};
 
-using mogl::QueryObject;
+using mogl::Query;
 
-TEST_F(QueryObjectTest, timer)
+TEST_F(QueryTest, timer)
 {
-    QueryObject qo(GL_TIME_ELAPSED);
+    Query qo(GL_TIME_ELAPSED);
 
     qo.begin();
     qo.end();
-    GLint rslt1 = qo.getResult<GLint>(GL_QUERY_RESULT);
-    GLuint rslt2 = qo.getResult<GLuint>(GL_QUERY_RESULT);
-    GLint64 rslt3 = qo.getResult<GLint64>(GL_QUERY_RESULT);
-    GLuint64 rslt4 = qo.getResult<GLuint64>(GL_QUERY_RESULT);
+    GLint rslt1 = qo.get<GLint>(GL_QUERY_RESULT);
+    GLuint rslt2 = qo.get<GLuint>(GL_QUERY_RESULT);
+    GLint64 rslt3 = qo.get<GLint64>(GL_QUERY_RESULT);
+    GLuint64 rslt4 = qo.get<GLuint64>(GL_QUERY_RESULT);
 
     static_cast<void>(rslt1);
     static_cast<void>(rslt2);

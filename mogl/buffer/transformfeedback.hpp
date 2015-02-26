@@ -4,27 +4,27 @@
 /// Copyright (c) 2015 Thibault Schueller
 /// This file is distributed under the MIT License
 ///
-/// @file transformfeedbackobject.hpp
+/// @file transformfeedback.hpp
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef MOGL_TRANSFORMFEEDBACKOBJECT_INCLUDED
-#define MOGL_TRANSFORMFEEDBACKOBJECT_INCLUDED
+#ifndef MOGL_TRANSFORMFEEDBACK_INCLUDED
+#define MOGL_TRANSFORMFEEDBACK_INCLUDED
 
 #include <mogl/handle.hpp>
 
 namespace mogl
 {
-    class TransformFeedbackObject : public Handle<GLuint>
+    class TransformFeedback : public Handle<GLuint>
     {
     public:
-        TransformFeedbackObject();
-        ~TransformFeedbackObject();
+        TransformFeedback();
+        ~TransformFeedback();
 
-        TransformFeedbackObject(const TransformFeedbackObject& other) = delete;
-        TransformFeedbackObject& operator=(const TransformFeedbackObject& other) = delete;
+        TransformFeedback(const TransformFeedback& other) = delete;
+        TransformFeedback& operator=(const TransformFeedback& other) = delete;
 
-        TransformFeedbackObject(TransformFeedbackObject&& other) = default;
+        TransformFeedback(TransformFeedback&& other) = default;
 
     public:
         void    bind(GLenum target = GL_TRANSFORM_FEEDBACK);
@@ -38,6 +38,6 @@ namespace mogl
     };
 }
 
-#include "transformfeedbackobject.inl"
+#include "transformfeedback.inl"
 
-#endif // MOGL_TRANSFORMFEEDBACKOBJECT_INCLUDED
+#endif // MOGL_TRANSFORMFEEDBACK_INCLUDED

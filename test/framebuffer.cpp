@@ -10,15 +10,15 @@
 
 #include "stdafx.h" // For IDE completion only
 
-class FrameBufferObjectTest : public GLTestFixture {};
+class FrameBufferTest : public GLTestFixture {};
 
-using mogl::FrameBufferObject;
+using mogl::FrameBuffer;
 
-TEST_F(FrameBufferObjectTest, instantiation)
+TEST_F(FrameBufferTest, instantiation)
 {
-    FrameBufferObject           fbo;
-    mogl::TextureObject         colorTexture(GL_TEXTURE_2D);
-    mogl::RenderBufferObject    depthRenderBuffer;
+    FrameBuffer           fbo;
+    mogl::Texture         colorTexture(GL_TEXTURE_2D);
+    mogl::RenderBuffer    depthRenderBuffer;
     GLfloat                     clearColor[] = { 0.0f, 0.0f, 0.5 };
 
     colorTexture.setImage2D(0, static_cast<GLint>(GL_RGB16F), _ctx.getWindowSize().x, _ctx.getWindowSize().y, 0, GL_RGB, GL_HALF_FLOAT, 0);

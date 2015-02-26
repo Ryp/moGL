@@ -4,29 +4,29 @@
 /// Copyright (c) 2015 Thibault Schueller
 /// This file is distributed under the MIT License
 ///
-/// @file bufferobject.hpp
+/// @file buffer.hpp
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ///
 /// @brief Buffer object OO wrapper using OpenGL 4.5 DSA features
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef MOGL_BUFFEROBJECT_INCLUDED
-#define MOGL_BUFFEROBJECT_INCLUDED
+#ifndef MOGL_BUFFER_INCLUDED
+#define MOGL_BUFFER_INCLUDED
 
 #include <mogl/handle.hpp>
 
 namespace mogl
 {
-    class BufferObject : public Handle<GLuint>
+    class Buffer : public Handle<GLuint>
     {
     public:
-        BufferObject(GLenum target);
-        ~BufferObject();
+        Buffer(GLenum target);
+        ~Buffer();
 
-        BufferObject(const BufferObject& other) = delete;
-        BufferObject& operator=(const BufferObject& other) = delete;
+        Buffer(const Buffer& other) = delete;
+        Buffer& operator=(const Buffer& other) = delete;
 
-        BufferObject(BufferObject&& other) = default;
+        Buffer(Buffer&& other) = default;
 
     public:
         void    bind();
@@ -52,6 +52,6 @@ namespace mogl
     };
 }
 
-#include "bufferobject.inl"
+#include "buffer.inl"
 
-#endif // MOGL_BUFFEROBJECT_INCLUDED
+#endif // MOGL_BUFFER_INCLUDED

@@ -12,11 +12,11 @@
 
 class RenderBufferTest : public GLTestFixture {};
 
-using mogl::RenderBufferObject;
+using mogl::RenderBuffer;
 
 TEST_F(RenderBufferTest, binding)
 {
-    RenderBufferObject  rbo;
+    RenderBuffer  rbo;
 
     rbo.setStorage(GL_DEPTH_COMPONENT, 1024, 1024);
     rbo.getHandle();

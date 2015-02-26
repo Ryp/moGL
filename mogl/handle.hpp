@@ -12,7 +12,7 @@
 /// The isValid() method will result to a call to glIs*() with the appropriated
 /// name.
 ///
-/// Ex: class FrameBufferObject -> isValid will call glIsFramebuffer().
+/// Ex: class FrameBuffer -> isValid will call glIsFramebuffer().
 ////////////////////////////////////////////////////////////////////////////////
 
 #ifndef MOGL_HANDLE_INCLUDED
