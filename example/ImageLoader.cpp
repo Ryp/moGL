@@ -10,14 +10,12 @@
 #include "ImageLoader.hpp"
 
 #include <glbinding/gl/gl.h>
-#include <glbinding/Binding.h>
 
 using namespace gl;
 
 #include <mogl/texture/texture.hpp>
 
 #include <gli/gli.hpp>
-#include <gli/core/load_dds.hpp>
 
 void ImageLoader::loadDDS(const std::string& file, mogl::Texture& texture)
 {

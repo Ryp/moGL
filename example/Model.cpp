@@ -48,10 +48,10 @@ void Model::computeTangents()
 
 void Model::computeNormalsSimple()
 {
-    int trianglesNo = getTriangleCount();
+    std::size_t trianglesNo = getTriangleCount();
 
     _normals.resize(_vertices.size());
-    for (int i = 0; i < trianglesNo; ++i)
+    for (std::size_t i = 0; i < trianglesNo; ++i)
     {
         glm::vec3   a = _vertices[i * 3 + 1] - _vertices[i * 3 + 0];
         glm::vec3   b = _vertices[i * 3 + 2] - _vertices[i * 3 + 0];

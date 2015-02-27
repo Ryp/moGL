@@ -1,5 +1,4 @@
 #include <glbinding/gl/gl.h>
-#include <glbinding/Binding.h>
 
 using namespace gl;
 
@@ -14,7 +13,6 @@ using namespace gl;
 #include <mogl/sync/query.hpp>
 #include <mogl/states/states.hpp>
 
-#define GLM_FORCE_RADIANS
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "ImageLoader.hpp"
@@ -85,7 +83,7 @@ void    example(GLContext& ctx)
     glViewport(0, 0, ctx.getWindowSize().x, ctx.getWindowSize().y);
     while (ctx.isOpen())
     {
-        float frameTime = ctx.getTime();
+        double frameTime = ctx.getTime();
         timeQuery.begin();
         polyQuery.begin();
 
@@ -126,7 +124,7 @@ void    example(GLContext& ctx)
 
         ctx.swapBuffers();
         frameTime = ctx.getTime() - frameTime;
-        ctx.setTitle(std::to_string(poly) + " Primitives | Total " + std::to_string(frameTime * 1000.0f) + " ms / GPU " + std::to_string(glms) + " ms " + std::to_string(ctx.getWindowSize().x) + "x"  + std::to_string(ctx.getWindowSize().y));
+        ctx.setTitle(std::to_string(poly) + " Primitives | Total " + std::to_string(frameTime * 1000.0) + " ms / GPU " + std::to_string(glms) + " ms " + std::to_string(ctx.getWindowSize().x) + "x"  + std::to_string(ctx.getWindowSize().y));
     }
     delete mesh;
 }

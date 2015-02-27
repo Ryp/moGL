@@ -19,14 +19,14 @@ namespace mogl
         inline std::string getErrorString(GLenum error)
         {
             switch (error) {
-                case GL_INVALID_ENUM:                   return "Invalid enum"; break;
-                case GL_INVALID_VALUE:                  return "Invalid value"; break;
-                case GL_INVALID_OPERATION:              return "Invalid operation"; break;
-                case GL_INVALID_FRAMEBUFFER_OPERATION:  return "Invalid framebuffer operation"; break;
-                case GL_OUT_OF_MEMORY:                  return "Out of memory"; break;
-                case GL_STACK_UNDERFLOW:                return "Stack underflow"; break;
-                case GL_STACK_OVERFLOW:                 return "Stack overflow"; break;
-                default:                                return "Unknown error"; break;
+                case GL_INVALID_ENUM:                   return "Invalid enum";
+                case GL_INVALID_VALUE:                  return "Invalid value";
+                case GL_INVALID_OPERATION:              return "Invalid operation";
+                case GL_INVALID_FRAMEBUFFER_OPERATION:  return "Invalid framebuffer operation";
+                case GL_OUT_OF_MEMORY:                  return "Out of memory";
+                case GL_STACK_UNDERFLOW:                return "Stack underflow";
+                case GL_STACK_OVERFLOW:                 return "Stack overflow";
+                default:                                return "Unknown error";
             }
         }
 

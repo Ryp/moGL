@@ -5,10 +5,11 @@
 
 class GLFWwindow;
 
-typedef struct {
+struct Vect2u {
     unsigned int x;
     unsigned int y;
-} Vect2u;
+    Vect2u(unsigned int x_, unsigned int y_) : x(x_), y(y_) {}
+};
 
 class GLContext
 {

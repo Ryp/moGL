@@ -2,15 +2,11 @@
 #include <stdexcept>
 
 #include <glbinding/gl/gl.h>
-#include <glbinding/ContextInfo.h>
-#include <glbinding/Version.h>
-#include <glbinding/Binding.h>
 
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 
 using namespace gl;
-using namespace glbinding;
 
 #include "glcontext.hpp"
 
@@ -42,7 +38,7 @@ void GLContext::create(unsigned int width, unsigned int height, unsigned int maj
     _windowSize = {width, height};
     makeCurrent();
 
-    Binding::initialize(true);
+    glbinding::Binding::initialize(true);
 
     glfwSwapInterval(1); // NOTE Drivers may ignore this
     glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);

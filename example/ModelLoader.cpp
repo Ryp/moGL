@@ -1,8 +1,6 @@
 #include <vector>
 #include <sstream>
-#include <cctype>
 #include <algorithm>
-#include <string.h>
 
 #include "ModelLoader.hh"
 
@@ -10,7 +8,7 @@
 
 ModelLoader::ModelLoader()
 {
-    _parsers["obj"] = &ModelLoader::loadOBJ;
+    _parsers.insert(std::make_pair("obj", &ModelLoader::loadOBJ));
 }
 
 ModelLoader::~ModelLoader() {}
@@ -65,7 +63,7 @@ Model* ModelLoader::loadOBJ(std::ifstream& src)
         else if (line == "vt")
         {
             ss >> tmpVec2[0] >> tmpVec2[1];
-            tmpVec2[1] = 1.0 - tmpVec2[1]; // Revert V coordinate
+            tmpVec2[1] = 1.0f - tmpVec2[1]; // Revert V coordinate
             uvs.push_back(tmpVec2);
         }
         else if (line == "f")
@@ -79,7 +77,7 @@ Model* ModelLoader::loadOBJ(std::ifstream& src)
                 {
                     val = line.substr(0, line.find_first_of('/'));
                     if (!val.empty())
-                        vIdx[j] = abs(std::stoul(val)) - 1;
+                        vIdx[j] = static_cast<unsigned int>(abs(std::stoi(val)) - 1);
                     else
                         vIdx[j] = 0;
                     if ((pos = line.find_first_of('/')) != std::string::npos)
@@ -96,7 +94,7 @@ Model* ModelLoader::loadOBJ(std::ifstream& src)
                 {
                     val = line.substr(0, line.find_first_of('/'));
                     if (!val.empty())
-                        vIdx[j] = abs(std::stoul(val)) - 1;
+                        vIdx[j] = static_cast<unsigned int>(abs(std::stoi(val)) - 1);
                     else
                         vIdx[j] = 0;
                     if ((pos = line.find_first_of('/')) != std::string::npos)

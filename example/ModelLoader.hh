@@ -20,7 +20,8 @@ private:
     Model*    loadOBJ(std::ifstream& src);
 
 private:
-    std::map<std::string, Model* (ModelLoader::*)(std::ifstream&)> _parsers;
+    using MLF = Model* (ModelLoader::*)(std::ifstream&);
+    std::map<std::string, MLF> _parsers;
 };
 
 #endif // MODELLOADER_HH
