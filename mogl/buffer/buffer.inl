@@ -57,6 +57,16 @@ namespace mogl
         glClearNamedBufferSubData(_handle, internalformat, offset, size, format, type, data);
     }
 
+    inline void Buffer::invalidateData()
+    {
+        glInvalidateBufferData(_handle);
+    }
+
+    inline void Buffer::invalidateSubData(GLintptr offset, GLsizeiptr length)
+    {
+        glInvalidateBufferSubData(_handle, offset, length);
+    }
+
     inline void* Buffer::map(GLenum access)
     {
         return glMapNamedBuffer(_handle, access);

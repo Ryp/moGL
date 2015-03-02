@@ -36,6 +36,8 @@ namespace mogl
         void    copySubData(GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
         void    clearData(GLenum internalformat, GLenum format, GLenum type, const void* data);
         void    clearSubData(GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum type, const void* data);
+        void    invalidateData();
+        void    invalidateSubData(GLintptr offset, GLsizeiptr length);
         void*   map(GLenum access);
         void*   mapRange(GLintptr offset, GLsizeiptr length, GLbitfield access);
         bool    unmap();

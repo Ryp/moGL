@@ -20,6 +20,7 @@
 #include <mogl/framebuffer/framebuffer.hpp>
 #include <mogl/handle.hpp>
 #include <mogl/renderbuffer/renderbuffer.hpp>
+#include <mogl/shader/programpipeline.hpp>
 #include <mogl/shader/shader.hpp>
 #include <mogl/shader/shaderprogram.hpp>
 #include <mogl/states/states.hpp>
