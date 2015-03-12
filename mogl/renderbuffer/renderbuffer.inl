@@ -11,6 +11,7 @@
 namespace mogl
 {
     inline RenderBuffer::RenderBuffer()
+    :   Handle(GL_RENDERBUFFER)
     {
         glCreateRenderbuffers(1, &_handle);
     }

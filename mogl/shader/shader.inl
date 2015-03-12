@@ -14,7 +14,8 @@
 namespace mogl
 {
     inline Shader::Shader(std::istream& sourceFile, Type type)
-    :   _code(std::istreambuf_iterator<char>(static_cast<std::istream&>(sourceFile)), std::istreambuf_iterator<char>()),
+    :   Handle(GL_SHADER),
+        _code(std::istreambuf_iterator<char>(static_cast<std::istream&>(sourceFile)), std::istreambuf_iterator<char>()),
         _type(type),
         _isCompiled(false)
     {
@@ -22,7 +23,8 @@ namespace mogl
     }
 
     inline Shader::Shader(std::string& sourceCode, Type type)
-    :   _code(sourceCode),
+    :   Handle(GL_SHADER),
+        _code(sourceCode),
         _type(type),
         _isCompiled(false)
     {

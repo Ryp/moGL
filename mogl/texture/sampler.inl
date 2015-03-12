@@ -11,6 +11,7 @@
 namespace mogl
 {
     inline Sampler::Sampler()
+    :   Handle(GL_SAMPLER)
     {
         glCreateSamplers(1, &_handle);
     }

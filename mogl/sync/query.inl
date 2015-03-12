@@ -11,7 +11,8 @@
 namespace mogl
 {
     inline Query::Query(GLenum type)
-    :   _type(type)
+    :   Handle(GL_QUERY),
+        _type(type)
     {
         glCreateQueries(_type, 1, &_handle);
     }

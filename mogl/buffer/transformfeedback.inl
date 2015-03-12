@@ -11,6 +11,7 @@
 namespace mogl
 {
     inline TransformFeedback::TransformFeedback()
+    :   Handle(GL_TRANSFORM_FEEDBACK)
     {
         glCreateTransformFeedbacks(1, &_handle);
     }

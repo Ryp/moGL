@@ -16,6 +16,7 @@
 namespace mogl
 {
     inline ShaderProgram::ShaderProgram()
+    :   Handle(GL_PROGRAM)
     {
         _handle = glCreateProgram();
     }

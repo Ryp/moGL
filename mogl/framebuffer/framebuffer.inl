@@ -11,6 +11,7 @@
 namespace mogl
 {
     inline FrameBuffer::FrameBuffer()
+    :   Handle(GL_FRAMEBUFFER)
     {
         glCreateFramebuffers(1, &_handle);
     }

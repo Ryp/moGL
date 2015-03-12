@@ -24,13 +24,13 @@ namespace mogl
     class Handle
     {
     public:
-        Handle() : _handle(0) {}
+        Handle(GLenum identifier = GL_NONE) : _handle(0), _identifier(identifier) {}
         virtual ~Handle() = default;
 
         Handle(const Handle& other) = delete;
         Handle& operator=(const Handle& other) = delete;
 
-        Handle(Handle&& other) noexcept : _handle(other._handle)
+        Handle(Handle&& other) noexcept : _handle(other._handle), _identifier(other._identifier)
         {
             other._handle = 0;
         }
@@ -42,7 +42,8 @@ namespace mogl
         virtual bool    isValid() const = 0;
 
     protected:
-        T   _handle;
+        T               _handle;
+        const GLenum    _identifier;
     };
 }
 

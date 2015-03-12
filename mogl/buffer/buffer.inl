@@ -11,7 +11,8 @@
 namespace mogl
 {
     inline Buffer::Buffer(GLenum target)
-    :   _target(target)
+    :   Handle(GL_BUFFER),
+        _target(target)
     {
         glCreateBuffers(1, &_handle);
     }

@@ -8,6 +8,8 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ///
 /// @brief Texture object OO wrapper using OpenGL 4.5 DSA features
+/// TODO glGetTextureLevelParameterfv and GetTextureLevelParameteriv are the
+/// only missing DSA functions.
 ////////////////////////////////////////////////////////////////////////////////
 
 #ifndef MOGL_TEXTURE_INCLUDED
@@ -30,12 +32,55 @@ namespace mogl
 
     public:
         void    bind(GLuint unit);
+        void    setBuffer(GLenum internalformat, GLuint buffer);
+        void    setBufferRange(GLenum internalformat, GLuint buffer,
+                               GLintptr offset, GLsizeiptr size);
+        void    setStorage1D(GLsizei levels, GLenum internalformat, GLsizei width);
         void    setStorage2D(GLsizei levels, GLenum internalformat,
                              GLsizei width, GLsizei height);
+        void    setStorage3D(GLsizei levels, GLenum internalformat,
+                             GLsizei width, GLsizei height, GLsizei depth);
+        void    setStorage2DMultisample(GLsizei samples, GLenum internalformat,
+                                        GLsizei width, GLsizei height,
+                                        GLboolean fixedsamplelocations);
+        void    setStorage3DMultisample(GLsizei samples, GLenum internalformat,
+                                        GLsizei width, GLsizei height, GLsizei depth,
+                                        GLboolean fixedsamplelocations);
+        void    setSubImage1D(GLint level, GLint xoffset, GLsizei width,
+                              GLenum format, GLenum type, const void* pixels);
+        void    setSubImage2D(GLint level, GLint xoffset, GLint yoffset,
+                              GLsizei width, GLsizei height, GLenum format,
+                              GLenum type, const void* pixels);
+        void    setSubImage3D(GLint level, GLint xoffset, GLint yoffset,
+                              GLint zoffset, GLsizei width, GLsizei height,
+                              GLsizei depth, GLenum format, GLenum type,
+                              const void* pixels);
+        void    setCompressedSubImage1D(GLint level, GLint xoffset,
+                                        GLsizei width, GLenum format,
+                                        GLsizei imageSize, const void* data);
+        void    setCompressedSubImage2D(GLint level, GLint xoffset,
+                                        GLint yoffset, GLsizei width,
+                                        GLsizei height, GLenum format,
+                                        GLsizei imageSize, const void* data);
+        void    setCompressedSubImage3D(GLint level, GLint xoffset,
+                                        GLint yoffset, GLint zoffset,
+                                        GLsizei width, GLsizei height,
+                                        GLsizei depth, GLenum format,
+                                        GLsizei imageSize, const void* data);
+        void    copySubImage1D(GLint level, GLint xoffset, GLint x, GLint y,
+                               GLsizei width);
+        void    copySubImage2D(GLint level, GLint xoffset, GLint yoffset,
+                               GLint x, GLint y, GLsizei width, GLsizei height);
+        void    copySubImage3D(GLint level, GLint xoffset, GLint yoffset,
+                               GLint zoffset, GLint x, GLint y, GLsizei width,
+                               GLsizei height);
         void    setImage2D(GLint level, GLint internalFormat, GLsizei width,
                            GLsizei height, GLint border, GLenum format,
                            GLenum type, const GLvoid* data); // TODO is this GL 4.5 core ?
         void    generateMipmap();
+        void    getImage(GLint level, GLenum format, GLenum type,
+                         GLsizei bufSize, void* pixels);
+        void    getCompressedImage(GLint level, GLsizei bufSize, void* pixels);
         GLenum  getTarget() const;
         template <class T> void get(GLenum property, T* value); // Direct call to glGetTextureParameter*v()
         template <class T> T    get(GLenum property);

@@ -11,6 +11,7 @@
 namespace mogl
 {
     inline VertexArray::VertexArray()
+    :   Handle(GL_VERTEX_ARRAY)
     {
         glCreateVertexArrays(1, &_handle);
     }

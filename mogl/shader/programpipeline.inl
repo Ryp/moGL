@@ -11,6 +11,7 @@
 namespace mogl
 {
     inline ProgramPipeline::ProgramPipeline()
+    :   Handle(GL_PROGRAM_PIPELINE)
     {
         glCreateProgramPipelines(1, &_handle);
     }
