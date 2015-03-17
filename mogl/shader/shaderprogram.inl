@@ -62,12 +62,12 @@ namespace mogl
         _log = std::string();
         retrieveLocations();
         // NOTE can be improved
-        retrieveSubroutines(Shader::Type::VertexShader);
-        retrieveSubroutines(Shader::Type::GeometryShader);
-        retrieveSubroutines(Shader::Type::TesselationControlShader);
-        retrieveSubroutines(Shader::Type::TesselationEvaluationShader);
-        retrieveSubroutines(Shader::Type::ComputeShader);
-        retrieveSubroutines(Shader::Type::FragmentShader);
+        retrieveSubroutines(GL_VERTEX_SHADER);
+        retrieveSubroutines(GL_GEOMETRY_SHADER);
+        retrieveSubroutines(GL_TESS_CONTROL_SHADER);
+        retrieveSubroutines(GL_TESS_EVALUATION_SHADER);
+        retrieveSubroutines(GL_COMPUTE_SHADER);
+        retrieveSubroutines(GL_FRAGMENT_SHADER);
         return true;
     }
 
@@ -179,27 +179,26 @@ namespace mogl
         delete[] name;
     }
 
-    inline void ShaderProgram::retrieveSubroutines(Shader::Type type)
+    inline void ShaderProgram::retrieveSubroutines(GLenum type)
     {
-        GLenum  shaderType = static_cast<GLenum>(type);
         int     countActiveSU;
         char    sname[256]; // FIXME
         int     len;
         int     numCompS;
 
-        glGetProgramStageiv(_handle, shaderType, GL_ACTIVE_SUBROUTINE_UNIFORMS, &countActiveSU);
+        glGetProgramStageiv(_handle, type, GL_ACTIVE_SUBROUTINE_UNIFORMS, &countActiveSU);
         for (int i = 0; i < countActiveSU; ++i)
         {
-            glGetActiveSubroutineUniformName(_handle, shaderType, i, 256, &len, sname);
-            glGetActiveSubroutineUniformiv(_handle, shaderType, i, GL_NUM_COMPATIBLE_SUBROUTINES, &numCompS);
+            glGetActiveSubroutineUniformName(_handle, type, i, 256, &len, sname);
+            glGetActiveSubroutineUniformiv(_handle, type, i, GL_NUM_COMPATIBLE_SUBROUTINES, &numCompS);
             SubroutineUniform& subUniform = _subroutines[type][sname];
 
             subUniform.uniform = i;
             GLint* s = new GLint[numCompS];
-            glGetActiveSubroutineUniformiv(_handle, shaderType, i, GL_COMPATIBLE_SUBROUTINES, s);
+            glGetActiveSubroutineUniformiv(_handle, type, i, GL_COMPATIBLE_SUBROUTINES, s);
             for (int j = 0; j < numCompS; ++j)
             {
-                glGetActiveSubroutineName(_handle, shaderType, s[j], 256, &len, sname);
+                glGetActiveSubroutineName(_handle, type, s[j], 256, &len, sname);
                 subUniform.subroutines[sname] = s[j];
             }
             delete[] s;
@@ -464,7 +463,7 @@ namespace mogl
         glUniformMatrix4fv(getUniformLocation(name), count, transpose, ptr);
     }
 
-    inline void ShaderProgram::setUniformSubroutine(Shader::Type type, const std::string& uniform, const std::string& subroutine)
+    inline void ShaderProgram::setUniformSubroutine(GLenum type, const std::string& uniform, const std::string& subroutine)
     {
         if (!_subroutines.count(type))
             throw(mogl::ShaderException("no subroutine for this shader stage"));

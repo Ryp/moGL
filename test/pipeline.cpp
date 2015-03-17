@@ -20,8 +20,8 @@ TEST_F(ProgramPipelineTest, linking)
 {
     std::ifstream   vsFile("data/shader001-valid.vert");
     std::ifstream   fsFile("data/shader001-valid.frag");
-    Shader          vertex(vsFile, Shader::Type::VertexShader);
-    Shader          fragment(fsFile, Shader::Type::FragmentShader);
+    Shader          vertex(vsFile, GL_VERTEX_SHADER);
+    Shader          fragment(fsFile, GL_FRAGMENT_SHADER);
     ShaderProgram   shader;
     ProgramPipeline pipeline;
 

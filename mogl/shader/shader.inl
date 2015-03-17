@@ -13,7 +13,7 @@
 
 namespace mogl
 {
-    inline Shader::Shader(std::istream& sourceFile, Type type)
+    inline Shader::Shader(std::istream& sourceFile, GLenum type)
     :   Handle(GL_SHADER),
         _code(std::istreambuf_iterator<char>(static_cast<std::istream&>(sourceFile)), std::istreambuf_iterator<char>()),
         _type(type),
@@ -22,7 +22,7 @@ namespace mogl
         _handle = glCreateShader(static_cast<GLenum>(_type));
     }
 
-    inline Shader::Shader(std::string& sourceCode, Type type)
+    inline Shader::Shader(std::string& sourceCode, GLenum type)
     :   Handle(GL_SHADER),
         _code(sourceCode),
         _type(type),
@@ -65,7 +65,7 @@ namespace mogl
         return _code;
     }
 
-    inline Shader::Type Shader::getType() const
+    inline GLenum Shader::getType() const
     {
         return _type;
     }

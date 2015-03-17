@@ -20,18 +20,8 @@ namespace mogl
     class Shader : public Handle<GLuint>
     {
     public:
-        enum class Type {
-            VertexShader                = GL_VERTEX_SHADER,
-            TesselationControlShader    = GL_TESS_CONTROL_SHADER,
-            TesselationEvaluationShader = GL_TESS_EVALUATION_SHADER,
-            GeometryShader              = GL_GEOMETRY_SHADER,
-            FragmentShader              = GL_FRAGMENT_SHADER,
-            ComputeShader               = GL_COMPUTE_SHADER
-        };
-
-    public:
-        Shader(std::istream& sourceFile, Type type);
-        Shader(std::string& sourceCode, Type type);
+        Shader(std::istream& sourceFile, GLenum type);
+        Shader(std::string& sourceCode, GLenum type);
         ~Shader();
 
         Shader(const Shader& other) = delete;
@@ -40,7 +30,7 @@ namespace mogl
     public:
         bool                compile();
         const std::string&  getCode() const;
-        Type                getType() const;
+        GLenum              getType() const;
         const std::string&  getLog() const;
         void                get(GLenum property, GLint* value); // Direct call to glGetShaderiv()
         GLint               get(GLenum property);
@@ -48,10 +38,10 @@ namespace mogl
         bool                isValid() const override final;
 
     private:
-        std::string _code;
-        Type        _type;
-        std::string _log;
-        bool        _isCompiled;
+        std::string     _code;
+        const GLenum    _type;
+        std::string     _log;
+        bool            _isCompiled;
     };
 }
 

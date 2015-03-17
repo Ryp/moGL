@@ -34,8 +34,8 @@ void    example(GLContext& ctx)
     std::ifstream       vsFile("data/basic_shading.vert");
     std::ifstream       fsFile("data/basic_shading.frag");
     mogl::ShaderProgram shader;
-    mogl::Shader        vertex(vsFile, mogl::Shader::Type::VertexShader);
-    mogl::Shader        fragment(fsFile, mogl::Shader::Type::FragmentShader);
+    mogl::Shader        vertex(vsFile, GL_VERTEX_SHADER);
+    mogl::Shader        fragment(fsFile, GL_FRAGMENT_SHADER);
     glm::mat4           Projection  = glm::perspective(45.0f, static_cast<float>(ctx.getWindowSize().x) / static_cast<float>(ctx.getWindowSize().y), 0.1f, 100.0f);
     glm::mat4           View        = glm::lookAt(glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(), glm::vec3(0, 1, 0));
     glm::mat4           Model       = glm::mat4(1.0);

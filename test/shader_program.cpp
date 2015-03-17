@@ -19,8 +19,8 @@ TEST_F(ShaderProgramTest, linking)
 {
     std::ifstream   vsFile("data/shader001-valid.vert");
     std::ifstream   fsFile("data/shader001-valid.frag");
-    Shader          vertex(vsFile, Shader::Type::VertexShader);
-    Shader          fragment(fsFile, Shader::Type::FragmentShader);
+    Shader          vertex(vsFile, GL_VERTEX_SHADER);
+    Shader          fragment(fsFile, GL_FRAGMENT_SHADER);
     ShaderProgram   shader;
 
     EXPECT_TRUE(vertex.compile()) << vertex.getLog();
@@ -40,8 +40,8 @@ TEST_F(ShaderProgramTest, linking)
     color[0] = 1.0f;
 
     ASSERT_NO_THROW(shader.setUniformPtr<4>("color", color));
-    ASSERT_NO_THROW(shader.setUniformSubroutine(Shader::Type::FragmentShader, "colorSelector", "customColor"));
-    ASSERT_NO_THROW(shader.setUniformSubroutine(Shader::Type::FragmentShader, "colorSelector", "redColor"));
+    ASSERT_NO_THROW(shader.setUniformSubroutine(GL_VERTEX_SHADER, "colorSelector", "customColor"));
+    ASSERT_NO_THROW(shader.setUniformSubroutine(GL_VERTEX_SHADER, "colorSelector", "redColor"));
 
     EXPECT_NO_THROW(shader.detach(vertex));
     EXPECT_NO_THROW(shader.detach(fragment));
