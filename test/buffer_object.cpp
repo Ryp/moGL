@@ -10,11 +10,11 @@
 
 class BufferTest : public GLTestFixture {};
 
-using mogl::Buffer;
+using mogl::ArrayBuffer;
 
-Buffer    createVbo()
+ArrayBuffer    createVbo()
 {
-    Buffer      vbo(GL_ARRAY_BUFFER);
+    ArrayBuffer vbo;
     std::size_t size = 3 * 4;
     float       buffer[size];
 
@@ -25,7 +25,7 @@ Buffer    createVbo()
 
 TEST_F(BufferTest, vbo)
 {
-    Buffer  vbo(createVbo()); // Use move semantics
+    ArrayBuffer vbo(createVbo()); // Use move semantics
 
     EXPECT_TRUE(vbo.isValid());
 }

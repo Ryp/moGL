@@ -25,6 +25,10 @@ namespace mogl
         AtomicCounterBuffer& operator=(const AtomicCounterBuffer& other) = delete;
 
         AtomicCounterBuffer(AtomicCounterBuffer&& other) = default;
+
+    public:
+        using Buffer::bindBufferBase;
+        using Buffer::bindBufferRange;
     };
 }
 
