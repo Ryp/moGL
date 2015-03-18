@@ -6,7 +6,7 @@
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = moGL
 #PROJECT_NUMBER         = (Override by travis-ci)
-PROJECT_BRIEF          = "Modern OpenGL wrapper, thin C++14 header-only layer on top of the OpenGL 4.5+ API"
+PROJECT_BRIEF          = "Modern OpenGL wrapper, thin C++14 header-only layer on top of the OpenGL 4.5+ core spec"
 PROJECT_LOGO           =
 OUTPUT_DIRECTORY       = .
 CREATE_SUBDIRS         = NO
