@@ -101,6 +101,11 @@ namespace mogl
         return -1;
     }
 
+    inline void ShaderProgram::setTransformFeedbackVaryings(GLsizei count, const char** varyings, GLenum bufferMode)
+    {
+        glTransformFeedbackVaryings(_handle, count, varyings, bufferMode);
+    }
+
     inline void ShaderProgram::printDebug()
     {
         std::cout << "Attributes:" << std::endl;

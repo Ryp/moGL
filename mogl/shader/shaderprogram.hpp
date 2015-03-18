@@ -33,6 +33,9 @@ namespace mogl
         const std::string&  getLog() const;
         GLuint              getAttribLocation(const std::string& name) const;
         GLuint              getUniformLocation(const std::string& name) const;
+        void                setTransformFeedbackVaryings(GLsizei count,
+                                                         const char** varyings,
+                                                         GLenum bufferMode);
 
     public:
         void    setVertexAttribPointer(GLuint location,

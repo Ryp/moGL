@@ -35,13 +35,14 @@ TEST_F(ShaderProgramTest, linking)
 
     ASSERT_TRUE(shader.link()) << shader.getLog();
     ASSERT_NO_THROW(shader.use());
+    shader.printDebug();
 
     GLfloat color[4];
     color[0] = 1.0f;
 
     ASSERT_NO_THROW(shader.setUniformPtr<4>("color", color));
-    ASSERT_NO_THROW(shader.setUniformSubroutine(GL_VERTEX_SHADER, "colorSelector", "customColor"));
-    ASSERT_NO_THROW(shader.setUniformSubroutine(GL_VERTEX_SHADER, "colorSelector", "redColor"));
+    ASSERT_NO_THROW(shader.setUniformSubroutine(GL_FRAGMENT_SHADER, "colorSelector", "redColor"));
+    ASSERT_NO_THROW(shader.setUniformSubroutine(GL_FRAGMENT_SHADER, "colorSelector", "customColor"));
 
     EXPECT_NO_THROW(shader.detach(vertex));
     EXPECT_NO_THROW(shader.detach(fragment));

@@ -12,10 +12,12 @@
 #define MOGL_INCLUDED
 
 #include <mogl/buffer/arraybuffer.hpp>
+#include <mogl/buffer/atomiccounterbuffer.hpp>
 #include <mogl/buffer/buffer.hpp>
 #include <mogl/buffer/elementarraybuffer.hpp>
 #include <mogl/buffer/shaderstoragebuffer.hpp>
 #include <mogl/buffer/transformfeedback.hpp>
+#include <mogl/buffer/transformfeedbackbuffer.hpp>
 #include <mogl/buffer/uniformbuffer.hpp>
 #include <mogl/buffer/vertexarray.hpp>
 #include <mogl/debug.hpp>

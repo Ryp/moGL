@@ -60,5 +60,6 @@ moglCreateTest(renderbuffer)
 moglCreateTest(shader_program)
 moglCreateTest(sync)
 moglCreateTest(texture)
+moglCreateTest(transform_feedback)
 
 file(COPY data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
