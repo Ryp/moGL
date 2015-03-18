@@ -20,14 +20,12 @@
 
 #include <mogl/object/buffer/arraybuffer.hpp>
 #include <mogl/object/buffer/atomiccounterbuffer.hpp>
-#include <mogl/object/buffer/buffer.hpp>
 #include <mogl/object/buffer/elementarraybuffer.hpp>
 #include <mogl/object/buffer/shaderstoragebuffer.hpp>
 #include <mogl/object/buffer/transformfeedbackbuffer.hpp>
 #include <mogl/object/buffer/uniformbuffer.hpp>
 #include <mogl/object/fence.hpp>
 #include <mogl/object/framebuffer.hpp>
-#include <mogl/object/handle.hpp>
 #include <mogl/object/query.hpp>
 #include <mogl/object/renderbuffer.hpp>
 #include <mogl/object/sampler.hpp>

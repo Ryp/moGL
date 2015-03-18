@@ -8,8 +8,6 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ///
 /// @brief Texture object OO wrapper using OpenGL 4.5 DSA features
-/// TODO glGetTextureLevelParameterfv and GetTextureLevelParameteriv are the
-/// only missing DSA functions.
 ////////////////////////////////////////////////////////////////////////////////
 
 #ifndef MOGL_TEXTURE_INCLUDED
