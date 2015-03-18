@@ -11,7 +11,7 @@
 #ifndef MOGL_SHADERSTORAGEBUFFER_INCLUDED
 #define MOGL_SHADERSTORAGEBUFFER_INCLUDED
 
-#include <mogl/buffer/buffer.hpp>
+#include <mogl/object/buffer/buffer.hpp>
 
 namespace mogl
 {
