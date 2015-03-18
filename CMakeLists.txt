@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.1.3 FATAL_ERROR)
 
 # Set CMAKE_BUILD_TYPE to Release by default.
 # Must be done before calling project()
@@ -10,10 +10,6 @@ endif()
 project(moGL)
 option(MOGL_BUILD_TESTS "build-tests" OFF)
 option(MOGL_BUILD_EXAMPLES "build-examples" OFF)
-
-file(GLOB_RECURSE MOGL_FILES "mogl/*.hpp" "mogl/*.inl")
-add_library(moGL INTERFACE)
-target_sources(moGL INTERFACE ${MOGL_FILES})
 
 set(INSTALL_CMAKE_DIR lib${LIB_SUFFIX}/cmake/mogl CACHE PATH "Installation directory for cmake config files")
 

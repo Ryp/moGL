@@ -46,6 +46,8 @@ namespace mogl
         template <class T> T    get(GLuint index, GLenum property);
         bool    isValid() const override final;
     };
+
+    using VAO = VertexArray;
 }
 
 #include "vertexarray.inl"

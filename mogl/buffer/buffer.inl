@@ -135,4 +135,14 @@ namespace mogl
     {
         return glIsBuffer(_handle) == GL_TRUE;
     }
+
+    inline void Buffer::bindBufferBase(GLuint index)
+    {
+        glBindBufferBase(_target, index, _handle);
+    }
+
+    inline void Buffer::bindBufferRange(GLuint index, GLintptr offset, GLsizeiptr size)
+    {
+        glBindBufferRange(_target, index, _handle, offset, size);
+    }
 }

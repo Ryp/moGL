@@ -19,8 +19,10 @@ namespace mogl
 {
     class Buffer : public Handle<GLuint>
     {
-    public:
+    protected:
         Buffer(GLenum target);
+
+    public:
         ~Buffer();
 
         Buffer(const Buffer& other) = delete;
@@ -29,7 +31,6 @@ namespace mogl
         Buffer(Buffer&& other) = default;
 
     public:
-        void    bind();
         void    setStorage(GLsizeiptr size, const void* data, GLbitfield flags);
         void    setData(GLsizeiptr size, const void* data, GLenum usage);
         void    setSubData(GLintptr offset, GLsizeiptr size, const void* data);
@@ -48,6 +49,11 @@ namespace mogl
         void    getSubData(GLintptr offset, GLsizeiptr size, void* data);
         GLenum  getTarget() const;
         bool    isValid() const override final;
+
+    protected:
+        void    bind();
+        void    bindBufferBase(GLuint index);
+        void    bindBufferRange(GLuint index, GLintptr offset, GLsizeiptr size);
 
     private:
         const GLenum    _target;

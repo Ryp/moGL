@@ -1,6 +1,6 @@
 #MoGL [![Build Status](https://travis-ci.org/Ryp/moGL.svg?branch=master)](https://travis-ci.org/Ryp/moGL) [![Join the chat at https://gitter.im/Ryp/moGL](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Ryp/moGL?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Modern OpenGL wrapper, thin C++14 header-only layer on top of the OpenGL 4.5+ API
+Modern OpenGL wrapper, thin C++14 header-only layer on top of the OpenGL 4.5+ core spec.
 
 Doxygen available [here](http://ryp.github.io/moGL/).
 

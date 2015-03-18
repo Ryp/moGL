@@ -8,7 +8,8 @@ using namespace gl;
 
 #include <mogl/shader/shaderprogram.hpp>
 #include <mogl/texture/texture.hpp>
-#include <mogl/buffer/buffer.hpp>
+#include <mogl/buffer/arraybuffer.hpp>
+#include <mogl/buffer/elementarraybuffer.hpp>
 #include <mogl/buffer/vertexarray.hpp>
 #include <mogl/sync/query.hpp>
 #include <mogl/states/states.hpp>
@@ -23,11 +24,11 @@ void    example(GLContext& ctx)
 {
     ModelLoader         loader;
     Model*              mesh = loader.load("data/cube.obj");
-    mogl::VertexArray   vao;
-    mogl::Buffer        vertexBuffer(GL_ARRAY_BUFFER);
-    mogl::Buffer        normalBuffer(GL_ARRAY_BUFFER);
-    mogl::Buffer        uvBuffer(GL_ARRAY_BUFFER);
-    mogl::Buffer        elementBuffer(GL_ELEMENT_ARRAY_BUFFER);
+    mogl::VAO           vao;
+    mogl::VBO           vertexBuffer;
+    mogl::VBO           normalBuffer;
+    mogl::VBO           uvBuffer;
+    mogl::EBO           elementBuffer;
     mogl::Texture       texture(GL_TEXTURE_2D);
     mogl::Query         timeQuery(GL_TIME_ELAPSED);
     mogl::Query         polyQuery(GL_PRIMITIVES_GENERATED);
