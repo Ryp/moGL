@@ -14,11 +14,11 @@ class TransformFeedbackTest : public GLTestFixture {};
 
 using mogl::VBO;
 using mogl::VAO;
+using mogl::TFBO;
 using mogl::Shader;
 using mogl::Query;
 using mogl::ShaderProgram;
 using mogl::TransformFeedback;
-using mogl::TFBO;
 
 TEST_F(TransformFeedbackTest, test)
 {
@@ -27,11 +27,10 @@ TEST_F(TransformFeedbackTest, test)
     Shader              vertex(vsFile, GL_VERTEX_SHADER);
     Shader              geometry(gsFile, GL_GEOMETRY_SHADER);
     ShaderProgram       shader;
-    TransformFeedback   tf;
     Query               query(GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN);
+    VAO                 vao;
     VBO                 vbo;
     TFBO                tfbo;
-    VAO                 vao;
     const GLchar*       feedbackVaryings[] = { "outValue" };
     GLfloat             data[] = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f };
     GLfloat             feedback[15];

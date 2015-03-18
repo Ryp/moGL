@@ -6,13 +6,13 @@ using namespace gl;
 
 #include <fstream>
 
-#include <mogl/shader/shaderprogram.hpp>
-#include <mogl/texture/texture.hpp>
-#include <mogl/buffer/arraybuffer.hpp>
-#include <mogl/buffer/elementarraybuffer.hpp>
-#include <mogl/buffer/vertexarray.hpp>
-#include <mogl/sync/query.hpp>
-#include <mogl/states/states.hpp>
+#include <mogl/function/states.hpp>
+#include <mogl/object/texture.hpp>
+#include <mogl/object/buffer/arraybuffer.hpp>
+#include <mogl/object/buffer/elementarraybuffer.hpp>
+#include <mogl/object/query.hpp>
+#include <mogl/object/vertexarray.hpp>
+#include <mogl/object/shader/shaderprogram.hpp>
 
 #include <glm/gtc/matrix_transform.hpp>
 
