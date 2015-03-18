@@ -20,7 +20,9 @@ set(EXAMPLE_COMPILE_FLAGS "${CMAKE_CXX_FLAGS}")
 if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     set(EXAMPLE_COMPILE_FLAGS "${EXAMPLE_COMPILE_FLAGS} -Wall -Wextra -Wshadow -Wundef")
 endif()
-set_target_properties(${EXAMPLE_BIN} PROPERTIES COMPILE_FLAGS "${EXAMPLE_COMPILE_FLAGS}")
+set_target_properties(${EXAMPLE_BIN} PROPERTIES
+    CXX_STANDARD 14
+    COMPILE_FLAGS "${EXAMPLE_COMPILE_FLAGS}")
 
 #User includes dirs (won't hide warnings)
 target_include_directories(${EXAMPLE_BIN} PUBLIC
