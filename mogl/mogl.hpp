@@ -23,7 +23,6 @@
 #include <mogl/object/buffer/buffer.hpp>
 #include <mogl/object/buffer/elementarraybuffer.hpp>
 #include <mogl/object/buffer/shaderstoragebuffer.hpp>
-#include <mogl/object/buffer/transformfeedback.hpp>
 #include <mogl/object/buffer/transformfeedbackbuffer.hpp>
 #include <mogl/object/buffer/uniformbuffer.hpp>
 #include <mogl/object/fence.hpp>
@@ -36,6 +35,7 @@
 #include <mogl/object/shader/shader.hpp>
 #include <mogl/object/shader/shaderprogram.hpp>
 #include <mogl/object/texture.hpp>
+#include <mogl/object/transformfeedback.hpp>
 #include <mogl/object/vertexarray.hpp>
 
 #include <mogl/version.hpp>

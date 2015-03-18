@@ -11,7 +11,7 @@
 #ifndef MOGL_SAMPLER_INCLUDED
 #define MOGL_SAMPLER_INCLUDED
 
-#include <mogl/handle.hpp>
+#include <mogl/object/handle.hpp>
 
 namespace mogl
 {

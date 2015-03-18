@@ -13,9 +13,9 @@
 #ifndef MOGL_FRAMEBUFFER_INCLUDED
 #define MOGL_FRAMEBUFFER_INCLUDED
 
-#include <mogl/handle.hpp>
-#include <mogl/renderbuffer/renderbuffer.hpp>
-#include <mogl/texture/texture.hpp>
+#include <mogl/object/handle.hpp>
+#include <mogl/object/renderbuffer.hpp>
+#include <mogl/object/texture.hpp>
 
 namespace mogl
 {

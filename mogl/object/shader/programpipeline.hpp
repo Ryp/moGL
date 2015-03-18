@@ -11,7 +11,7 @@
 #ifndef MOGL_PROGRAMPIPELINE_INCLUDED
 #define MOGL_PROGRAMPIPELINE_INCLUDED
 
-#include <mogl/handle.hpp>
+#include <mogl/object/handle.hpp>
 
 namespace mogl
 {

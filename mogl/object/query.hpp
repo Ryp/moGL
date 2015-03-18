@@ -13,7 +13,7 @@
 #ifndef MOGL_QUERY_INCLUDED
 #define MOGL_QUERY_INCLUDED
 
-#include <mogl/handle.hpp>
+#include <mogl/object/handle.hpp>
 
 namespace mogl
 {

@@ -12,7 +12,7 @@
 #ifndef MOGL_FENCE_INCLUDED
 #define MOGL_FENCE_INCLUDED
 
-#include <mogl/handle.hpp>
+#include <mogl/object/handle.hpp>
 
 namespace mogl
 {

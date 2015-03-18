@@ -15,7 +15,7 @@
 #ifndef MOGL_TEXTURE_INCLUDED
 #define MOGL_TEXTURE_INCLUDED
 
-#include <mogl/handle.hpp>
+#include <mogl/object/handle.hpp>
 
 namespace mogl
 {

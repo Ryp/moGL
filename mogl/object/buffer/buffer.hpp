@@ -13,7 +13,7 @@
 #ifndef MOGL_BUFFER_INCLUDED
 #define MOGL_BUFFER_INCLUDED
 
-#include <mogl/handle.hpp>
+#include <mogl/object/handle.hpp>
 
 namespace mogl
 {

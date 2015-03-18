@@ -13,7 +13,7 @@
 #ifndef MOGL_RENDERBUFFER_INCLUDED
 #define MOGL_RENDERBUFFER_INCLUDED
 
-#include <mogl/handle.hpp>
+#include <mogl/object/handle.hpp>
 
 namespace mogl
 {

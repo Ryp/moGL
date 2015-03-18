@@ -13,7 +13,7 @@
 
 #include <string>
 
-#include <mogl/handle.hpp>
+#include <mogl/object/handle.hpp>
 
 namespace mogl
 {

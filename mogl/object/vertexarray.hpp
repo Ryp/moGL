@@ -13,7 +13,7 @@
 #ifndef MOGL_VERTEXARRAY_INCLUDED
 #define MOGL_VERTEXARRAY_INCLUDED
 
-#include <mogl/handle.hpp>
+#include <mogl/object/handle.hpp>
 
 namespace mogl
 {

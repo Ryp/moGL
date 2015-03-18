@@ -13,8 +13,8 @@
 
 #include <map>
 
-#include <mogl/handle.hpp>
-#include <mogl/shader/shader.hpp>
+#include <mogl/object/handle.hpp>
+#include <mogl/object/shader/shader.hpp>
 
 namespace mogl
 {
