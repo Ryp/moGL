@@ -72,9 +72,6 @@ namespace mogl
         void    copySubImage3D(GLint level, GLint xoffset, GLint yoffset,
                                GLint zoffset, GLint x, GLint y, GLsizei width,
                                GLsizei height);
-        void    setImage2D(GLint level, GLint internalFormat, GLsizei width,
-                           GLsizei height, GLint border, GLenum format,
-                           GLenum type, const GLvoid* data); // TODO is this GL 4.5 core ?
         void    generateMipmap();
         void    getImage(GLint level, GLenum format, GLenum type,
                          GLsizei bufSize, void* pixels);

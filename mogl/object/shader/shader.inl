@@ -13,22 +13,11 @@
 
 namespace mogl
 {
-    inline Shader::Shader(std::istream& sourceFile, GLenum type)
+    inline Shader::Shader(GLenum type)
     :   Handle(GL_SHADER),
-        _code(std::istreambuf_iterator<char>(static_cast<std::istream&>(sourceFile)), std::istreambuf_iterator<char>()),
-        _type(type),
-        _isCompiled(false)
+        _type(type)
     {
-        _handle = glCreateShader(static_cast<GLenum>(_type));
-    }
-
-    inline Shader::Shader(std::string& sourceCode, GLenum type)
-    :   Handle(GL_SHADER),
-        _code(sourceCode),
-        _type(type),
-        _isCompiled(false)
-    {
-        _handle = glCreateShader(static_cast<GLenum>(_type));
+        _handle = glCreateShader(_type);
     }
 
     inline Shader::~Shader()
@@ -37,32 +26,28 @@ namespace mogl
             glDeleteShader(_handle);
     }
 
-    inline bool Shader::compile()
+    inline bool Shader::compile(const std::string& source)
     {
-        GLint       logLength = 0;
-        char const* srcPtr = _code.c_str();
+        char const* srcPtr = source.c_str();
 
         glShaderSource(_handle, 1, &srcPtr, 0);
         glCompileShader(_handle);
-        _isCompiled = (get(GL_COMPILE_STATUS) == static_cast<GLint>(GL_TRUE));
-        _log = std::string();
-        if (!_isCompiled)
-        {
-            logLength = get(GL_INFO_LOG_LENGTH);
-            if (logLength > 1)
-            {
-                std::vector<GLchar> infoLog(logLength);
-                glGetShaderInfoLog(_handle, logLength, &logLength, &infoLog[0]);
-                infoLog[logLength - 1] = '\0'; // Overwrite endline
-                _log = &infoLog[0];
-            }
-        }
-        return _isCompiled;
+        return isCompiled();
     }
 
-    inline const std::string& Shader::getCode() const
+    inline bool Shader::compile(std::istream& sourceFile)
     {
-        return _code;
+        std::string source(std::istreambuf_iterator<char>(static_cast<std::istream&>(sourceFile)), std::istreambuf_iterator<char>());
+        return compile(source);
+    }
+
+    inline const std::string Shader::getSource() const
+    {
+        GLint               length = get(GL_SHADER_SOURCE_LENGTH);
+        std::vector<char>   source(length);
+
+        glGetShaderSource(_handle, length, nullptr, source.data());
+        return std::string(source.data(), length);
     }
 
     inline GLenum Shader::getType() const
@@ -70,17 +55,23 @@ namespace mogl
         return _type;
     }
 
-    inline const std::string& Shader::getLog() const
+    inline const std::string Shader::getLog() const
     {
-        return _log;
+        GLint   logLength = get(GL_INFO_LOG_LENGTH);
+
+        if (!logLength)
+            return std::string();
+        std::vector<GLchar> infoLog(logLength);
+        glGetShaderInfoLog(_handle, logLength, &logLength, &infoLog[0]);
+        return std::string(&infoLog[0]);
     }
 
-    inline void Shader::get(GLenum property, GLint* value)
+    inline void Shader::get(GLenum property, GLint* value) const
     {
         glGetShaderiv(_handle, property, value);
     }
 
-    inline GLint Shader::get(GLenum property)
+    inline GLint Shader::get(GLenum property) const
     {
         GLint   value;
         glGetShaderiv(_handle, property, &value);
@@ -89,7 +80,7 @@ namespace mogl
 
     inline bool Shader::isCompiled() const
     {
-        return _isCompiled;
+        return get(GL_COMPILE_STATUS) == static_cast<GLint>(GL_TRUE);
     }
 
     inline bool Shader::isValid() const

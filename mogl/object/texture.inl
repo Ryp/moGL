@@ -108,11 +108,6 @@ namespace mogl
         glCopyTextureSubImage3D(_handle, level, xoffset, yoffset, zoffset, x, y, width, height);
     }
 
-    inline void Texture::setImage2D(GLint level, GLint internalFormat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid* data)
-    {
-        glTextureImage2DEXT(_handle, _target, level, internalFormat, width, height, border, format, type, data);
-    }
-
     inline void Texture::generateMipmap()
     {
         glGenerateTextureMipmap(_handle);

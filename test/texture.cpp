@@ -20,14 +20,14 @@ TEST_F(TextureTest, texture)
     Sampler sampler;
     GLfloat border[] = {1.0f, 0.0f, 0.0f, 0.0f };
 
-    frameTexture.setImage2D(0, static_cast<GLint>(GL_RGB), _ctx.getWindowSize().x, _ctx.getWindowSize().y, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
+    frameTexture.setStorage2D(1, GL_RGBA16F, _ctx.getWindowSize().x, _ctx.getWindowSize().y);
     frameTexture.set(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     frameTexture.set(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     frameTexture.set(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     frameTexture.set(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     frameTexture.set(GL_TEXTURE_BORDER_COLOR, border);
 
-    depthTexture.setImage2D(0, static_cast<GLint>(GL_DEPTH_COMPONENT), _ctx.getWindowSize().x, _ctx.getWindowSize().y, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, 0);
+    depthTexture.setStorage2D(1, GL_DEPTH_COMPONENT32F, _ctx.getWindowSize().x, _ctx.getWindowSize().y);
     depthTexture.set(GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     depthTexture.set(GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     depthTexture.set(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);

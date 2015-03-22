@@ -21,7 +21,7 @@ TEST_F(FrameBufferTest, instantiation)
     RenderBuffer    depthRenderBuffer;
     GLfloat         clearColor[] = { 0.0f, 0.0f, 0.5f };
 
-    colorTexture.setImage2D(0, static_cast<GLint>(GL_RGB16F), _ctx.getWindowSize().x, _ctx.getWindowSize().y, 0, GL_RGB, GL_HALF_FLOAT, 0);
+    colorTexture.setStorage2D(1, GL_RGB16F, _ctx.getWindowSize().x, _ctx.getWindowSize().y);
     colorTexture.set(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     colorTexture.set(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     colorTexture.set(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);

@@ -24,8 +24,8 @@ TEST_F(TransformFeedbackTest, test)
 {
     std::ifstream       vsFile("data/transform_feedback.vert");
     std::ifstream       gsFile("data/transform_feedback.geom");
-    Shader              vertex(vsFile, GL_VERTEX_SHADER);
-    Shader              geometry(gsFile, GL_GEOMETRY_SHADER);
+    Shader              vertex(GL_VERTEX_SHADER);
+    Shader              geometry(GL_GEOMETRY_SHADER);
     ShaderProgram       shader;
     Query               query(GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN);
     VAO                 vao;
@@ -36,8 +36,8 @@ TEST_F(TransformFeedbackTest, test)
     GLfloat             feedback[15];
     GLuint              primitives;
 
-    ASSERT_TRUE(vertex.compile());
-    ASSERT_TRUE(geometry.compile());
+    ASSERT_TRUE(vertex.compile(vsFile));
+    ASSERT_TRUE(geometry.compile(gsFile));
     shader.attach(vertex);
     shader.attach(geometry);
 

@@ -20,28 +20,25 @@ namespace mogl
     class Shader : public Handle<GLuint>
     {
     public:
-        Shader(std::istream& sourceFile, GLenum type);
-        Shader(std::string& sourceCode, GLenum type);
+        Shader(GLenum type);
         ~Shader();
 
         Shader(const Shader& other) = delete;
         Shader& operator=(const Shader& other) = delete;
 
     public:
-        bool                compile();
-        const std::string&  getCode() const;
+        bool                compile(const std::string& source);
+        bool                compile(std::istream& sourceFile);
+        const std::string   getSource() const;
         GLenum              getType() const;
-        const std::string&  getLog() const;
-        void                get(GLenum property, GLint* value); // Direct call to glGetShaderiv()
-        GLint               get(GLenum property);
+        const std::string   getLog() const;
+        void                get(GLenum property, GLint* value) const; // Direct call to glGetShaderiv()
+        GLint               get(GLenum property) const;
         bool                isCompiled() const;
         bool                isValid() const override final;
 
     private:
-        std::string     _code;
         const GLenum    _type;
-        std::string     _log;
-        bool            _isCompiled;
     };
 }
 
