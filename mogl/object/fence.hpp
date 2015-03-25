@@ -19,7 +19,7 @@ namespace mogl
     class Fence : public Handle<GLsync>
     {
     public:
-        Fence(GLenum condition, GLbitfield flags);
+        Fence(GLenum condition, GLbitfield flags = 0);
         ~Fence();
 
         Fence(const Fence& other) = delete;

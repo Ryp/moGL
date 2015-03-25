@@ -18,33 +18,38 @@
 #ifndef MOGL_HANDLE_INCLUDED
 #define MOGL_HANDLE_INCLUDED
 
+#include <string>
+
 namespace mogl
 {
-    template <class T = GLuint>
+    template <class T>
     class Handle
     {
     public:
-        Handle(GLenum identifier = GL_NONE) : _handle(0), _identifier(identifier) {}
+        Handle(GLenum identifier = GL_NONE);
         virtual ~Handle() = default;
 
         Handle(const Handle& other) = delete;
         Handle& operator=(const Handle& other) = delete;
 
-        Handle(Handle&& other) noexcept : _handle(other._handle), _identifier(other._identifier)
-        {
-            other._handle = 0;
-        }
+        Handle(Handle&& other) noexcept;
 
     public:
-        T   getHandle() const { return _handle; }
+        T           getHandle() const;
+        std::string getLabel() const;
+        void        setLabel(const std::string& name);
 
     public:
         virtual bool    isValid() const = 0;
 
     protected:
-        T               _handle;
+        T   _handle;
+
+    private:
         const GLenum    _identifier;
     };
 }
+
+#include "handle.inl"
 
 #endif // MOGL_HANDLE_INCLUDED

@@ -6,6 +6,8 @@
 ///
 /// @file mogl.hpp
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
+///
+/// @mainpage Modern OpenGL Wrapper
 ////////////////////////////////////////////////////////////////////////////////
 
 #ifndef MOGL_INCLUDED
