@@ -8,6 +8,8 @@
 /// @author Thibault Schueller <ryp.sqrt@gmail.com>
 ////////////////////////////////////////////////////////////////////////////////
 
+#include <vector>
+
 #include <mogl/function/states.hpp>
 
 namespace mogl
