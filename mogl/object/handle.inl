@@ -35,23 +35,23 @@ namespace mogl
     template <>
     inline std::string Handle<GLuint>::getLabel() const
     {
-        GLint   maxLabelLen = get<GLint>(GL_MAX_LABEL_LENGTH);
-        GLchar  buffer[maxLabelLen];
-        GLsizei labelLen = 0;
+        GLint               maxLabelLen = get<GLint>(GL_MAX_LABEL_LENGTH);
+        std::vector<GLchar> buffer(maxLabelLen);
+        GLsizei             labelLen = 0;
 
-        glGetObjectLabel(_identifier, _handle, maxLabelLen, &labelLen, buffer);
-        return (buffer);
+        glGetObjectLabel(_identifier, _handle, maxLabelLen, &labelLen, &buffer[0]);
+        return (&buffer[0]);
     }
 
     template <>
     inline std::string Handle<GLsync>::getLabel() const
     {
-        GLint   maxLabelLen = get<GLint>(GL_MAX_LABEL_LENGTH);
-        GLchar  buffer[maxLabelLen];
-        GLsizei labelLen = 0;
+        GLint               maxLabelLen = get<GLint>(GL_MAX_LABEL_LENGTH);
+        std::vector<GLchar> buffer(maxLabelLen);
+        GLsizei             labelLen = 0;
 
-        glGetObjectPtrLabel(_handle, maxLabelLen, &labelLen, buffer);
-        return (buffer);
+        glGetObjectPtrLabel(_handle, maxLabelLen, &labelLen, &buffer[0]);
+        return (&buffer[0]);
     }
 
     template <>
