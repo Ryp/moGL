@@ -19,6 +19,7 @@ namespace mogl
     namespace Debug
     {
         std::string getErrorString(GLenum error);
+        std::string getGlslTypeString(GLenum type);
         void        assertGLState(const char* file, const char* func, int line);
     };
 }
