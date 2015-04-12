@@ -116,9 +116,11 @@ namespace mogl
         return value;
     }
 
-    inline void Buffer::getPointerv(GLenum property, void** value)
+    inline void* Buffer::getBufferPointer()
     {
-        glGetNamedBufferPointerv(_handle, property, value);
+        void*   ptr;
+        glGetNamedBufferPointerv(_handle, GL_BUFFER_MAP_POINTER, &ptr);
+        return ptr;
     }
 
     inline void Buffer::getSubData(GLintptr offset, GLsizeiptr size, void* data)

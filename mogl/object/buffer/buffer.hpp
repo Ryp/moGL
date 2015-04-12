@@ -45,7 +45,7 @@ namespace mogl
         void    flushMappedRange(GLintptr offset, GLsizeiptr length);
         template <class T> void get(GLenum property, T* value); // Direct call to glGetNamedBufferParameter*v()
         template <class T> T    get(GLenum property);
-        void    getPointerv(GLenum property, void** value);
+        void*   getBufferPointer(); /* call to glGetNamedBufferPointerv */
         void    getSubData(GLintptr offset, GLsizeiptr size, void* data);
         GLenum  getTarget() const;
         bool    isValid() const override final;
