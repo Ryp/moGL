@@ -2,11 +2,11 @@
 
 Modern OpenGL wrapper, thin C++14 header-only layer on top of the OpenGL 4.5+ core spec.
 
-Doxygen available [here](http://ryp.github.io/moGL/).
+Doxygen available [here](ryp.github.io/moGL/).
 
 ##Features
 
-MoGL takes **full advantage of the 4.5 core spec**, using [DSA](https://www.opengl.org/registry/specs/ARB/direct_state_access.txt) an RAII idioms in all object wrappers, limiting effectively side effects from OpenGL states. Say goodbye to `glBind*()` !
+MoGL takes **full advantage of the 4.5 core spec**, using [DSA](www.opengl.org/registry/specs/ARB/direct_state_access.txt) an RAII idioms in all object wrappers, limiting effectively side effects from OpenGL states. Say goodbye to `glBind*()` everywhere !
 
 It keeps most of the **syntax intact**, including enums and types, but improving and shortening it when it makes the most sense. Porting existing GL code to MoGL is **easy** !
 

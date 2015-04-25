@@ -35,6 +35,18 @@ namespace mogl
         glCullFace(mode);
     }
 
+    template <>
+    inline void setPixelStore<GLint>(GLenum property, GLint value)
+    {
+        glPixelStorei(property, value);
+    }
+    
+    template <>
+    inline void setPixelStore<GLfloat>(GLenum property, GLfloat value)
+    {
+        glPixelStoref(property, value);
+    }
+
     /*
      * get<> specialization for typed arrays
      */

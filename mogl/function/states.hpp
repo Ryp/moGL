@@ -18,6 +18,7 @@ namespace mogl
     void setActiveTexture(GLenum unit);
     void setViewport(GLint x, GLint y, GLsizei width, GLsizei height);
     void setCullFace(GLenum mode);
+    template <class T> void setPixelStore(GLenum property, T value);
 
     template <class T> void get(GLenum property, T* value); // Direct call to glGet*v()
     template <class T> T    get(GLenum property);
