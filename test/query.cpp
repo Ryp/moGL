@@ -28,5 +28,5 @@ TEST_F(QueryTest, timer)
     static_cast<void>(rslt3);
     static_cast<void>(rslt4);
 
-    EXPECT_TRUE(qo.isValid());
+    EXPECT_TRUE(qo.isHandleValid());
 }

@@ -102,7 +102,7 @@ namespace mogl
         return _type;
     }
 
-    inline bool Query::isValid() const
+    inline bool Query::isHandleValid() const
     {
         return glIsQuery(_handle) == GL_TRUE;
     }

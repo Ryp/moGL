@@ -105,7 +105,7 @@ namespace mogl
         glSamplerParameterfv(_handle, property, value);
     }
 
-    inline bool Sampler::isValid() const
+    inline bool Sampler::isHandleValid() const
     {
         return glIsSampler(_handle) == GL_TRUE;
     }

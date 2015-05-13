@@ -143,7 +143,7 @@ namespace mogl
         glProgramParameteri(_handle, property, value);
     }
 
-    inline bool ShaderProgram::isValid() const
+    inline bool ShaderProgram::isHandleValid() const
     {
         return glIsProgram(_handle) == GL_TRUE;
     }

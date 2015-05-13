@@ -44,7 +44,7 @@ namespace mogl
         template <class T> T    get(GLenum property);
         template <class T> void get(GLuint index, GLenum property, T* value); // Direct call to glGetVertexArrayIndexed*v()
         template <class T> T    get(GLuint index, GLenum property);
-        bool    isValid() const override final;
+        bool    isHandleValid() const override final;
     };
 
     using VAO = VertexArray;

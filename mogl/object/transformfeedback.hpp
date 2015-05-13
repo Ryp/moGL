@@ -28,7 +28,7 @@ namespace mogl
 
     public:
         void    bind(GLenum target = GL_TRANSFORM_FEEDBACK);
-        bool    isValid() const override final;
+        bool    isHandleValid() const override final;
 
     public:
         static void begin(GLenum primitiveMode);

@@ -31,7 +31,7 @@ namespace mogl
         template <class T> void get(GLenum property, T* value); // Direct call to glGetSamplerParameter*v()
         template <class T> T    get(GLenum property);
         template <class T> void set(GLenum property, T value);
-        bool    isValid() const override final;
+        bool    isHandleValid() const override final;
     };
 }
 

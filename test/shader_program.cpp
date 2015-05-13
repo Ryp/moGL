@@ -26,9 +26,9 @@ TEST_F(ShaderProgramTest, linking)
     EXPECT_TRUE(vertex.compile(vsFile)) << vertex.getLog();
     EXPECT_TRUE(fragment.compile(fsFile)) << fragment.getLog();
 
-    EXPECT_TRUE(vertex.isValid());
-    EXPECT_TRUE(fragment.isValid());
-    EXPECT_TRUE(shader.isValid());
+    EXPECT_TRUE(vertex.isHandleValid());
+    EXPECT_TRUE(fragment.isHandleValid());
+    EXPECT_TRUE(shader.isHandleValid());
 
     EXPECT_NO_THROW(shader.attach(vertex));
     EXPECT_NO_THROW(shader.attach(fragment));

@@ -37,7 +37,7 @@ namespace mogl
         glGetNamedRenderbufferParameteriv(_handle, property, value);
     }
 
-    inline bool RenderBuffer::isValid() const
+    inline bool RenderBuffer::isHandleValid() const
     {
         return glIsRenderbuffer(_handle) == GL_TRUE;
     }

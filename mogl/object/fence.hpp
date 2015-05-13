@@ -30,7 +30,7 @@ namespace mogl
     public:
         void    waitSync(GLbitfield flags, GLuint64 timeout = 0);
         GLenum  waitClientSync(GLbitfield flags, GLuint64 timeout = 0);
-        bool    isValid() const override final;
+        bool    isHandleValid() const override final;
     };
 }
 

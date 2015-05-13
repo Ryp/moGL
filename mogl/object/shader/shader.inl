@@ -83,7 +83,7 @@ namespace mogl
         return get(GL_COMPILE_STATUS) == static_cast<GLint>(GL_TRUE);
     }
 
-    inline bool Shader::isValid() const
+    inline bool Shader::isHandleValid() const
     {
         return glIsShader(_handle) == GL_TRUE;
     }

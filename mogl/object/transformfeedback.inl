@@ -27,7 +27,7 @@ namespace mogl
         glBindTransformFeedback(target, _handle);
     }
 
-    inline bool TransformFeedback::isValid() const
+    inline bool TransformFeedback::isHandleValid() const
     {
         return glIsTransformFeedback(_handle) == GL_TRUE;
     }

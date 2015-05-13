@@ -86,7 +86,7 @@ namespace mogl
         template <class T> void get(GLint level, GLenum property, T* value); // Direct call to glGetTextureLevelParameter*v()
         template <class T> T    get(GLint level, GLenum property);
         template <class T> void set(GLenum property, T value);
-        bool    isValid() const override final;
+        bool    isHandleValid() const override final;
 
     private:
         const GLenum    _target;

@@ -133,7 +133,7 @@ namespace mogl
         return _target;
     }
 
-    inline bool Buffer::isValid() const
+    inline bool Buffer::isHandleValid() const
     {
         return glIsBuffer(_handle) == GL_TRUE;
     }

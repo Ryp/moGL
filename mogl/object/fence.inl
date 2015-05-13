@@ -31,7 +31,7 @@ namespace mogl
         return glClientWaitSync(_handle, static_cast<SyncObjectMask>(flags), timeout); // TODO Find solution to remove glbinding dependance
     }
 
-    inline bool Fence::isValid() const
+    inline bool Fence::isHandleValid() const
     {
         return glIsSync(_handle) == GL_TRUE;
     }

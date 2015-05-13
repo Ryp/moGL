@@ -119,7 +119,7 @@ namespace mogl
         return value;
     }
 
-    inline bool VertexArray::isValid() const
+    inline bool VertexArray::isHandleValid() const
     {
         return glIsVertexArray(_handle) == GL_TRUE;
     }

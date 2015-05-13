@@ -34,7 +34,7 @@ namespace mogl
         template <class T> void get(GLenum property, T* value); // Direct call to glGetQuery*v()
         template <class T> T    get(GLenum property);
         GLenum  getType() const;
-        bool    isValid() const override final;
+        bool    isHandleValid() const override final;
 
     private:
         const GLenum    _type;

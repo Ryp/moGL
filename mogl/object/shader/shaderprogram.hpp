@@ -71,7 +71,7 @@ namespace mogl
         void    get(GLenum property, GLint* value); // Direct call to glGetProgramiv()
         GLint   get(GLenum property);
         void    set(GLenum property, GLint value);
-        bool    isValid() const override final;
+        bool    isHandleValid() const override final;
 
     private:
         void    retrieveLocations();

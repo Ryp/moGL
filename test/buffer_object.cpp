@@ -19,7 +19,7 @@ ArrayBuffer    createVbo()
     float       buffer[size];
 
     vbo.setData(sizeof(buffer[0]) * size, buffer, GL_STATIC_DRAW);
-    EXPECT_TRUE(vbo.isValid());
+    EXPECT_TRUE(vbo.isHandleValid());
     return vbo;
 }
 
@@ -27,5 +27,5 @@ TEST_F(BufferTest, vbo)
 {
     ArrayBuffer vbo(createVbo()); // Use move semantics
 
-    EXPECT_TRUE(vbo.isValid());
+    EXPECT_TRUE(vbo.isHandleValid());
 }

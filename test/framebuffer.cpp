@@ -39,5 +39,5 @@ TEST_F(FrameBufferTest, instantiation)
     const GLenum invalid[1] = {GL_COLOR_ATTACHMENT0};
     fbo.invalidate(1, &invalid[0]);
 
-    EXPECT_TRUE(fbo.isValid());
+    EXPECT_TRUE(fbo.isHandleValid());
 }

@@ -32,7 +32,7 @@ namespace mogl
         void    setStorage(GLenum internalformat, GLsizei width, GLsizei height);
         void    setStorageMultisample(GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height);
         void    getParameteriv(GLenum property, GLint* value);
-        bool    isValid() const override final;
+        bool    isHandleValid() const override final;
     };
 }
 

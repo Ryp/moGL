@@ -48,7 +48,7 @@ namespace mogl
         return value;
     }
 
-    inline bool ProgramPipeline::isValid() const
+    inline bool ProgramPipeline::isHandleValid() const
     {
         return glIsProgramPipeline(_handle) == GL_TRUE;
     }

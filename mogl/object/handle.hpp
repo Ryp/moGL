@@ -9,10 +9,10 @@
 ///
 /// @brief GL Handle wrapper, base class to most mogl objects, templated on
 /// the handle type, because it is not always GLuint (sometimes GLsync).
-/// The isValid() method will result to a call to glIs*() with the appropriated
-/// name.
+/// The isHandleValid() method will result to a call to glIs*() with the
+/// appropriated name.
 ///
-/// Ex: class FrameBuffer -> isValid will call glIsFramebuffer().
+/// Ex: class FrameBuffer -> isHandleValid will call glIsFramebuffer().
 ////////////////////////////////////////////////////////////////////////////////
 
 #ifndef MOGL_HANDLE_INCLUDED
@@ -40,7 +40,7 @@ namespace mogl
         void        setLabel(const std::string& name);
 
     public:
-        virtual bool    isValid() const = 0;
+        virtual bool    isHandleValid() const = 0;
 
     protected:
         T   _handle;

@@ -248,7 +248,7 @@ namespace mogl
         glTextureParameterfv(_handle, property, value);
     }
 
-    inline bool Texture::isValid() const
+    inline bool Texture::isHandleValid() const
     {
         return glIsTexture(_handle) == GL_TRUE;
     }

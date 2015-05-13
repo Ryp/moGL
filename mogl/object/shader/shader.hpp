@@ -35,7 +35,7 @@ namespace mogl
         void                get(GLenum property, GLint* value) const; // Direct call to glGetShaderiv()
         GLint               get(GLenum property) const;
         bool                isCompiled() const;
-        bool                isValid() const override final;
+        bool                isHandleValid() const override final;
 
     private:
         const GLenum    _type;

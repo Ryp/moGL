@@ -48,7 +48,7 @@ namespace mogl
         void*   getBufferPointer(); /* call to glGetNamedBufferPointerv */
         void    getSubData(GLintptr offset, GLsizeiptr size, void* data);
         GLenum  getTarget() const;
-        bool    isValid() const override final;
+        bool    isHandleValid() const override final;
 
     protected:
         void    bind();
