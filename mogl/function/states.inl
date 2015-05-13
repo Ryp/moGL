@@ -19,6 +19,11 @@ namespace mogl
     {
         glDisable(flag);
     }
+    
+    inline bool isEnabled(GLenum flag)
+    {
+        return glIsEnabled(flag) == GL_TRUE;
+    }
 
     inline void setActiveTexture(GLenum unit)
     {

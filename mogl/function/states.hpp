@@ -15,6 +15,7 @@ namespace mogl
 {
     void enable(GLenum flag);
     void disable(GLenum flag);
+    bool isEnabled(GLenum flag);
     void setActiveTexture(GLenum unit);
     void setViewport(GLint x, GLint y, GLsizei width, GLsizei height);
     void setCullFace(GLenum mode);
