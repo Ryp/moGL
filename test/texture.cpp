@@ -35,6 +35,7 @@ TEST_F(TextureTest, texture)
     depthTexture.set(GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
     depthTexture.set(GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
     depthTexture.set(GL_TEXTURE_BORDER_COLOR, border);
+    depthTexture.invalidate();
 
     sampler.set(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     sampler.set(GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);

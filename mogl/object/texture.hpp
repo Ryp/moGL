@@ -72,6 +72,10 @@ namespace mogl
         void    copySubImage3D(GLint level, GLint xoffset, GLint yoffset,
                                GLint zoffset, GLint x, GLint y, GLsizei width,
                                GLsizei height);
+        void    invalidate(GLint level = 0);
+        void    invalidateSubImage(GLint level, GLint xoffset, GLint yoffset,
+                                   GLint zoffset, GLsizei width, GLsizei height,
+                                   GLsizei depth);
         void    generateMipmap();
         void    getImage(GLint level, GLenum format, GLenum type,
                          GLsizei bufSize, void* pixels);

@@ -36,6 +36,8 @@ TEST_F(FrameBufferTest, instantiation)
     if (!fbo.isComplete(GL_FRAMEBUFFER))
         throw (std::runtime_error("bad framebuffer"));
     fbo.clear<GLfloat>(GL_COLOR, 0, clearColor);
+    const GLenum invalid[1] = {GL_COLOR_ATTACHMENT0};
+    fbo.invalidate(1, &invalid[0]);
 
     EXPECT_TRUE(fbo.isValid());
 }

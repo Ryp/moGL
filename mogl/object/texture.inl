@@ -108,6 +108,16 @@ namespace mogl
         glCopyTextureSubImage3D(_handle, level, xoffset, yoffset, zoffset, x, y, width, height);
     }
 
+    inline void Texture::invalidate(GLint level)
+    {
+        glInvalidateTexImage(_handle, level);
+    }
+
+    inline void Texture::invalidateSubImage(GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth)
+    {
+        glInvalidateTexSubImage(_handle, level, xoffset, yoffset, zoffset, width, height, depth);
+    }
+
     inline void Texture::generateMipmap()
     {
         glGenerateTextureMipmap(_handle);
