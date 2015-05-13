@@ -17,6 +17,7 @@ namespace mogl
     {
         void flush();
         void finish();
+        void textureBarrier();
     };
 }
 

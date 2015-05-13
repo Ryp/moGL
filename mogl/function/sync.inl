@@ -21,5 +21,10 @@ namespace mogl
         {
             glFlush();
         }
+
+        inline void textureBarrier()
+        {
+            glTextureBarrier();
+        }
     }
 }
