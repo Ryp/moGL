@@ -12,9 +12,25 @@ It keeps most of the **syntax intact**, including enums and types, but improving
 
 **Performance is predictable**, as it is a thin layer that doesn't do a lot of processing behind your back. In most cases, one MoGL call = one gl* call.
 
-###Practical example
+##How to use
 
-Texture creation
+MoGL is header-only, meaning you just have to include it to use it. You can either include the whole library like this:
+
+```cpp
+#include <mogl/mogl.hpp>
+```
+
+Or just select the features you want to use:
+
+```cpp
+#include <mogl/shaderprogram.hpp>
+#include <mogl/object/texture.hpp>
+#include <mogl/object/buffer/arraybuffer.hpp>
+```
+
+##Practical example
+
+Typical texture creation in OpenGL
 ```cpp
 GLuint myTex;
 
