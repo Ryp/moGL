@@ -56,8 +56,9 @@ after_success:
     - pushd gh-pages
     - git rm -rf *
     - cp -r $TRAVIS_BUILD_DIR/html/* .
+    - git reset --hard `git rev-list --max-parents=0 HEAD`
     - git add -f .
-    - git commit -am "Doxygen update by travis"
+    - git commit -am "Deploy to Github Pages"
     - git push -fq origin gh-pages
     - popd
     - popd

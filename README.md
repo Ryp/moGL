@@ -2,7 +2,7 @@
 
 Modern OpenGL wrapper, thin C++14 header-only layer on top of the OpenGL 4.5+ core spec.
 
-Doxygen available [here](ryp.github.io/moGL/).
+Doxygen documentation available [here](ryp.github.io/moGL/).
 
 ##Features
 
@@ -23,9 +23,9 @@ MoGL is header-only, meaning you just have to include it to use it. You can eith
 Or just select the features you want to use:
 
 ```cpp
-#include <mogl/shaderprogram.hpp>
-#include <mogl/object/texture.hpp>
 #include <mogl/object/buffer/arraybuffer.hpp>
+#include <mogl/object/shader/shaderprogram.hpp>
+#include <mogl/object/texture.hpp>
 ```
 
 ##Practical example
