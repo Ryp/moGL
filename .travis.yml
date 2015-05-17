@@ -58,7 +58,7 @@ after_success:
     - cp -r $TRAVIS_BUILD_DIR/html/* .
     - git reset --hard `git rev-list --max-parents=0 HEAD`
     - git add -f .
-    - git commit -am "Deploy to Github Pages"
+    - git commit --amend -am "Deploy to Github Pages"
     - git push -fq origin gh-pages
     - popd
     - popd
