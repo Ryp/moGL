@@ -53,10 +53,10 @@ after_success:
     - git config --global user.email "travis@travis-ci.org"
     - git config --global user.name "travis-ci"
     - git clone -b gh-pages --single-branch https://${GH_TOKEN}@github.com/Ryp/moGL gh-pages
+    - git reset --hard `git rev-list --max-parents=0 HEAD`
     - pushd gh-pages
     - git rm -rf *
     - cp -r $TRAVIS_BUILD_DIR/html/* .
-    - git reset --hard `git rev-list --max-parents=0 HEAD`
     - git add -f .
     - git commit --amend -am "Deploy to Github Pages"
     - git push -fq origin gh-pages
