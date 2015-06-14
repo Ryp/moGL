@@ -69,8 +69,6 @@ addons:
       name: "Ryp/moGL"
       description: "Modern OpenGL wrapper, thin C++14 header-only layer on top of the OpenGL 4.5+ core spec."
     notification_email: ryp.sqrt@gmail.com
-    build_command_prepend:
-      - mkdir build && pushd build
-    build_command:
-      - cmake .. && make -j2
+    #build_command_prepend: ""
+    build_command: "mkdir -p build && pushd build && cmake .. && make -j2 && popd"
     branch_pattern: master
