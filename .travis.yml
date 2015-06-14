@@ -71,4 +71,4 @@ addons:
     notification_email: ryp.sqrt@gmail.com
     #build_command_prepend: ""
     build_command: "mkdir -p build && pushd build && cmake .. && make -j2 && popd"
-    branch_pattern: master
+    branch_pattern: *
