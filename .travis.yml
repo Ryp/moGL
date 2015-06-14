@@ -11,6 +11,7 @@ notifications:
 env:
   global:
     - secure: "JVSODHpfFYesFxNQ/3jtl0pzO0MBnqyhL6GkFOYK3kNgfkNbN3m7iC9tl3gfS2etrpBSCUErwk8TGVa1yBvYY1uAea6mqWGqwQwKXkXpYn3nW8woouooQeplKYuSWeeKw2QSMUlgPEIePyQDh1JPyeYnB/nKi1V6PtbIscr5byE="
+    - secure: "MJWJprDL8T4QIYJUxIAi0wCsjgmSFEkcWCNQtDAWH4Q/dxHnc1loFvP6q4o+d5/EJivvbgdU60hzY0yuKZoNSsJk729PsyG6taFK1hODgEHzdZdGUTdHvQ4nm7fEyLpIHbrJx/CvF5HEUtuTC+1jKu3SZEj+YQ4ynGP2H8i1QRE="
 before_install:
     - sudo apt-get install -qq doxygen
     - sudo apt-get install -qq graphviz
@@ -62,3 +63,14 @@ after_success:
     - git push -fq origin gh-pages
     - popd
     - popd
+addons:
+  coverity_scan:
+    project:
+      name: "Ryp/moGL"
+      description: "Modern OpenGL wrapper, thin C++14 header-only layer on top of the OpenGL 4.5+ core spec."
+    notification_email: ryp.sqrt@gmail.com
+    build_command_prepend:
+      - mkdir build && pushd build
+    build_command:
+      - cmake .. && make -j2
+    branch_pattern: master

@@ -138,7 +138,7 @@ namespace mogl
                 case GL_UNSIGNED_INT_IMAGE_2D_MULTISAMPLE: return "uimage2DMS";
                 case GL_UNSIGNED_INT_IMAGE_2D_MULTISAMPLE_ARRAY: return "uimage2DMSArray";
                 case GL_UNSIGNED_INT_ATOMIC_COUNTER: return "atomic_uint";
-                default: throw mogl::MoGLException("Unknown GLSL type id"); break;
+                default: throw mogl::MoGLException("Unknown GLSL type id");
             }
         }
 
