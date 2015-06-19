@@ -72,3 +72,16 @@ addons:
     build_command_prepend: "cmake .. -DCMAKE_BUILD_TYPE=Debug -DMOGL_BUILD_TESTS=ON"
     build_command: "make -j4"
     branch_pattern: develop
+deploy:
+  provider: releases
+  api_key:
+    - secure: R4Y8BqN7cfShdSFW0vuwWjlNOZBdRN7n5iwSscRlGVxtrUdcVKvt6OHX4KU/TFQEYs+ytTeljhgLBmpvTyp8iwU4ih1ZWc4gDwtMErkI8joEvpLlX9T0OzPcrWn+Jks+VxZrQ/bkQiztttbYoqIMfy5glEKUpclwJeHxFKAbrkI=
+  file: "$MOGL_HEADERS_ZIP"
+  on:
+    repo: Ryp/moGL
+    tags: true
+    all_branches: true
+before_deploy:
+    - pushd $TRAVIS_BUILD_DIR
+    - MOGL_HEADERS_ZIP="mogl-$TRAVIS_TAG.zip"
+    - zip -r $MOGL_HEADERS_ZIP mogl
