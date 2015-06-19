@@ -17,7 +17,6 @@ TEST_F(RenderBufferTest, binding)
     RenderBuffer    rbo;
 
     rbo.setStorage(GL_DEPTH_COMPONENT, 1024, 1024);
-    rbo.getHandle();
 
     EXPECT_TRUE(rbo.isHandleValid());
 }

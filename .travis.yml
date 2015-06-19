@@ -70,5 +70,5 @@ addons:
       description: "Modern OpenGL wrapper, thin C++14 header-only layer on top of the OpenGL 4.5+ core spec."
     notification_email: ryp.sqrt@gmail.com
     build_command_prepend: "cmake .. -DCMAKE_BUILD_TYPE=Debug -DMOGL_BUILD_TESTS=ON"
-    build_command: "make"
-    branch_pattern: "*"
+    build_command: "make -j4"
+    branch_pattern: develop

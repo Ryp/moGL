@@ -1,4 +1,4 @@
-#MoGL [![Build Status](https://img.shields.io/travis/Ryp/moGL/master.svg?label=linux)](https://travis-ci.org/Ryp/moGL) [![Join the chat at https://gitter.im/Ryp/moGL](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Ryp/moGL?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+#MoGL [![Build Status](https://img.shields.io/travis/Ryp/moGL/master.svg?label=linux)](https://travis-ci.org/Ryp/moGL) [![Coverity Scan Build Status](https://scan.coverity.com/projects/5381/badge.svg)](https://scan.coverity.com/projects/538) [![Join the chat at https://gitter.im/Ryp/moGL](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Ryp/moGL?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Modern OpenGL wrapper, thin C++14 header-only layer on top of the OpenGL 4.5+ core spec.
 
