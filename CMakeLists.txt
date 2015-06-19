@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1.3 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.2.1 FATAL_ERROR)
 
 # Set CMAKE_BUILD_TYPE to Release by default.
 # Must be done before calling project()

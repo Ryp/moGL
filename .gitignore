@@ -3,6 +3,7 @@
 #Ryp custom
 *.kdev4*
 *.bak
+.idea
 
 #Build files
 build
