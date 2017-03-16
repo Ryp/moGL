@@ -1,10 +1,10 @@
-#MoGL [![Build Status](https://img.shields.io/travis/Ryp/moGL/master.svg?label=linux)](https://travis-ci.org/Ryp/moGL) [![Coverity Scan Build Status](https://scan.coverity.com/projects/5381/badge.svg)](https://scan.coverity.com/projects/5381) [![Join the chat at https://gitter.im/Ryp/moGL](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Ryp/moGL?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# MoGL [![Build Status](https://img.shields.io/travis/Ryp/moGL/master.svg?label=linux)](https://travis-ci.org/Ryp/moGL) [![Coverity Scan Build Status](https://scan.coverity.com/projects/5381/badge.svg)](https://scan.coverity.com/projects/5381) [![Join the chat at https://gitter.im/Ryp/moGL](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Ryp/moGL?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Modern OpenGL wrapper, thin C++14 header-only layer on top of the OpenGL 4.5+ core spec.
 
 Doxygen documentation available [here](ryp.github.io/moGL/).
 
-##Features
+## Features
 
 MoGL takes **full advantage of the 4.5 core spec**, using [DSA](www.opengl.org/registry/specs/ARB/direct_state_access.txt) an RAII idioms in all object wrappers, limiting effectively side effects from OpenGL states. Say goodbye to `glBind*()` everywhere !
 
@@ -12,7 +12,7 @@ It keeps most of the **syntax intact**, including enums and types, but improving
 
 **Performance is predictable**, as it is a thin layer that doesn't do a lot of processing behind your back. In most cases, one MoGL call = one gl* call.
 
-##How to use
+## How to use
 
 MoGL is header-only, meaning you just have to include it to use it. You can either include the whole library like this:
 
@@ -28,7 +28,7 @@ Or just select the features you want to use:
 #include <mogl/object/texture.hpp>
 ```
 
-##Practical example
+## Practical example
 
 Typical texture creation in OpenGL
 ```cpp
@@ -62,7 +62,7 @@ glTextureParameteri(myTex, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 glDeleteTextures(1, &myTex);
 ```
 
-##MIT LICENSE
+## MIT LICENSE
 
 Copyright (c) 2015 Thibault Schueller <ryp.sqrt@gmail.com>
 
