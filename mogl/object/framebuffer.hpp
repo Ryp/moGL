@@ -41,7 +41,7 @@ namespace mogl
                                   GLint x, GLint y, GLsizei width, GLsizei height);
         void    set(GLenum property, GLint value);
         bool    isComplete(GLenum target);
-        bool    isHandleValid() const override final;
+        bool    isValid() const override final;
 
     public:
         template <class T>

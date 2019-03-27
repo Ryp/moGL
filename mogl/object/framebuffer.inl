@@ -67,7 +67,7 @@ namespace mogl
         return glCheckNamedFramebufferStatus(_handle, target) == GL_FRAMEBUFFER_COMPLETE;
     }
 
-    inline bool FrameBuffer::isHandleValid() const
+    inline bool FrameBuffer::isValid() const
     {
         return glIsFramebuffer(_handle) == GL_TRUE;
     }
