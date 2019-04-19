@@ -47,6 +47,16 @@ namespace mogl
         glNamedFramebufferDrawBuffers(_handle, size, buffers);
     }
 
+    inline void FrameBuffer::invalidate(GLsizei numAttachments, const GLenum* attachments)
+    {
+        glInvalidateNamedFramebufferData(_handle, numAttachments, attachments);
+    }
+
+    inline void FrameBuffer::invalidateSubData(GLsizei numAttachments, const GLenum* attachments, GLint x, GLint y, GLsizei width, GLsizei height)
+    {
+        glInvalidateNamedFramebufferSubData(_handle, numAttachments, attachments, x, y, width, height);
+    }
+
     inline void FrameBuffer::set(GLenum property, GLint value)
     {
         glNamedFramebufferParameteri(_handle, property, value);
@@ -80,8 +90,8 @@ namespace mogl
         glClearNamedFramebufferfv(_handle, buffer, drawbuffer, value);
     }
 
-    inline void FrameBuffer::clear(GLenum buffer, GLfloat depth, GLint stencil)
+    inline void FrameBuffer::clear(GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil)
     {
-        glClearNamedFramebufferfi(_handle, buffer, depth, stencil);
+        glClearNamedFramebufferfi(_handle, buffer, drawbuffer, depth, stencil);
     }
 }

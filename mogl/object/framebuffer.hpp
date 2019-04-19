@@ -36,6 +36,9 @@ namespace mogl
         void    setTexture(GLenum attachment, Texture& texture, GLint level = 0);
         void    setDrawBuffer(GLenum buffer);
         void    setDrawBuffers(GLsizei size, const GLenum* buffers);
+        void    invalidate(GLsizei numAttachments, const GLenum* attachments);
+        void    invalidateSubData(GLsizei numAttachments, const GLenum* attachments,
+                                  GLint x, GLint y, GLsizei width, GLsizei height);
         void    set(GLenum property, GLint value);
         bool    isComplete(GLenum target);
         bool    isValid() const override final;
@@ -43,7 +46,7 @@ namespace mogl
     public:
         template <class T>
         void    clear(GLenum buffer, GLint drawbuffer, const T* value);
-        void    clear(GLenum buffer, GLfloat depth, GLint stencil);
+        void    clear(GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil);
     };
 }
 
