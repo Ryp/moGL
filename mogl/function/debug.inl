@@ -151,7 +151,7 @@ namespace mogl
             if (errorNo != GL_NO_ERROR)
             {
                 errorDescription = getErrorString(errorNo);
-                stream << file << ':' << line << ": in '" << func << "': (" << errorNo << ") " << errorDescription;
+                stream << file << ':' << line << ": in '" << func << "': (" << static_cast<GLuint>(errorNo) << ") " << errorDescription;
                 throw (mogl::MoGLException(stream.str()));
             }
         }
