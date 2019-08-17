@@ -39,7 +39,7 @@ void GLContext::create(unsigned int width, unsigned int height, unsigned int maj
     _windowSize = {width, height};
     makeCurrent();
 
-    glbinding::Binding::initialize(true);
+    glbinding::Binding::initialize(glfwGetProcAddress);
 
     glfwSwapInterval(1); // NOTE Drivers may ignore this
     glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
