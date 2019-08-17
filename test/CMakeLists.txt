@@ -33,7 +33,7 @@ add_custom_target(${PRECOMPILED_HEADER_TARGET}
 add_library(context SHARED
     ${CMAKE_SOURCE_DIR}/common/glcontext.cpp
     ${CMAKE_SOURCE_DIR}/common/gltestfixture.cpp)
-target_link_libraries(context ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GLFW_LIBRARIES} ${GLBINDING_LIBRARIES} pthread)
+target_link_libraries(context ${OPENGL_LIBRARIES} ${GLBINDING_LIBRARIES} ${GLFW_LIBRARIES} pthread)
 
 set_target_properties(context PROPERTIES
     CXX_STANDARD 14
