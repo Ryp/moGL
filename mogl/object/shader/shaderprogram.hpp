@@ -31,8 +31,8 @@ namespace mogl
         bool                link();
         void                use();
         const std::string&  getLog() const;
-        GLuint              getAttribLocation(const std::string& name) const;
-        GLuint              getUniformLocation(const std::string& name) const;
+        GLint               getAttribLocation(const std::string& name) const;
+        GLint               getUniformLocation(const std::string& name) const;
         void                setTransformFeedbackVaryings(GLsizei count,
                                                          const char** varyings,
                                                          GLenum bufferMode);
@@ -78,7 +78,7 @@ namespace mogl
         void    retrieveSubroutines(GLenum type);
 
     private:
-        using HandleMap = std::map<std::string, GLuint>;
+        using HandleMap = std::map<std::string, GLint>;
         struct SubroutineUniform {
             GLuint      uniform;
             HandleMap   subroutines;

@@ -81,9 +81,9 @@ namespace mogl
         return _log;
     }
 
-    inline GLuint ShaderProgram::getAttribLocation(const std::string& name) const
+    inline GLint ShaderProgram::getAttribLocation(const std::string& name) const
     {
-        std::map<std::string, GLuint>::const_iterator it;
+        std::map<std::string, GLint>::const_iterator it;
 
         if ((it = _attribs.find(name)) != _attribs.end())
             return it->second;
@@ -91,9 +91,9 @@ namespace mogl
         return -1;
     }
 
-    inline GLuint ShaderProgram::getUniformLocation(const std::string& name) const
+    inline GLint ShaderProgram::getUniformLocation(const std::string& name) const
     {
-        std::map<std::string, GLuint>::const_iterator it;
+        std::map<std::string, GLint>::const_iterator it;
 
         if ((it = _uniforms.find(name)) != _uniforms.end())
             return it->second;
@@ -151,7 +151,8 @@ namespace mogl
     inline void ShaderProgram::retrieveLocations()
     {
         GLint       n, maxLen;
-        GLint       size, location;
+        GLint       size;
+        GLuint      location;
         GLsizei     written;
         GLenum      type;
         GLchar*     name;
